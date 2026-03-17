@@ -27,6 +27,7 @@ nextToSend = 0 # next packet that haven't sent
 isDone = False
 
 # thread safety
+lastWindowMoveTime = 0.0
 windowLock = threading.Lock() # lock ( send thread and receive )
 retransmitTimer = None
 
@@ -76,49 +77,75 @@ def sendFileInfo(sock, filename, fSize, nChunks, md5Hash):
     print('( Send ) file info sent to client')
 
 # Start retransmission timer
-def startRetransmitTimer():
-    global retransmitTimer
+def retransmitWatcher():
+    global totalSent, totalRetransmit, isDone, lastWindowMoveTime
 
-    stopRetransmitTimer()
-    # retransmit all unack packets
-    retransmitTimer = threading.Timer(timeoutValue, handleTimeout)
-    retransmitTimer.daemon = True
-    retransmitTimer.start()
 
-# stop retransmi timer
-def stopRetransmitTimer():
+    # last windowBase
+    lastSeenBase = 0
 
-    global retransmitTimer
+    while not isDone:
 
-    if retransmitTimer is not None:
-        retransmitTimer.cancel()
-        retransmitTimer = None
+        # Check every 50ms
+        time.sleep(0.05)
 
-# when the retransmission timer timeout
-def handleTimeout():
-    # retransmit all packets from windowBase to nextToSend
-    global totalSent, totalRetransmit
 
-    windowLock.acquire()
-    if not isDone and windowBase < numChunks:
-        endSeq = min(nextToSend, numChunks)
-        count = endSeq - windowBase
-        print('')
-        print(' [Timeout] resending seq=' + str(windowBase) + ' to ' +
-              str(endSeq - 1) + ' (' + str(count) + ' packets)')
-        for seq in range(windowBase, endSeq):
-            sendPacket(mySocket, savedClientIP, savedClientPort,
-                       serverIP, serverPort, typeData, seq, 0, allChunks[seq])
-            totalSent = totalSent + 1
-            totalRetransmit = totalRetransmit + 1
-        startRetransmitTimer()
-    windowLock.release()
+        # safely read window
+        windowLock.acquire()
+
+        currentBase = windowBase
+        currentNext = nextToSend
+
+
+        # windowBase advanced
+        # Update timestamp, reset lastSeenBase
+        if currentBase > lastSeenBase:
+            lastSeenBase = currentBase
+            lastWindowMoveTime = time.time()
+
+        # windowBase stuck
+        # window has unacked packets
+        elif currentBase < numChunks and currentNext > currentBase:
+
+            elapsed = time.time() - lastWindowMoveTime
+
+            # stuck longer than timeoutValue seconds
+            # timeout retransmit
+            if elapsed >= timeoutValue:
+
+                # Retransmit all packets from windowBase up to nextToSend
+                endSeq = min(currentNext, numChunks)
+                count = endSeq - currentBase
+
+                print('')
+                print('[Timeout] windowBase=' + str(currentBase) +
+                      ' stuck for ' + str(round(elapsed, 2)) + 's')
+                print('[Timeout] Retransmitting seq=' + str(currentBase) +
+                      ' to ' + str(endSeq - 1) +
+                      ' (' + str(count) + ' packets)')
+
+                # Resend every unACKed
+                for seq in range(currentBase, endSeq):
+                    if seq < len(allChunks):
+                        sendPacket(mySocket, savedClientIP, savedClientPort,
+                                   serverIP, serverPort,
+                                   typeData, seq, 0, allChunks[seq])
+                        totalSent = totalSent + 1
+                        totalRetransmit = totalRetransmit + 1
+
+
+                # reset the timestamp
+                lastWindowMoveTime = time.time()
+        windowLock.release()
+
+
+
 
 # separate thread to receive ACKs from the client\
 # receipt of data segments
 def receiveAcks(sock):
 
-    global windowBase, isDone, totalReceived
+    global windowBase, isDone, totalReceived, lastWindowMoveTime
 
     while not isDone:
         parsed = recvPacket(sock, serverPort, timeout=timeoutValue + 1)
@@ -139,9 +166,13 @@ def receiveAcks(sock):
         ackNum = parsed['ackNum']
 
         windowLock.acquire()
+        # Cumulative ACK
         if ackNum > windowBase:
             oldBase = windowBase
             windowBase = ackNum
+
+            # detect timeout
+            lastWindowMoveTime = time.time()
 
             # print progress
             if windowBase % printEvery == 0 or windowBase >= numChunks:
@@ -151,17 +182,9 @@ def receiveAcks(sock):
 
             # check if all ack
             if windowBase >= numChunks:
-                stopRetransmitTimer()
                 isDone = True
                 print('')
-                print('[Done] All ' + str(numChunks) + ' chunks acknowledged!')
-            elif windowBase == nextToSend:
-                # all ack, stop timer
-                stopRetransmitTimer()
-            else:
-                # still unack, restart timer
-                stopRetransmitTimer()
-                startRetransmitTimer()
+                print('[Done] All ' + str(numChunks) + ' chunks acknowledged')
         windowLock.release()
 
 # sliding window sending loo[p
@@ -169,7 +192,8 @@ def slidingWindowSend(sock):
     # send packets from windowBase
     # to windowBase + windowSize
     # AACKs come in, the window slides forward.
-    global nextToSend, totalSent
+    global nextToSend, totalSent, lastWindowMoveTime
+
 
     while not isDone:
         windowLock.acquire()
@@ -186,10 +210,6 @@ def slidingWindowSend(sock):
                 print('  -> Send seq=' + str(seq) + '/' + str(numChunks - 1) +
                       ' [' + str(progress) + '%] (base=' + str(windowBase) + ')')
 
-            # start timer when send first packet in the window
-            if nextToSend == windowBase:
-                startRetransmitTimer()
-
             nextToSend = nextToSend + 1
 
         windowLock.release()
@@ -199,7 +219,7 @@ def slidingWindowSend(sock):
 # Send FIN  to the client
 def sendFinish(sock, md5Hash):
 
-    global totalSent, totalRetransmit, totalReceived
+    global totalSent, totalReceived
 
     print('')
     print('[FIN] sending finish ')
@@ -208,19 +228,24 @@ def sendFinish(sock, md5Hash):
         sendPacket(sock, savedClientIP, savedClientPort, serverIP, serverPort,
                    typeFin, numChunks, 0, md5Hash.encode('utf-8'))
         totalSent = totalSent + 1
-        if attempt > 0:
-            totalRetransmit = totalRetransmit + 1
+
 
         # wait for FIN ACK from client
-        parsed = recvPacket(sock, serverPort, timeout=3)
-        if parsed and parsed['pktType'] == typeFinAck:
-            totalReceived = totalReceived + 1
-            print('[FIN] get FIN ACK so transfer complete')
-            return True
+        wait_start = time.time()
+        while time.time() - wait_start < 3.0:  # 3 second timeout
+            parsed = recvPacket(sock, serverPort, timeout=0.5)
 
-        print('  [FIN] retry ' + str(attempt + 1) + '/' + str(maxRetry) + '...')
+            if parsed is None:
+                continue  # within the 3s window
 
-    print('[FIN] warning no FIN_ACK receive after ' + str(maxRetry) + ' tries')
+            if parsed['pktType'] == typeFinAck:
+                totalReceived = totalReceived + 1
+                print('[FIN] get FIN ACK so transfer complete')
+                return True
+
+        print('  [FIN] retry ' + str(attempt + 1) + '/' + str(maxRetry) + ' ')
+
+    print('[FIN] warning no FIN ACK receive after ' + str(maxRetry) + ' tries')
     return False
 
 # report
@@ -305,10 +330,17 @@ if __name__ == '__main__':
         nextToSend = 0
         isDone = False
 
+        lastWindowMoveTime = time.time()
+
+
         # ACK receiver
         ackThread = threading.Thread(target=receiveAcks, args=(mySocket,))
         ackThread.daemon = True
         ackThread.start()
+
+        watcherThread = threading.Thread(target=retransmitWatcher)
+        watcherThread.daemon = True
+        watcherThread.start()
 
         # run sliding window sender (main thread)
         slidingWindowSend(mySocket)
@@ -334,6 +366,5 @@ if __name__ == '__main__':
         import traceback
         traceback.print_exc()
     finally:
-        stopRetransmitTimer()
         mySocket.close()
         print('Cleanup')
