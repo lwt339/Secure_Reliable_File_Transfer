@@ -16425,7 +16425,7 @@ MD5 match, file transfer successful
 
 
 Client task complete,  file transfer success
-============================================================
+
 cleanup Socket closed
 [ec2-user@ip-172-31-18-97 ~]$ md5sum client/test_800mb_file
 4067155e98ab9e162baab0b6341f275a  client/test_800mb_file
