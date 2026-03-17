@@ -1,0 +1,10 @@
+ 
+  SRFT Transfer Report (Phase 1)
+ 
+ Name of the transferred file: test_100mb_file
+ Size of the transferred file: 104857600 bytes
+ The number of packets sent from the server: 102402
+ The number of retransmitted packets from the server: 0
+ The number of packets receive from the client: 102404
+ The time duration of the file transfer: 00:00:31
+ 

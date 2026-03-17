@@ -1,0 +1,55 @@
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@34.230.82.236:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   499.0KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   10KB 406.2KB/s   00:00
+config.py                                                                                                                            100% 2487   144.9KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 676.3KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@52.201.235.160:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   510.9KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   10KB 574.9KB/s   00:00
+config.py                                                                                                                            100% 2487   144.3KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 675.2KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem -r server/ ec2-user@52.201.235.160:~/
+test_800mb_file                                                                                                                      100%  800MB  26.5MB/s   00:30
+test_500mb_file                                                                                                                      100%  500MB  27.2MB/s   00:18
+test_10mb_file                                                                                                                       100%   10MB  24.8MB/s   00:00
+test_100mb_file                                                                                                                      100%  100MB  26.7MB/s   00:03
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem -r server/ ec2-user@34.230.82.236:~/
+test_800mb_file                                                                                                                      100%  800MB  27.4MB/s   00:29
+test_500mb_file                                                                                                                      100%  500MB  27.0MB/s   00:18
+test_10mb_file                                                                                                                       100%   10MB  25.5MB/s   00:00
+test_100mb_file                                                                                                                      100%  100MB  27.1MB/s   00:03
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@18.209.56.24:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   555.2KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   10KB 477.7KB/s   00:00
+config.py                                                                                                                            100% 2487   154.2KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 683.9KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@13.218.218.68:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   559.9KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   10KB 656.3KB/s   00:00
+config.py                                                                                                                            100% 2487   150.1KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 702.8KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@54.242.79.155:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   534.2KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   11KB 630.4KB/s   00:00
+config.py                                                                                                                            100% 2487   150.2KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 653.6KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@54.160.169.70:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   417.2KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   11KB 643.7KB/s   00:00
+config.py                                                                                                                            100% 2487   148.5KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 695.9KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@54.242.79.155:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   531.0KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   11KB 584.7KB/s   00:00
+config.py                                                                                                                            100% 2487   145.9KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 685.7KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem *.py ec2-user@54.160.169.70:~/
+SRFT_UDPClient.py                                                                                                                    100% 9744   500.2KB/s   00:00
+SRFT_UDPServer.py                                                                                                                    100%   11KB 656.2KB/s   00:00
+config.py                                                                                                                            100% 2487   147.6KB/s   00:00
+packet_helper.py                                                                                                                     100%   12KB 742.3KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem SRFT_UDPServer.py ec2-user@54.242.79.155:~/
+SRFT_UDPServer.py                                                                                                                    100%   11KB 590.9KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem SRFT_UDPServer.py ec2-user@54.160.169.70:~/
+SRFT_UDPServer.py                                                                                                                    100%   11KB 649.2KB/s   00:00
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem ec2-user@54.160.169.70:~/transfer_report.txting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem ec2-user@54.160.169.70:~/transfer_report.txt ~/Desktop/srft/
