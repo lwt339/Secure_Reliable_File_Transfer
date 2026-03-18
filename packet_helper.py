@@ -2,22 +2,22 @@
 
 
 import struct
-import hashlib # calculate MD5 hash
+import hashlib # calculate MD5 and SHA-256 hash
 import os
-import sys # macOS and Linux detext
+import sys # macOS and Linux detect
 
 from socket import *
 from config import *
 
 # Detect operating system
 # macOS test local ( use host byte order )
-# Linus for AWS ( network byte order )
+# Linux for AWS ( network byte order )
 isMac = (sys.platform == 'darwin')
 
 
 
-# Checksum Calculation ( one complement checksum）
-# no need include the pseudo header
+# checksum
+
 def calcChecksum(data):
 
     # if length is odd, pad with 0
@@ -68,7 +68,7 @@ def verifyChecksum(data):
     return result == 0
 
 
-#  Build IPv4 Header (20 bytes)
+# IPv4 Header
 
 def buildIpHeader(srcIP, dstIP, totalLen):
     # version 4 and IHL 5
@@ -108,7 +108,8 @@ def buildIpHeader(srcIP, dstIP, totalLen):
     return header
 
 
-#  Build UDP Header (8 bytes)
+# UDP Header (8 bytes)
+# source port, dest port, length, checksum
 
 def buildUdpHeader(srcPort, dstPort, udpLen):
 
@@ -124,7 +125,8 @@ def buildUdpHeader(srcPort, dstPort, udpLen):
     return header
 
 
-#  Build SRFT header and data
+# SRFT header and data
+# packet type, seq number, ack number, checksum, data length
 
 def buildSrftPayload(pktType, seqNum, ackNum, data=b''):
 
@@ -151,8 +153,10 @@ def buildSrftPayload(pktType, seqNum, ackNum, data=b''):
     return finalHeader + data
 
 
-#  Combine to One Packet
+# Combine to One Packet
 # IP header + UDP header + SRFT header + data
+# encapsulation each layer adds its own header
+
 def buildFullPacket(srcIP, dstIP, srcPort, dstPort,
                     pktType, seqNum, ackNum, data=b''):
 
@@ -172,9 +176,10 @@ def buildFullPacket(srcIP, dstIP, srcPort, dstPort,
     return packet
 
 
-# de encapsulation
+# De-encapsulation
 # Parse a raw received packet
-# opposite of buildSrftPayload
+# receiver de-encapsulation strip headers layer by layer
+
 def parseFullPacket(rawData, myPort=None):
 
     try:
@@ -204,7 +209,7 @@ def parseFullPacket(rawData, myPort=None):
         if myPort is not None and dstPort != myPort:
             return None
 
-        # unpackl SRFT header
+        # unpack SRFT header
         srftStart = udpStart + udpHeaderLen
         if len(rawData) < srftStart + srftHeaderLen:
             return None
@@ -245,12 +250,9 @@ def parseFullPacket(rawData, myPort=None):
 
 
 
-# Create Sockets
-
+# create Sockets
 # Linux (AWS EC2): socket(AF_INET, SOCK_RAW, IPPROTO_UDP) raw udp
 # macOS (local test): socket(AF_INET, SOCK_DGRAM) normal udp
-# auto switches to SOCK_RAW on LInux
-
 
 def createServerSocket():
 
@@ -302,6 +304,7 @@ def createClientSocket():
     except Exception as e:
         print('  [Error] Failed to create socket: ' + str(e))
         raise
+
 
 
 # for Sending
@@ -384,7 +387,9 @@ def recvPacket(sock, myPort, timeout=None):
 
 
 
+
 # Calculate MD5 hash of a file
+# verify file integrity
 def calculateMD5(filepath):
 
     md5 = hashlib.md5()
@@ -396,7 +401,46 @@ def calculateMD5(filepath):
             md5.update(chunk)
     return md5.hexdigest()
 
-# Split file into small chunks
+
+# SHA-256 hash of a file
+# end to end file verification
+def calculateSHA256(filepath):
+
+    sha = hashlib.sha256()
+    with open(filepath, 'rb') as f:
+        while True:
+            chunk = f.read(8192)
+            if not chunk:
+                break
+            sha.update(chunk)
+    return sha.hexdigest()
+
+
+# number chunks a file needs (without loading file into memory)
+# important for large files
+def countChunks(filepath):
+
+    fileSize = os.path.getsize(filepath)
+    # round up
+    numChunks = (fileSize + chunkSize - 1) // chunkSize
+    return numChunks
+
+
+# Read one chunk from file by sequence number
+def readChunk(filepath, seqNum):
+
+    # calc where chunk start
+    offset = seqNum * chunkSize
+
+    # open file, jump to position, read one chunk, close file
+    with open(filepath, 'rb') as f:
+        f.seek(offset)
+        data = f.read(chunkSize)
+
+    return data
+
+
+# Split file into small chunks (for small files only)
 def splitFile(filepath):
 
     chunks = []
@@ -407,6 +451,7 @@ def splitFile(filepath):
                 break
             chunks.append(piece)
     return chunks
+
 
 # Format seconds
 # hh:mm:ss for report
@@ -421,4 +466,3 @@ def getTypeName(pktType):
     if pktType in typeNames:
         return typeNames[pktType]
     return 'UNKNOWN'
-

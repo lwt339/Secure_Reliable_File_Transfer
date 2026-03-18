@@ -1,5 +1,3 @@
-[ec2-user@ip-172-31-18-97 ~]$ ls
-SRFT_UDPClient.py  SRFT_UDPServer.py  __pycache__  client  config.py  packet_helper.py  server
 [ec2-user@ip-172-31-18-97 ~]$ sudo python3 SRFT_UDPClient.py test_800mb_file
 
   CS5700 - SRFT Client (Phase 1: Reliable File Transfer)
@@ -16,12 +14,20 @@ Target: 172.31.27.171:12000
 Request sent
 
 [Wait] for file info from server
+Timeout, resending request (1/15)
+
+[Request] Send file request: test_800mb_file
+Target: 172.31.27.171:12000
+Request sent
 
 [Info] get file info
 Filename: test_800mb_file
 Size: 838860800 bytes (819200 KB)
 Chunks: 819200
 MD5: 4067155e98ab9e162baab0b6341f275a
+
+[Prepare] Output file ready: ./client/test_800mb_file
+ Pre-allocated 838860800 bytes on disk
 
 [Receive] Starting to receive data (expecting 819200 chunks)
  Progress: 50/819200 [0%]
@@ -16414,17 +16420,16 @@ MD5: 4067155e98ab9e162baab0b6341f275a
 [FIN] Received finish from server
 [FIN] FIN ACK sent
 
-[Stats] Valid=819200 Duplicate=0 OutOfOrder=0 ACKsSent=819224
+[Stats] Valid=819200 Duplicate=0 OutOfOrder=0 ACKsSent=819231
 
-[Assemble] Verifying file hash
-[Assemble] file saved successfully: ./client/test_800mb_file
+[Verify] Verifying received file
+[Verify] All 819200 chunks received
 
 [Verify] Server MD5:   4067155e98ab9e162baab0b6341f275a
-received MD5: 4067155e98ab9e162baab0b6341f275a
-MD5 match, file transfer successful
+         Received MD5: 4067155e98ab9e162baab0b6341f275a
+         MD5 MATCH, file transfer successful
 
-
-Client task complete,  file transfer success
+Client task complete, file transfer success
 
 cleanup Socket closed
 [ec2-user@ip-172-31-18-97 ~]$ md5sum client/test_800mb_file

@@ -68,8 +68,8 @@ typeNames = {
 }
 
 
-#  Reliable Transfer
-#  Checksum, Sequence Numbers , Cumulative ACK, Retransmission
+# Reliable Transfer
+# checksum, sequence number, cumulative ACK, retransmission
 
 # MSS file data each packet can carry
 # data has to <= 1500 ( MTU ) - IP(20) + UDP(8) + SRFT(14)
@@ -84,11 +84,9 @@ recvBufferSize = 65535
 timeoutValue = 2.0
 
 # Sliding window size ( can send 10 packet  before waiting for an ACK )
-# flow control
 windowSize = 10
 
 # Cumulative ACK interval (send ACK every 3 packets received)
-# avoid sending ack per packet
 ackEvery = 3
 
 # Maximum retry counts
@@ -100,11 +98,11 @@ maxTimeouts = 30
 
 serverDir = './server/'
 clientDir = './client/'
-reportPath = 'transfer_report.txt'
+reportPath = 'report.txt'
 
 
 
 #  Debug
 
-showDebug = True # print debug messages
-printEvery = 50  # print progress every 50 packet
+showDebug = True # debug messages
+printEvery = 50  # progress every 50 packet

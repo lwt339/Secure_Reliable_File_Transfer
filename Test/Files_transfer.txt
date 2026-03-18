@@ -52,4 +52,5 @@ ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem SRFT_UDPServer.py ec
 SRFT_UDPServer.py                                                                                                                    100%   11KB 590.9KB/s   00:00
 ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem SRFT_UDPServer.py ec2-user@54.160.169.70:~/
 SRFT_UDPServer.py                                                                                                                    100%   11KB 649.2KB/s   00:00
-ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem ec2-user@54.160.169.70:~/transfer_report.txting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem ec2-user@54.160.169.70:~/transfer_report.txt ~/Desktop/srft/
+ting@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem ec2-user@54.160.169.70:~/transfer_report.txting
+@tingdeMacBook-Pro SRFT % scp -i ~/Desktop/srft-key.pem ec2-user@54.160.169.70:~/transfer_report.txt ~/Desktop/srft/

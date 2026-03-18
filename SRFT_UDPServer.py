@@ -1,4 +1,5 @@
 # Server
+# sliding window, sequence numbers, retransmission (like TCP error control)
 
 import os
 import sys
@@ -12,7 +13,7 @@ from packet_helper import *
 
 # Global Var
 
-# stat counters
+# stat counter
 totalSent = 0 # packets sent in total
 totalRetransmit = 0 # resend
 totalReceived = 0 # receive
@@ -22,6 +23,7 @@ startTime = 0
 endTime = 0
 
 # sliding window var
+# range of sent but not yet ACKed packets = the window
 windowBase = 0 # oldest unack (left edge of window)
 nextToSend = 0 # next packet that haven't sent
 isDone = False
@@ -31,17 +33,18 @@ lastWindowMoveTime = 0.0
 windowLock = threading.Lock() # lock ( send thread and receive )
 retransmitTimer = None
 
-# file data
-allChunks = [] # list
-numChunks = 0 # total
+# file info
+# store the file path and read avoid too much memory
+filePath = ''
+numChunks = 0
 
-# remember client address
+# client address
 savedClientIP = ''
 savedClientPort = 0
 
 
-# Wait client to send a filename request
-# server sits here until client connects
+# Wait client send filename request
+# server sit until client connects
 def waitForRequest(sock):
 
     global totalReceived, savedClientIP, savedClientPort
@@ -66,7 +69,7 @@ def waitForRequest(sock):
             return filename
 
 
-# Send file info to client before starttransfer
+# Send file info to client before start transfer
 def sendFileInfo(sock, filename, fSize, nChunks, md5Hash):
     # filename, size, number of chunks, MD5 hash
     global totalSent
@@ -76,10 +79,11 @@ def sendFileInfo(sock, filename, fSize, nChunks, md5Hash):
     totalSent = totalSent + 1
     print('( Send ) file info sent to client')
 
-# Start retransmission timer
+
+# Retransmission watcher thread error control
+# timer times out, retransmit unACKed packets
 def retransmitWatcher():
     global totalSent, totalRetransmit, isDone, lastWindowMoveTime
-
 
     # last windowBase
     lastSeenBase = 0
@@ -89,15 +93,13 @@ def retransmitWatcher():
         # Check every 50ms
         time.sleep(0.05)
 
-
         # safely read window
         windowLock.acquire()
 
         currentBase = windowBase
         currentNext = nextToSend
 
-
-        # windowBase advanced
+        # windowBase advance
         # Update timestamp, reset lastSeenBase
         if currentBase > lastSeenBase:
             lastSeenBase = currentBase
@@ -124,25 +126,23 @@ def retransmitWatcher():
                       ' to ' + str(endSeq - 1) +
                       ' (' + str(count) + ' packets)')
 
-                # Resend every unACKed
+                # Resend every unACKed packet
+                # read chunk from disk (not from memory list)
                 for seq in range(currentBase, endSeq):
-                    if seq < len(allChunks):
+                    if seq < numChunks:
+                        chunkData = readChunk(filePath, seq)
                         sendPacket(mySocket, savedClientIP, savedClientPort,
                                    serverIP, serverPort,
-                                   typeData, seq, 0, allChunks[seq])
+                                   typeData, seq, 0, chunkData)
                         totalSent = totalSent + 1
                         totalRetransmit = totalRetransmit + 1
-
 
                 # reset the timestamp
                 lastWindowMoveTime = time.time()
         windowLock.release()
 
 
-
-
-# separate thread to receive ACKs from the client\
-# receipt of data segments
+# separate thread to receive ACKs from the client
 def receiveAcks(sock):
 
     global windowBase, isDone, totalReceived, lastWindowMoveTime
@@ -187,21 +187,24 @@ def receiveAcks(sock):
                 print('[Done] All ' + str(numChunks) + ' chunks acknowledged')
         windowLock.release()
 
-# sliding window sending loo[p
-def slidingWindowSend(sock):
-    # send packets from windowBase
-    # to windowBase + windowSize
-    # AACKs come in, the window slides forward.
-    global nextToSend, totalSent, lastWindowMoveTime
 
+# sliding window sending loop
+# sender can send up to windowSize packets ahead of windowBase
+def slidingWindowSend(sock):
+
+    global nextToSend, totalSent, lastWindowMoveTime
 
     while not isDone:
         windowLock.acquire()
         # send as many packets as the window allows
         while nextToSend < windowBase + windowSize and nextToSend < numChunks:
             seq = nextToSend
+
+            # read chunk from disk
+            chunkData = readChunk(filePath, seq)
+
             sendPacket(sock, savedClientIP, savedClientPort,
-                       serverIP, serverPort, typeData, seq, 0, allChunks[seq])
+                       serverIP, serverPort, typeData, seq, 0, chunkData)
             totalSent = totalSent + 1
 
             # print progress
@@ -216,7 +219,7 @@ def slidingWindowSend(sock):
         time.sleep(0.001)  # sleep avoid busy waiting
 
 
-# Send FIN  to the client
+# Send FIN to the client
 def sendFinish(sock, md5Hash):
 
     global totalSent, totalReceived
@@ -228,7 +231,6 @@ def sendFinish(sock, md5Hash):
         sendPacket(sock, savedClientIP, savedClientPort, serverIP, serverPort,
                    typeFin, numChunks, 0, md5Hash.encode('utf-8'))
         totalSent = totalSent + 1
-
 
         # wait for FIN ACK from client
         wait_start = time.time()
@@ -248,32 +250,37 @@ def sendFinish(sock, md5Hash):
     print('[FIN] warning no FIN ACK receive after ' + str(maxRetry) + ' tries')
     return False
 
+
 # report
 def writeReport(filename, fSize):
     # format
     duration = endTime - startTime
 
     lines = []
-    lines.append(' ' )
+    lines.append('')
+    lines.append('')
     lines.append('  SRFT Transfer Report (Phase 1)')
-    lines.append(' ' )
+    lines.append('  Test file: ' + filename)
+    lines.append('  Test time: ' + time.strftime('%Y-%m-%d %H:%M:%S'))
+    lines.append(' ')
     lines.append(' Name of the transferred file: ' + filename)
     lines.append(' Size of the transferred file: ' + str(fSize) + ' bytes')
     lines.append(' The number of packets sent from the server: ' + str(totalSent))
     lines.append(' The number of retransmitted packets from the server: ' + str(totalRetransmit))
-    lines.append(' The number of packets receive from the client: ' + str(totalReceived))
+    lines.append(' The number of packets received from the client: ' + str(totalReceived))
     lines.append(' The time duration of the file transfer: ' + formatTime(duration))
-    lines.append(' ' )
+    lines.append(' ')
+    lines.append('')
 
     report = '\n'.join(lines)
     print('')
     print(report)
 
-    # save report
-    with open(reportPath, 'w') as f:
+    # add
+    with open(reportPath, 'a') as f:
         f.write(report + '\n')
     print('')
-    print('Report save to ' + reportPath)
+    print('Report appended to ' + reportPath)
 
 
 
@@ -306,14 +313,16 @@ if __name__ == '__main__':
             mySocket.close()
             sys.exit(1)
 
-        # get file info split into chunks
+        # get file info
         fSize = os.path.getsize(filepath)
         md5Hash = calculateMD5(filepath)
         print('')
         print('[File] ' + filename + ' | ' + str(fSize) + ' bytes | MD5=' + md5Hash)
 
-        allChunks = splitFile(filepath)
-        numChunks = len(allChunks)
+        # calculates how many chunks from file size
+        # reads one chunk at a time when needed
+        filePath = filepath
+        numChunks = countChunks(filepath)
         print('       ' + str(numChunks) + ' chunks (each <= ' + str(chunkSize) + ' bytes)')
 
         # send file info to client
@@ -332,12 +341,12 @@ if __name__ == '__main__':
 
         lastWindowMoveTime = time.time()
 
-
-        # ACK receiver
+        # ACK receiver thread
         ackThread = threading.Thread(target=receiveAcks, args=(mySocket,))
         ackThread.daemon = True
         ackThread.start()
 
+        # retransmit watcher thread
         watcherThread = threading.Thread(target=retransmitWatcher)
         watcherThread.daemon = True
         watcherThread.start()

@@ -1,4 +1,5 @@
 # Client
+# cumulative ACK, sequence numbers, checksum
 
 import os
 import sys
@@ -12,11 +13,12 @@ from packet_helper import *
 
 # Global Var
 
-# key = sequence number, value = data bytes
-recvBuffer = {} # stores
+
+receivedSet = set() # stores sequence numbers we received
+outputFile = None # file handle for writing data to disk
 expectedSeq = 0 # next sequence number expect to receive
 
-# file info from server)
+# file info from server
 fileName = ''
 fileSize = 0
 numChunks = 0
@@ -67,7 +69,7 @@ def waitForFileInfo(sock, filename):
                 print('[Error] Server says: ' + infoStr)
                 return False
 
-            # parsefile info
+            # parse file info
             # filename|size|chunks|md5
             parts = infoStr.split('|')
             if len(parts) >= 4:
@@ -87,6 +89,44 @@ def waitForFileInfo(sock, filename):
 
     print('[Error] Could not get file info after ' + str(maxRetry) + ' tries!')
     return False
+
+
+# Prepare output file on disk before receiving data
+def prepareOutputFile():
+
+    global outputFile
+
+    # client dir
+    if not os.path.exists(clientDir):
+        os.makedirs(clientDir)
+
+    outputPath = os.path.join(clientDir, fileName)
+
+    # pre allocate
+    f = open(outputPath, 'wb')
+    if fileSize > 0:
+        f.seek(fileSize - 1)
+        f.write(b'\x00')
+    f.close()
+
+    # read and write
+    outputFile = open(outputPath, 'r+b')
+
+    print('')
+    print('[Prepare] Output file ready: ' + outputPath)
+    print(' Pre-allocated ' + str(fileSize) + ' bytes on disk')
+
+
+# write a chunk of data to correct position on disk
+def writeChunkToDisk(seqNum, data):
+
+    global outputFile
+
+    # calculatebyte
+    offset = seqNum * chunkSize
+    outputFile.seek(offset)
+    outputFile.write(data)
+
 
 # cumulative ACK to the server ( received everything before expectedSeq )
 def sendCumulativeAck(sock):
@@ -143,29 +183,33 @@ def receiveData(sock):
                 isDone = True
                 break
 
-            # only prtocess data packets
+            # only process data packets
             if parsed['pktType'] != typeData:
                 continue
 
             seqNum = parsed['seqNum']
             data = parsed['data']
 
-            # seqNum == expectedSeq inorder packet, buffer it and advance
+            # seqNum == expectedSeq = in-order packet
             if seqNum == expectedSeq:
-                recvBuffer[seqNum] = data
+
+                # write data directly to disk (not store in memory)
+                writeChunkToDisk(seqNum, data)
+                receivedSet.add(seqNum)
                 validCount = validCount + 1
                 sinceLastAck = sinceLastAck + 1
 
                 # advance expectedSeq check if buffered future packets
-                # store temp until missing segments arrive
-                while expectedSeq in recvBuffer:
+                # until missing segments arrive, then delivers them in order
+                while expectedSeq in receivedSet:
                     expectedSeq = expectedSeq + 1
 
-            # seqNum > expectedSeq = out-of-order, buffer it arriver early
+            # seqNum > expectedSeq = out-of-order, arrived early
             elif seqNum > expectedSeq:
-                # buffer it for later
-                if seqNum not in recvBuffer:
-                    recvBuffer[seqNum] = data
+                # buffer it for later (only if not already received)
+                if seqNum not in receivedSet:
+                    writeChunkToDisk(seqNum, data)
+                    receivedSet.add(seqNum)
                     validCount = validCount + 1
                     outOfOrderCount = outOfOrderCount + 1
                 else:
@@ -177,7 +221,7 @@ def receiveData(sock):
                 duplicateCount = duplicateCount + 1
 
             # send cumulative ACK
-            # So send ACK periodically, not for every single packet avoid sending an ack per packet
+            # send ACK periodically
             shouldAck = False
             if seqNum < expectedSeq:
                 shouldAck = True  # always ACK duplicates
@@ -223,45 +267,47 @@ def receiveData(sock):
           ' ACKsSent=' + str(ackCount))
 
 
-# Put back together into original file
-# verify MD5 hash matches what the server sent ( received file and the original same )
-def reassembleFile():
+# Verify the received file
+def verifyFile():
+
+    global outputFile
 
     print('')
-    print('[Assemble] Reassembling file')
+    print('[Verify] Verifying received file')
 
-    # create client files if no exist
-    if not os.path.exists(clientDir):
-        os.makedirs(clientDir)
+    # close the output file (flush all writes to disk)
+    if outputFile is not None:
+        outputFile.flush()
+        outputFile.close()
+        outputFile = None
 
     outputPath = os.path.join(clientDir, fileName)
-    missing = 0
 
-    # write all chunks in order
-    with open(outputPath, 'wb') as f:
-        for seq in range(numChunks):
-            if seq in recvBuffer:
-                f.write(recvBuffer[seq])
-            else:
-                missing = missing + 1
-                print('missing chunk #' + str(seq) + '!')
+    # check for missing chunks
+    missing = 0
+    for seq in range(numChunks):
+        if seq not in receivedSet:
+            missing = missing + 1
+            if missing <= 10:
+                print('  missing chunk #' + str(seq) + '!')
 
     if missing == 0:
-        print('[Assemble] file saved: ' + outputPath)
+        print('[Verify] All ' + str(numChunks) + ' chunks received')
     else:
-        print('[Assemble] warning: ' + str(missing) + ' chunks missing')
+        print('[Verify] WARNING: ' + str(missing) + ' chunks missing!')
 
     # verify MD5 hash
+    # project says: use md5sum to compare
     receivedMD5 = calculateMD5(outputPath)
     print('')
     print('[Verify] Server MD5:   ' + serverMD5)
-    print('received MD5: ' + receivedMD5)
+    print('         Received MD5: ' + receivedMD5)
 
     if receivedMD5 == serverMD5:
-        print('MD5 match, file transfer successful')
+        print('         MD5 MATCH, file transfer successful')
         return True
     else:
-        print('MD5 MISMATCH , file may be corrupted')
+        print('         MD5 MISMATCH, file may be corrupted')
         return False
 
 
@@ -271,7 +317,6 @@ if __name__ == '__main__':
     print(' ' )
     print('  CS5700 - SRFT Client (Phase 1: Reliable File Transfer)')
     print(' ' )
-
 
     fileName = sys.argv[1]
     print('')
@@ -293,29 +338,35 @@ if __name__ == '__main__':
             mySocket.close()
             sys.exit(1)
 
+        # prepare output file on disk before receiving data
+        prepareOutputFile()
+
         # receive all the file data
         receiveData(mySocket)
 
-        # reassemble file and verify MD5
-        success = reassembleFile()
+        # verify file (data already on disk, just check MD5)
+        success = verifyFile()
 
         # print final result
         print('')
-        print(' ' * 60)
+        print(' ')
         if success:
-            print('Client task complete,  file transfer success')
+            print('Client task complete, file transfer success')
         else:
             print('  Warning: File transfer may be incomplete')
-        print('=' * 60)
+        print(' ' )
 
     except KeyboardInterrupt:
         print('')
         print('stop')
     except Exception as e:
         print('')
-        print('Error' + str(e))
+        print('Error ' + str(e))
         import traceback
         traceback.print_exc()
     finally:
+        # make sure output file is closed
+        if outputFile is not None:
+            outputFile.close()
         mySocket.close()
         print('cleanup Socket closed')
