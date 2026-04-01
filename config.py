@@ -1,108 +1,177 @@
-# Project Setting
+# all settings
 
+# network address settings
 
-#  Network Address Settings
-
-# Server IP address
-# test local : 127.0.0.1
-# AWS: change to server EC2 private IP
+# server IP
+# local test : '127.0.0.1'
+# AWS: 'server EC2 private IP'
 serverIP = '127.0.0.1'
 
-# Client IP address
-# Test local : 127.0.0.1
-# AWS: change to client EC2 private IP
+# client IP
+# local test : '127.0.0.1'
+# AWS: client EC2 private IP
 clientIP = '127.0.0.1'
 
-# Server port
+# port numbers
 serverPort = 12000
-
-# Client port
 clientPort = 12001
 
 
-#  IPv4 Header
+# IPv4 header settings
+# IP header = 20 bytes (no options)
+# version, IHL, TOS, total length, ID, flags, TTL, protocol, checksum, source IP, destination IP
 
-ipVersion = 4           # IPv4
-ipIHL = 5               # Header Length = 5 words
-ipTOS = 0               # Type of Service
-ipTTL = 64              # Time to Live
-ipProtocolUDP = 17      # UDP
-ipHeaderLen = 20        # IP header size = 5 x 4 = 20 bytes
-ipDontFragment = 0x4000 # Dont Fragment flag
+ipVersion = 4
+# 32 bit words 5 x 4 = 20B
+ipIHL = 5
+# type of service, default
+ipTOS = 0
+# time to live (max hops)
+ipTTL = 64
+# UDP protocol
+ipProtocolUDP = 17
+# IP header size
+ipHeaderLen = 20
+# flags dont fragment
+ipDontFragment = 0x4000
+
+# UDP header settings
+# 8 bytes = src port, dst port, length, checksum
+udpHeaderLen = 8
 
 
-#  UDP Header
-udpHeaderLen = 8  # always 8
+# custom SRFT protocol header on top of UDP payload
+# B = packet type (1 byte)
+# I = seq number (4 b)
+# x = padding (1, for alignment)
+# I = ack number (4)
+# H = checksum (2)
+# H = data length (2)
 
-
-#  Custom SRFT Protocol Header
-
-# ! = network byte order
-# Packet Type (1 byte) = B ( unsigned char )
-# Seq Number (4 bytes) = I ( unsigned int )
-# alignment padding (1 byte) = x ( pad byte )
-# Ack Number (4 bytes) = I ( unsigned int )
-# Checksum (2 bytes) = H ( unsigned short )
-# Data Length (2 bytes) = H ( unsigned short )
 srftFormat = '!BIxIHH'
-# 1 + 4 + 1 + 4 + 2 + 2 = 14 bytes
+# 14 total
 srftHeaderLen = 14
 
 
+# packet type codes so receiver knows what each packet is
+# Phase 1 types (reliable transfer)
 
-#  Packet Type
+# client sends filename to request
+typeFilename    = 0x01
+# server file metadata back
+typeFileInfo    = 0x02
+# server file data chunks
+typeData        = 0x03
+# client cumulative acknowledgment
+typeAck         = 0x04
+# server transfer done
+typeFin         = 0x05
+# client confirms finish
+typeFinAck      = 0x06
 
-# client requests to download a file
-typeFilename = 0x01
-typeFileInfo = 0x02    # file info reply (server to client)
-typeData     = 0x03    # data packet (server to client)
-typeAck      = 0x04    # acknowledgment (client to server)
-typeFin      = 0x05    # finish signal (server to client)
-typeFinAck   = 0x06    # finish confirm (client to server)
+# Phase 2 types (security handshake + verification)
 
-# printing readable names
-# debug
+# client starts security handshake
+typeClientHello = 0x10
+# server respond
+typeServerHello = 0x11
+# server sends SHA-256
+typeShaVerify   = 0x12
+# client confirm SHA 256
+typeShaConfirm  = 0x13
+
+# readable names
+# debug print
 typeNames = {
-    0x01: 'FILENAME', 0x02: 'FILE_INFO', 0x03: 'DATA',
-    0x04: 'ACK',      0x05: 'FIN',       0x06: 'FIN_ACK',
+    0x01: 'FILENAME',      0x02: 'FILE_INFO',
+    0x03: 'DATA',          0x04: 'ACK',
+    0x05: 'FIN',           0x06: 'FIN_ACK',
+    0x10: 'CLIENT_HELLO',  0x11: 'SERVER_HELLO',
+    0x12: 'SHA_VERIFY',    0x13: 'SHA_CONFIRM',
 }
 
 
-# Reliable Transfer
-# checksum, sequence number, cumulative ACK, retransmission
+# reliable transfer settings
+# control sliding window
 
-# MSS file data each packet can carry
-# data has to <= 1500 ( MTU ) - IP(20) + UDP(8) + SRFT(14)
-chunkSize = 1024 # 1024 fit good size
-
-# Receive buffer size
-# 65535 maximum IP datagram size
+# max data bytes per packet, TCP MSS
+chunkSize = 1024
+# socket receive buffer size
 recvBufferSize = 65535
-
-# Timeout interval wait before retransmitting a packet
-# fixed value
+# retransmission timeout
 timeoutValue = 2.0
-
-# Sliding window size ( can send 10 packet  before waiting for an ACK )
+# sliding window size (how many unacked packets)
 windowSize = 10
-
-# Cumulative ACK interval (send ACK every 3 packets received)
+# send cumulative ACK every 3 packets received
 ackEvery = 3
-
-# Maximum retry counts
+# max retries for handshake or FIN
 maxRetry = 15
+# max consecutive recv timeouts
+# before stopping
 maxTimeouts = 30
 
+# receiver window limit for replay protection
+# seqNum > expectedSeq + 5000
+# get dropped
+recvWindowLimit = 5000
 
-#  File Path
 
+# file paths
+
+# test files
 serverDir = './server/'
+# received file
 clientDir = './client/'
+# report
 reportPath = 'report.txt'
 
 
 
-#  Debug
+# debug settings
 
-showDebug = True # debug messages
-printEvery = 50  # progress every 50 packet
+# print debug messages
+showDebug = True
+# progress every N packets
+printEvery = 50
+
+
+# Phase 2: security settings
+# True = encrypted (Phase 2), False = plain (Phase 1)
+securityEnabled = True
+
+
+# Pre Shared Key (PSK)
+
+# 32 bytes for AES-256-GCM
+# both client and server must have the same PSK
+# for Test 2: change this on one side to test wrong PSK
+psk = b'cs5700-group2-srft-secret-key32!'
+
+# AEAD sizes for AES-256-GCM
+
+# 16 byte auth tag
+nonceSize = 12
+# 16 byte auth tag
+tagSize = 16
+
+# handshake sizes
+
+# client/server nonce
+handshakeNonceSize = 16
+# random session ID
+sessionIdSize = 8
+protocolVersion = 1
+cipherInfo = 'AES-256-GCM'
+
+
+# attack test mode (Phase 2 testing)
+# controlled by --attack command line
+# none = normal transfer (Test 1)
+# tamper = flip 2 bits in one packet (Test 3)
+# replay = resend one old packet (Test 4)
+# inject = send one forged packet with random bytes (Test 5)
+# wrongpsk = just a label for report (change PSK manually for Test 2)
+attackMode = 'none'
+
+# valid attack modes
+validAttackModes = ['none', 'tamper', 'replay', 'inject', 'wrongpsk']
