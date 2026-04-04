@@ -56,7 +56,7 @@ srftHeaderLen = 14
 # packet type codes so receiver knows what each packet is
 # Phase 1 types (reliable transfer)
 
-# client sends filename to request
+# client send filename to request
 typeFilename    = 0x01
 # server file metadata back
 typeFileInfo    = 0x02
@@ -149,9 +149,8 @@ psk = b'cs5700-group2-srft-secret-key32!'
 
 # AEAD sizes for AES-256-GCM
 
-# 16 byte auth tag
 nonceSize = 12
-# 16 byte auth tag
+# 16B auth tag
 tagSize = 16
 
 # handshake sizes
@@ -165,7 +164,6 @@ cipherInfo = 'AES-256-GCM'
 
 
 # attack test mode (Phase 2 testing)
-# controlled by --attack command line
 # none = normal transfer (Test 1)
 # tamper = flip 2 bits in one packet (Test 3)
 # replay = resend one old packet (Test 4)

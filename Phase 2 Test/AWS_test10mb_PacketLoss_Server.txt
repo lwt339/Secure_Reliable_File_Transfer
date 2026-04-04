@@ -1,0 +1,1245 @@
+[ec2-user@ip-172-31-27-171 ~]$ sudo tc qdisc add dev ens5 root netem loss 3%
+[ec2-user@ip-172-31-27-171 ~]$ sudo python3 SRFT_UDPServer.py
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 2: Secure Reliable File Transfer
+
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.27.171:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.18.97:12001
+ file requested: test_10mb_file
+
+[file] test_10mb_file
+  size: 10485760 bytes (10240 KB)
+  MD5:    f1c9645dbc14efddc7d8a322685f26eb
+  SHA256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
+  chunks: 10240 (each up to 1024 bytes)
+
+
+  Phase 2: Security Handshake
+
+[handshake] waiting for ClientHello
+[handshake] received ClientHello
+  [security] ClientHello HMAC verified ok
+[handshake] client authenticated ok
+[handshake] sending ServerHello
+[handshake] ServerHello sent (x3)
+[handshake] session key derived (HKDF-SHA256)
+  session ID: f5cab8e93942f8fd
+  enc_key (first 8 bytes): ac38ef1279a0606d...
+
+[handshake] Success secure session established
+  cipher: AES-256-GCM (AEAD)
+
+[send] file info sent to client (x3)
+  [clean] cleared 2 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 10
+  timeout: 2.0s
+  chunk size: 1024 bytes
+  encryption: AES-256-GCM (AEAD)
+  -> send seq=0/10239 [0%] (base=0)
+  -> send seq=50/10239 [0%] (base=42)
+
+[timeout] windowBase=42 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=54 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=100/10239 [0%] (base=92)
+  <- ACK=100: window 99 -> 100/10240
+  -> send seq=150/10239 [1%] (base=141)
+  <- ACK=150: window 149 -> 150/10240
+
+[timeout] windowBase=151 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=186 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=200/10239 [1%] (base=196)
+  <- ACK=200: window 199 -> 200/10240
+
+[timeout] windowBase=211 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=250/10239 [2%] (base=241)
+  <- ACK=250: window 249 -> 250/10240
+  -> send seq=300/10239 [2%] (base=299)
+  <- ACK=300: window 299 -> 300/10240
+  -> send seq=350/10239 [3%] (base=348)
+  <- ACK=350: window 349 -> 350/10240
+
+[timeout] windowBase=354 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=375 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=400/10239 [3%] (base=394)
+  <- ACK=400: window 399 -> 400/10240
+
+[timeout] windowBase=414 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=440 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=450: window 448 -> 450/10240
+  -> send seq=450/10239 [4%] (base=450)
+
+[timeout] windowBase=469 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=500/10239 [4%] (base=497)
+  <- ACK=500: window 499 -> 500/10240
+
+[timeout] windowBase=515 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=531 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=550/10239 [5%] (base=541)
+  <- ACK=550: window 549 -> 550/10240
+
+[timeout] windowBase=587 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=600/10239 [5%] (base=597)
+
+[timeout] windowBase=598 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=610 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=620 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=633 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=650/10239 [6%] (base=643)
+  <- ACK=650: window 649 -> 650/10240
+
+[timeout] windowBase=685 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=700/10239 [6%] (base=695)
+  <- ACK=700: window 699 -> 700/10240
+  -> send seq=750/10239 [7%] (base=748)
+  <- ACK=750: window 749 -> 750/10240
+
+[timeout] windowBase=758 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=781 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=800/10239 [7%] (base=791)
+  <- ACK=800: window 799 -> 800/10240
+
+[timeout] windowBase=806 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=838 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=850/10239 [8%] (base=848)
+  <- ACK=850: window 849 -> 850/10240
+
+[timeout] windowBase=867 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=900/10239 [8%] (base=895)
+  <- ACK=900: window 899 -> 900/10240
+
+[timeout] windowBase=921 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=950/10239 [9%] (base=945)
+
+[timeout] windowBase=945 stuck for 2.01s
+[timeout] retransmitting 10 packets
+  -> send seq=1000/10239 [9%] (base=992)
+  <- ACK=1000: window 999 -> 1000/10240
+
+[timeout] windowBase=1008 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1035 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1050/10239 [10%] (base=1045)
+
+[timeout] windowBase=1045 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1059 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1100/10239 [10%] (base=1099)
+  <- ACK=1100: window 1099 -> 1100/10240
+
+[timeout] windowBase=1118 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1150/10239 [11%] (base=1144)
+  <- ACK=1150: window 1149 -> 1150/10240
+
+[timeout] windowBase=1165 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1178 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1200/10239 [11%] (base=1194)
+
+[timeout] windowBase=1194 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=1200: window 1194 -> 1200/10240
+  [security] ACK AEAD failed, dropped.
+  <- ACK=1250: window 1249 -> 1250/10240
+  -> send seq=1250/10239 [12%] (base=1250)
+
+[timeout] windowBase=1280 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1300/10239 [12%] (base=1299)
+  <- ACK=1300: window 1299 -> 1300/10240
+
+[timeout] windowBase=1318 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1350/10239 [13%] (base=1345)
+  <- ACK=1350: window 1349 -> 1350/10240
+
+[timeout] windowBase=1375 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1400/10239 [13%] (base=1395)
+  <- ACK=1400: window 1399 -> 1400/10240
+
+[timeout] windowBase=1416 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1450/10239 [14%] (base=1442)
+
+[timeout] windowBase=1442 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1455 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1481 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1500/10239 [14%] (base=1491)
+
+[timeout] windowBase=1491 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1514 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1514 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1550/10239 [15%] (base=1543)
+  <- ACK=1550: window 1549 -> 1550/10240
+
+[timeout] windowBase=1590 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=1600: window 1590 -> 1600/10240
+  -> send seq=1600/10239 [15%] (base=1600)
+  -> send seq=1650/10239 [16%] (base=1643)
+
+[timeout] windowBase=1643 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1643 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1664 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1683 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1700/10239 [16%] (base=1693)
+  <- ACK=1700: window 1699 -> 1700/10240
+
+[timeout] windowBase=1713 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1725 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1750/10239 [17%] (base=1741)
+
+[timeout] windowBase=1741 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1786 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1800/10239 [17%] (base=1796)
+  <- ACK=1800: window 1799 -> 1800/10240
+
+[timeout] windowBase=1835 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=1850/10239 [18%] (base=1845)
+  <- ACK=1850: window 1849 -> 1850/10240
+
+[timeout] windowBase=1880 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=1900: window 1899 -> 1900/10240
+  -> send seq=1900/10239 [18%] (base=1900)
+
+[timeout] windowBase=1913 stuck for 2.01s
+[timeout] retransmitting 10 packets
+  -> send seq=1950/10239 [19%] (base=1949)
+  <- ACK=1950: window 1949 -> 1950/10240
+
+[timeout] windowBase=1957 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=1983 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2000/10239 [19%] (base=1993)
+  <- ACK=2000: window 1999 -> 2000/10240
+
+[timeout] windowBase=2013 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2050/10239 [20%] (base=2043)
+  <- ACK=2050: window 2049 -> 2050/10240
+
+[timeout] windowBase=2054 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2066 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2076 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2100/10239 [20%] (base=2096)
+
+[timeout] windowBase=2098 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2150/10239 [21%] (base=2145)
+  <- ACK=2150: window 2149 -> 2150/10240
+
+[timeout] windowBase=2163 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2173 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2200/10239 [21%] (base=2191)
+  <- ACK=2200: window 2199 -> 2200/10240
+  -> send seq=2250/10239 [21%] (base=2241)
+
+[timeout] windowBase=2241 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2286 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2300/10239 [22%] (base=2296)
+  <- ACK=2300: window 2299 -> 2300/10240
+
+[timeout] windowBase=2317 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2350/10239 [22%] (base=2345)
+  <- ACK=2350: window 2349 -> 2350/10240
+
+[timeout] windowBase=2359 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2385 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2400/10239 [23%] (base=2395)
+  <- ACK=2400: window 2399 -> 2400/10240
+
+[timeout] windowBase=2402 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2410 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2450/10239 [23%] (base=2448)
+  <- ACK=2450: window 2449 -> 2450/10240
+
+[timeout] windowBase=2477 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2500/10239 [24%] (base=2497)
+  <- ACK=2500: window 2499 -> 2500/10240
+
+[timeout] windowBase=2518 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2550/10239 [24%] (base=2548)
+  <- ACK=2550: window 2549 -> 2550/10240
+  -> send seq=2600/10239 [25%] (base=2592)
+
+[timeout] windowBase=2597 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2597 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2621 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2650/10239 [25%] (base=2641)
+
+[timeout] windowBase=2646 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2679 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2700/10239 [26%] (base=2695)
+
+[timeout] windowBase=2695 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2750/10239 [26%] (base=2742)
+  <- ACK=2750: window 2749 -> 2750/10240
+
+[timeout] windowBase=2759 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2800/10239 [27%] (base=2799)
+  <- ACK=2800: window 2799 -> 2800/10240
+  -> send seq=2850/10239 [27%] (base=2844)
+
+[timeout] windowBase=2848 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2900/10239 [28%] (base=2896)
+
+[timeout] windowBase=2897 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=2910 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=2950/10239 [28%] (base=2949)
+  <- ACK=2950: window 2949 -> 2950/10240
+  -> send seq=3000/10239 [29%] (base=2995)
+  <- ACK=3000: window 2999 -> 3000/10240
+  -> send seq=3050/10239 [29%] (base=3043)
+  <- ACK=3050: window 3049 -> 3050/10240
+
+[timeout] windowBase=3069 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3100/10239 [30%] (base=3095)
+
+[timeout] windowBase=3095 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3136 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3150/10239 [30%] (base=3146)
+  <- ACK=3150: window 3149 -> 3150/10240
+
+[timeout] windowBase=3167 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3186 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3200/10239 [31%] (base=3196)
+  <- ACK=3200: window 3199 -> 3200/10240
+
+[timeout] windowBase=3221 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3221 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=3250: window 3249 -> 3250/10240
+  -> send seq=3250/10239 [31%] (base=3250)
+
+[timeout] windowBase=3265 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3276 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3290 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=3300: window 3290 -> 3300/10240
+  -> send seq=3300/10239 [32%] (base=3300)
+  -> send seq=3350/10239 [32%] (base=3345)
+  <- ACK=3350: window 3349 -> 3350/10240
+
+[timeout] windowBase=3385 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3400/10239 [33%] (base=3395)
+  <- ACK=3400: window 3399 -> 3400/10240
+
+[timeout] windowBase=3428 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3450/10239 [33%] (base=3448)
+  <- ACK=3450: window 3449 -> 3450/10240
+  -> send seq=3500/10239 [34%] (base=3494)
+
+[timeout] windowBase=3496 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3525 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3550/10239 [34%] (base=3543)
+  <- ACK=3550: window 3549 -> 3550/10240
+
+[timeout] windowBase=3557 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3600/10239 [35%] (base=3595)
+  <- ACK=3600: window 3599 -> 3600/10240
+
+[timeout] windowBase=3636 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3636 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3650/10239 [35%] (base=3646)
+  <- ACK=3650: window 3649 -> 3650/10240
+  -> send seq=3700/10239 [36%] (base=3695)
+  <- ACK=3700: window 3699 -> 3700/10240
+
+[timeout] windowBase=3728 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3750/10239 [36%] (base=3748)
+  <- ACK=3750: window 3749 -> 3750/10240
+  -> send seq=3800/10239 [37%] (base=3791)
+
+[timeout] windowBase=3791 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3823 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3850/10239 [37%] (base=3842)
+  <- ACK=3850: window 3849 -> 3850/10240
+
+[timeout] windowBase=3856 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=3875 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=3900/10239 [38%] (base=3895)
+  <- ACK=3900: window 3899 -> 3900/10240
+  -> send seq=3950/10239 [38%] (base=3943)
+  <- ACK=3950: window 3949 -> 3950/10240
+
+[timeout] windowBase=3967 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4000/10239 [39%] (base=3997)
+  <- ACK=4000: window 3999 -> 4000/10240
+
+[timeout] windowBase=4023 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4050/10239 [39%] (base=4048)
+
+[timeout] windowBase=4048 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4062 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4100/10239 [40%] (base=4092)
+
+[timeout] windowBase=4096 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4150/10239 [40%] (base=4144)
+
+[timeout] windowBase=4147 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4163 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4182 stuck for 2.01s
+[timeout] retransmitting 10 packets
+  -> send seq=4200/10239 [41%] (base=4192)
+
+[timeout] windowBase=4198 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4250/10239 [41%] (base=4246)
+  <- ACK=4250: window 4249 -> 4250/10240
+
+[timeout] windowBase=4262 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4276 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4289 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4300/10239 [42%] (base=4299)
+  <- ACK=4300: window 4299 -> 4300/10240
+  -> send seq=4350/10239 [42%] (base=4342)
+  <- ACK=4350: window 4349 -> 4350/10240
+
+[timeout] windowBase=4380 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4390 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=4400: window 4390 -> 4400/10240
+  -> send seq=4400/10239 [42%] (base=4400)
+
+[timeout] windowBase=4421 stuck for 2.01s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4437 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4450/10239 [43%] (base=4447)
+  <- ACK=4450: window 4449 -> 4450/10240
+
+[timeout] windowBase=4470 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4480 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4500/10239 [43%] (base=4499)
+  <- ACK=4500: window 4499 -> 4500/10240
+
+[timeout] windowBase=4519 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4533 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4550/10239 [44%] (base=4543)
+  <- ACK=4550: window 4549 -> 4550/10240
+
+[timeout] windowBase=4561 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4600/10239 [44%] (base=4591)
+
+[timeout] windowBase=4597 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4618 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4637 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4650/10239 [45%] (base=4647)
+  <- ACK=4650: window 4649 -> 4650/10240
+  -> send seq=4700/10239 [45%] (base=4692)
+  <- ACK=4700: window 4699 -> 4700/10240
+
+[timeout] windowBase=4721 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4750/10239 [46%] (base=4741)
+  <- ACK=4750: window 4749 -> 4750/10240
+
+[timeout] windowBase=4787 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4800/10239 [46%] (base=4797)
+  <- ACK=4800: window 4799 -> 4800/10240
+  -> send seq=4850/10239 [47%] (base=4841)
+
+[timeout] windowBase=4841 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4841 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=4863 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=4900/10239 [47%] (base=4893)
+  <- ACK=4900: window 4899 -> 4900/10240
+  -> send seq=4950/10239 [48%] (base=4948)
+
+[timeout] windowBase=4948 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5000/10239 [48%] (base=4997)
+  <- ACK=5000: window 4999 -> 5000/10240
+
+[timeout] windowBase=5001 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5050/10239 [49%] (base=5048)
+  <- ACK=5050: window 5049 -> 5050/10240
+  -> send seq=5100/10239 [49%] (base=5094)
+
+[timeout] windowBase=5094 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5150/10239 [50%] (base=5141)
+  <- ACK=5150: window 5149 -> 5150/10240
+  <- ACK=5200: window 5199 -> 5200/10240
+  -> send seq=5200/10239 [50%] (base=5200)
+
+[timeout] windowBase=5204 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=5228 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5250/10239 [51%] (base=5247)
+  <- ACK=5250: window 5249 -> 5250/10240
+
+[timeout] windowBase=5250 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5300/10239 [51%] (base=5296)
+  <- ACK=5300: window 5299 -> 5300/10240
+
+[timeout] windowBase=5338 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5350/10239 [52%] (base=5348)
+  <- ACK=5350: window 5349 -> 5350/10240
+
+[timeout] windowBase=5366 stuck for 2.01s
+[timeout] retransmitting 10 packets
+  -> send seq=5400/10239 [52%] (base=5396)
+  <- ACK=5400: window 5399 -> 5400/10240
+  -> send seq=5450/10239 [53%] (base=5442)
+  <- ACK=5450: window 5449 -> 5450/10240
+
+[timeout] windowBase=5458 stuck for 2.01s
+[timeout] retransmitting 10 packets
+  -> send seq=5500/10239 [53%] (base=5493)
+
+[timeout] windowBase=5493 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=5493 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=5536 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5550/10239 [54%] (base=5546)
+  <- ACK=5550: window 5549 -> 5550/10240
+
+[timeout] windowBase=5554 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=5585 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5600/10239 [54%] (base=5595)
+  <- ACK=5600: window 5599 -> 5600/10240
+
+[timeout] windowBase=5636 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5650/10239 [55%] (base=5646)
+  <- ACK=5650: window 5649 -> 5650/10240
+
+[timeout] windowBase=5660 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5700/10239 [55%] (base=5697)
+  <- ACK=5700: window 5699 -> 5700/10240
+
+[timeout] windowBase=5702 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=5750: window 5749 -> 5750/10240
+  -> send seq=5750/10239 [56%] (base=5750)
+
+[timeout] windowBase=5765 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5800/10239 [56%] (base=5795)
+  <- ACK=5800: window 5799 -> 5800/10240
+
+[timeout] windowBase=5823 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=5840 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=5850: window 5840 -> 5850/10240
+  -> send seq=5850/10239 [57%] (base=5850)
+
+[timeout] windowBase=5862 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=5875 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=5890 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=5900: window 5890 -> 5900/10240
+  -> send seq=5900/10239 [57%] (base=5900)
+
+[timeout] windowBase=5917 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=5950/10239 [58%] (base=5945)
+  <- ACK=5950: window 5949 -> 5950/10240
+  -> send seq=6000/10239 [58%] (base=5992)
+  <- ACK=6000: window 5999 -> 6000/10240
+
+[timeout] windowBase=6000 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6026 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6050/10239 [59%] (base=6043)
+
+[timeout] windowBase=6043 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=6050: window 6043 -> 6050/10240
+
+[timeout] windowBase=6089 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6100/10239 [59%] (base=6099)
+  <- ACK=6100: window 6099 -> 6100/10240
+
+[timeout] windowBase=6115 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6150/10239 [60%] (base=6144)
+
+[timeout] windowBase=6149 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6200/10239 [60%] (base=6195)
+  <- ACK=6200: window 6199 -> 6200/10240
+  -> send seq=6250/10239 [61%] (base=6249)
+  <- ACK=6250: window 6249 -> 6250/10240
+
+[timeout] windowBase=6267 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6288 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6300/10239 [61%] (base=6298)
+
+[timeout] windowBase=6299 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6350/10239 [62%] (base=6341)
+
+[timeout] windowBase=6341 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6361 stuck for 2.01s
+[timeout] retransmitting 10 packets
+  -> send seq=6400/10239 [62%] (base=6398)
+  <- ACK=6400: window 6399 -> 6400/10240
+
+[timeout] windowBase=6415 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6415 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6430 stuck for 2.01s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6430 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6450/10239 [62%] (base=6444)
+
+[timeout] windowBase=6444 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6480 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6500/10239 [63%] (base=6497)
+
+[timeout] windowBase=6497 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6550/10239 [63%] (base=6547)
+  <- ACK=6550: window 6549 -> 6550/10240
+
+[timeout] windowBase=6587 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6600/10239 [64%] (base=6597)
+  <- ACK=6600: window 6599 -> 6600/10240
+
+[timeout] windowBase=6612 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  [security] ACK AEAD failed, dropped.
+  -> send seq=6650/10239 [64%] (base=6641)
+  <- ACK=6650: window 6649 -> 6650/10240
+
+[timeout] windowBase=6656 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6669 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6680 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6700/10239 [65%] (base=6699)
+  <- ACK=6700: window 6699 -> 6700/10240
+
+[timeout] windowBase=6712 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6722 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6738 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6750/10239 [65%] (base=6748)
+  <- ACK=6750: window 6749 -> 6750/10240
+  -> send seq=6800/10239 [66%] (base=6796)
+  <- ACK=6800: window 6799 -> 6800/10240
+
+[timeout] windowBase=6820 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6836 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6850/10239 [66%] (base=6846)
+  <- ACK=6850: window 6849 -> 6850/10240
+
+[timeout] windowBase=6882 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6900/10239 [67%] (base=6892)
+  <- ACK=6900: window 6899 -> 6900/10240
+  [security] ACK AEAD failed, dropped.
+
+[timeout] windowBase=6922 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=6932 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=6950/10239 [67%] (base=6942)
+
+[timeout] windowBase=6947 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7000/10239 [68%] (base=6994)
+
+[timeout] windowBase=6997 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7050/10239 [68%] (base=7043)
+  <- ACK=7050: window 7049 -> 7050/10240
+
+[timeout] windowBase=7084 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7100/10239 [69%] (base=7094)
+  <- ACK=7100: window 7099 -> 7100/10240
+
+[timeout] windowBase=7112 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7150/10239 [69%] (base=7147)
+
+[timeout] windowBase=7147 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=7173 stuck for 2.01s
+[timeout] retransmitting 10 packets
+  -> send seq=7200/10239 [70%] (base=7192)
+
+[timeout] windowBase=7193 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7250/10239 [70%] (base=7241)
+  <- ACK=7250: window 7249 -> 7250/10240
+
+[timeout] windowBase=7260 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7300/10239 [71%] (base=7297)
+  <- ACK=7300: window 7299 -> 7300/10240
+
+[timeout] windowBase=7333 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7350/10239 [71%] (base=7343)
+  <- ACK=7350: window 7349 -> 7350/10240
+
+[timeout] windowBase=7379 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7400/10239 [72%] (base=7399)
+  <- ACK=7400: window 7399 -> 7400/10240
+  -> send seq=7450/10239 [72%] (base=7447)
+  <- ACK=7450: window 7449 -> 7450/10240
+
+[timeout] windowBase=7462 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=7484 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7500/10239 [73%] (base=7494)
+  <- ACK=7500: window 7499 -> 7500/10240
+  -> send seq=7550/10239 [73%] (base=7544)
+  <- ACK=7550: window 7549 -> 7550/10240
+
+[timeout] windowBase=7555 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=7588 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7600/10239 [74%] (base=7598)
+  <- ACK=7600: window 7599 -> 7600/10240
+  -> send seq=7650/10239 [74%] (base=7643)
+  <- ACK=7650: window 7649 -> 7650/10240
+
+[timeout] windowBase=7685 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7700/10239 [75%] (base=7695)
+  <- ACK=7700: window 7699 -> 7700/10240
+  -> send seq=7750/10239 [75%] (base=7742)
+
+[timeout] windowBase=7744 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=7770 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=7800: window 7799 -> 7800/10240
+  -> send seq=7800/10239 [76%] (base=7800)
+
+[timeout] windowBase=7800 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=7816 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=7850/10239 [76%] (base=7844)
+  <- ACK=7850: window 7849 -> 7850/10240
+  -> send seq=7900/10239 [77%] (base=7891)
+  <- ACK=7900: window 7899 -> 7900/10240
+
+[timeout] windowBase=7930 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  <- ACK=7950: window 7949 -> 7950/10240
+  -> send seq=7950/10239 [77%] (base=7950)
+  -> send seq=8000/10239 [78%] (base=7997)
+  <- ACK=8000: window 7999 -> 8000/10240
+
+[timeout] windowBase=8015 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8050/10239 [78%] (base=8043)
+  <- ACK=8050: window 8049 -> 8050/10240
+  -> send seq=8100/10239 [79%] (base=8091)
+  <- ACK=8100: window 8099 -> 8100/10240
+
+[timeout] windowBase=8109 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8150/10239 [79%] (base=8147)
+  <- ACK=8150: window 8149 -> 8150/10240
+
+[timeout] windowBase=8151 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8200/10239 [80%] (base=8197)
+  <- ACK=8200: window 8199 -> 8200/10240
+
+[timeout] windowBase=8209 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=8232 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8250/10239 [80%] (base=8242)
+  <- ACK=8250: window 8249 -> 8250/10240
+
+[timeout] windowBase=8252 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=8267 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8300/10239 [81%] (base=8296)
+  <- ACK=8300: window 8299 -> 8300/10240
+
+[timeout] windowBase=8328 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8350/10239 [81%] (base=8346)
+  <- ACK=8350: window 8349 -> 8350/10240
+
+[timeout] windowBase=8357 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8400/10239 [82%] (base=8396)
+
+[timeout] windowBase=8396 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8450/10239 [82%] (base=8441)
+  <- ACK=8450: window 8449 -> 8450/10240
+  -> send seq=8500/10239 [83%] (base=8497)
+  <- ACK=8500: window 8499 -> 8500/10240
+
+[timeout] windowBase=8522 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8550/10239 [83%] (base=8542)
+  <- ACK=8550: window 8549 -> 8550/10240
+
+[timeout] windowBase=8561 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8600/10239 [83%] (base=8599)
+  <- ACK=8600: window 8599 -> 8600/10240
+
+[timeout] windowBase=8620 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8650/10239 [84%] (base=8648)
+  <- ACK=8650: window 8649 -> 8650/10240
+
+[timeout] windowBase=8687 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8700/10239 [84%] (base=8697)
+  <- ACK=8700: window 8699 -> 8700/10240
+
+[timeout] windowBase=8712 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=8739 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8750/10239 [85%] (base=8749)
+  <- ACK=8750: window 8749 -> 8750/10240
+
+[timeout] windowBase=8774 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8800/10239 [85%] (base=8792)
+  <- ACK=8800: window 8799 -> 8800/10240
+
+[timeout] windowBase=8812 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8850/10239 [86%] (base=8841)
+  <- ACK=8850: window 8849 -> 8850/10240
+
+[timeout] windowBase=8853 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=8870 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=8887 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8900/10239 [86%] (base=8897)
+  <- ACK=8900: window 8899 -> 8900/10240
+
+[timeout] windowBase=8907 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=8950/10239 [87%] (base=8945)
+  <- ACK=8950: window 8949 -> 8950/10240
+
+[timeout] windowBase=8958 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9000/10239 [87%] (base=8998)
+  <- ACK=9000: window 8999 -> 9000/10240
+
+[timeout] windowBase=9002 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9050/10239 [88%] (base=9041)
+  <- ACK=9050: window 9049 -> 9050/10240
+
+[timeout] windowBase=9058 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9100/10239 [88%] (base=9095)
+  <- ACK=9100: window 9099 -> 9100/10240
+
+[timeout] windowBase=9133 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9150/10239 [89%] (base=9143)
+  <- ACK=9150: window 9149 -> 9150/10240
+
+[timeout] windowBase=9159 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9200/10239 [89%] (base=9194)
+
+[timeout] windowBase=9194 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9235 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9250/10239 [90%] (base=9245)
+  <- ACK=9250: window 9249 -> 9250/10240
+  -> send seq=9300/10239 [90%] (base=9293)
+  <- ACK=9300: window 9299 -> 9300/10240
+
+[timeout] windowBase=9300 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9310 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9338 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9350/10239 [91%] (base=9348)
+  <- ACK=9350: window 9349 -> 9350/10240
+
+[timeout] windowBase=9357 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9400/10239 [91%] (base=9397)
+  <- ACK=9400: window 9399 -> 9400/10240
+
+[timeout] windowBase=9423 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9450/10239 [92%] (base=9442)
+  <- ACK=9450: window 9449 -> 9450/10240
+  -> send seq=9500/10239 [92%] (base=9492)
+  <- ACK=9500: window 9499 -> 9500/10240
+
+[timeout] windowBase=9500 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9550/10239 [93%] (base=9547)
+
+[timeout] windowBase=9547 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9600/10239 [93%] (base=9596)
+  <- ACK=9600: window 9599 -> 9600/10240
+
+[timeout] windowBase=9600 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9631 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9650/10239 [94%] (base=9641)
+  <- ACK=9650: window 9649 -> 9650/10240
+
+[timeout] windowBase=9666 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9687 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9700/10239 [94%] (base=9697)
+  <- ACK=9700: window 9699 -> 9700/10240
+
+[timeout] windowBase=9710 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9750/10239 [95%] (base=9742)
+
+[timeout] windowBase=9742 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9756 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9769 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9784 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9800/10239 [95%] (base=9794)
+  <- ACK=9800: window 9799 -> 9800/10240
+
+[timeout] windowBase=9806 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9850/10239 [96%] (base=9844)
+  <- ACK=9850: window 9849 -> 9850/10240
+
+[timeout] windowBase=9861 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9873 stuck for 2.0s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9875 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9900/10239 [96%] (base=9895)
+  <- ACK=9900: window 9899 -> 9900/10240
+
+[timeout] windowBase=9912 stuck for 2.01s
+[timeout] retransmitting 10 packets
+
+[timeout] windowBase=9926 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=9950/10239 [97%] (base=9945)
+  <- ACK=9950: window 9949 -> 9950/10240
+
+[timeout] windowBase=9950 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  [security] ACK AEAD failed, dropped.
+  -> send seq=10000/10239 [97%] (base=9996)
+  <- ACK=10000: window 9999 -> 10000/10240
+  -> send seq=10050/10239 [98%] (base=10046)
+  <- ACK=10050: window 10049 -> 10050/10240
+  -> send seq=10100/10239 [98%] (base=10093)
+  <- ACK=10100: window 10099 -> 10100/10240
+  -> send seq=10150/10239 [99%] (base=10142)
+  <- ACK=10150: window 10149 -> 10150/10240
+  -> send seq=10200/10239 [99%] (base=10191)
+
+[timeout] windowBase=10194 stuck for 2.0s
+[timeout] retransmitting 10 packets
+  -> send seq=10239/10239 [100%] (base=10234)
+  <- ACK=10240: window 10239 -> 10240/10240
+
+[done] all 10240 chunks acknowledged
+
+[fin] sending finish
+[sha-256] encrypted SHA 256 hash sent to client (x3)
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+  client reports: AEAD failures=0, replay drops=2213, SHA-256=Yes
+[fin] got FIN_ACK (verified), transfer complete!
+[note] server-side noise: 4 corrupted ACKs, 0 replay on ACKs
+
+SRFT Transfer Report - Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-04 03:39:08
+File: test_10mb_file
+
+- Name of the transferred file: test_10mb_file
+- Size of the transferred file: 10485760 bytes
+- The number of packets sent from the server: 12871
+- The number of retransmitted packets from the server: 2620
+- The number of packets received from the client: 12075
+- The time duration of the file transfer (hh:min:ss): 00:08:59
+- Security enabled (PSK + AEAD): Yes
+- Handshake status: Success
+- AEAD authentication failures (invalid packets dropped): 0
+- Replay drops (duplicate/out-of-window packets): 2213
+- SHA-256 match: Yes
+
+
+report save to report.txt
+
+  server complete
+
+socket closed
+[ec2-user@ip-172-31-27-171 ~]$

@@ -766,7 +766,7 @@ def parseServerHello(pskKey, data, clientNonce):
 
         # check HMAC
         if not verifyHmac(pskKey, messageToSign, receivedTag):
-            print('  [security] ServerHello HMAC FAILED!')
+            print('  [security] ServerHello HMAC Failed')
             print('  -> PSK mismatch. connection rejected.')
             return (None, None)
 

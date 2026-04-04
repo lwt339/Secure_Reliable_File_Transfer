@@ -1,0 +1,59 @@
+[ec2-user@ip-172-31-18-97 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Client
+ Phase 2: Secure Reliable File Transfer
+
+
+[warning] PSK should be exactly 32 bytes for AES-256
+  current PSK length: 31 bytes
+[warning] PSK may cause handshake failure (see above)
+  client will continue
+requesting file: test_10mb_file
+
+[socket] creating client socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  client socket created
+
+[request] send file request: test_10mb_file
+ server: 172.31.27.171:12000
+ request sent
+
+ Phase 2: Security Handshake
+
+[handshake] building ClientHello
+[handshake] sending ClientHello to server
+ ClientHello sent (with HMAC proof)
+[handshake] waiting for ServerHello
+ timeout waiting for ServerHello (1/15)
+ timeout waiting for ServerHello (2/15)
+ timeout waiting for ServerHello (3/15)
+ timeout waiting for ServerHello (4/15)
+ timeout waiting for ServerHello (5/15)
+ timeout waiting for ServerHello (6/15)
+ timeout waiting for ServerHello (7/15)
+ timeout waiting for ServerHello (8/15)
+ timeout waiting for ServerHello (9/15)
+ timeout waiting for ServerHello (10/15)
+ timeout waiting for ServerHello (11/15)
+ timeout waiting for ServerHello (12/15)
+ timeout waiting for ServerHello (13/15)
+ timeout waiting for ServerHello (14/15)
+ timeout waiting for ServerHello (15/15)
+[handshake] Failed b/c no ServerHello received after 15 tries
+
+[error] handshake failed and connection rejected.
+
+
+ Security Report (Client Side)
+
+  Security enabled (PSK + AEAD): Yes
+  Handshake status: Fail
+  AEAD authentication failures (invalid packets dropped): 0
+  Replay drops (duplicate/out-of-window packets): 0
+  SHA-256 match: No
+
+
+socket closed
+[ec2-user@ip-172-31-18-97 ~]$
