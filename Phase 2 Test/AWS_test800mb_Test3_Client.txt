@@ -7,6 +7,7 @@
 
 
 requesting file: test_800mb_file
+ AEAD cipher: AES-256-GCM
 
 [socket] creating client socket
     (Linux) SOCK_RAW + IP_HDRINCL
@@ -24,12 +25,13 @@ requesting file: test_800mb_file
 [handshake] waiting for ServerHello
  timeout waiting for ServerHello (1/15)
  timeout waiting for ServerHello (2/15)
+ timeout waiting for ServerHello (3/15)
 [handshake] receive ServerHello
   [security] ServerHello HMAC verified ok
 [handshake] server authenticated ok
 [handshake] session key derived (HKDF-SHA256)
- session ID: 400cd5d8a39c263e
- enc_key (first 8 bytes): 8d48ccd873d61f00...
+ session ID: 197b021d1a60bbc6
+ enc_key (first 8 bytes): 011044ee65abfbee...
 
 [handshake] Success and secure session established
  cipher: AES-256-GCM (AEAD)
@@ -3776,6 +3778,15 @@ requesting file: test_800mb_file
  progress: 186200/819200 [22%]
  progress: 186250/819200 [22%]
  progress: 186300/819200 [22%]
+  [security] replay dropped: seq=186306
+  [security] replay dropped: seq=186307
+  [security] replay dropped: seq=186308
+  [security] replay dropped: seq=186309
+  [security] replay dropped: seq=186310
+  [security] replay dropped: seq=186311
+  [security] replay dropped: seq=186312
+  [security] replay dropped: seq=186313
+  [security] replay dropped: seq=186314
  progress: 186350/819200 [22%]
  progress: 186400/819200 [22%]
  progress: 186450/819200 [22%]
@@ -16453,8 +16464,8 @@ requesting file: test_800mb_file
 [sha-256] pre-FIN_ACK verify: MATCH
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=819200, duplicate=0, outOfOrder=0, acksSent=819854
-  AEAD failures=1, replay drops=0
+[stats] valid=819200, duplicate=9, outOfOrder=9, acksSent=819858
+  AEAD failures=1, replay drops=9
 
 [verify] checking received file
 [verify] all 819200 chunks received
@@ -16479,9 +16490,30 @@ requesting file: test_800mb_file
   Security enabled (PSK + AEAD): Yes
   Handshake status: Success
   AEAD authentication failures (invalid packets dropped): 1
-  Replay drops (duplicate/out-of-window packets): 0
+  Replay drops (duplicate/out-of-window packets): 9
   SHA-256 match: Yes
 
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Test 1 / Phase 2 Secure Transfer
+Timestamp: 2026-04-17 04:14:15
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         True
+Size of the transferred file:             838860800 bytes
+Number of packets received from server:   819217
+Number of duplicate packets:              9
+Number of out-of-order packets:           9
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:05:12
+Received file MD5:                        4067155e98ab9e162baab0b6341f275a
+AEAD authentication failures:             1
+SHA-256 match:                            Yes
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
 [ec2-user@ip-172-31-18-97 ~]$

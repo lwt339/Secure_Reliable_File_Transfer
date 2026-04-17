@@ -7,6 +7,7 @@
 
 
 requesting file: test_800mb_file
+ AEAD cipher: AES-256-GCM
 
 [socket] creating client socket
     (Linux) SOCK_RAW + IP_HDRINCL
@@ -24,12 +25,13 @@ requesting file: test_800mb_file
 [handshake] waiting for ServerHello
  timeout waiting for ServerHello (1/15)
  timeout waiting for ServerHello (2/15)
+ timeout waiting for ServerHello (3/15)
 [handshake] receive ServerHello
   [security] ServerHello HMAC verified ok
 [handshake] server authenticated ok
 [handshake] session key derived (HKDF-SHA256)
- session ID: 2675215dd4bdaeb6
- enc_key (first 8 bytes): 1b24cfa056a48e46...
+ session ID: 7c879a0306612e78
+ enc_key (first 8 bytes): 5dbf1b6078682af2...
 
 [handshake] Success and secure session established
  cipher: AES-256-GCM (AEAD)
@@ -503,6 +505,15 @@ requesting file: test_800mb_file
  progress: 22550/819200 [2%]
  progress: 22600/819200 [2%]
  progress: 22650/819200 [2%]
+  [security] replay dropped: seq=22665
+  [security] replay dropped: seq=22666
+  [security] replay dropped: seq=22667
+  [security] replay dropped: seq=22668
+  [security] replay dropped: seq=22669
+  [security] replay dropped: seq=22670
+  [security] replay dropped: seq=22671
+  [security] replay dropped: seq=22672
+  [security] replay dropped: seq=22673
  progress: 22700/819200 [2%]
  progress: 22750/819200 [2%]
  progress: 22800/819200 [2%]
@@ -2662,6 +2673,7 @@ requesting file: test_800mb_file
  progress: 130500/819200 [15%]
  progress: 130550/819200 [15%]
  progress: 130600/819200 [15%]
+  [security] replay dropped: seq=130608
  progress: 130650/819200 [15%]
  progress: 130700/819200 [15%]
  progress: 130750/819200 [15%]
@@ -12631,7 +12643,6 @@ requesting file: test_800mb_file
  progress: 628950/819200 [76%]
  progress: 629000/819200 [76%]
  progress: 629050/819200 [76%]
- progress: 629100/819200 [76%]
  progress: 629150/819200 [76%]
  progress: 629200/819200 [76%]
  progress: 629250/819200 [76%]
@@ -14906,7 +14917,6 @@ requesting file: test_800mb_file
  progress: 742700/819200 [90%]
  progress: 742750/819200 [90%]
  progress: 742800/819200 [90%]
- progress: 742850/819200 [90%]
  progress: 742900/819200 [90%]
  progress: 742950/819200 [90%]
  progress: 743000/819200 [90%]
@@ -16453,8 +16463,8 @@ requesting file: test_800mb_file
 [sha-256] pre-FIN_ACK verify: MATCH
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=819200, duplicate=0, outOfOrder=0, acksSent=819846
-  AEAD failures=1, replay drops=0
+[stats] valid=819200, duplicate=97, outOfOrder=97, acksSent=819934
+  AEAD failures=1, replay drops=97
 
 [verify] checking received file
 [verify] all 819200 chunks received
@@ -16479,9 +16489,30 @@ requesting file: test_800mb_file
   Security enabled (PSK + AEAD): Yes
   Handshake status: Success
   AEAD authentication failures (invalid packets dropped): 1
-  Replay drops (duplicate/out-of-window packets): 0
+  Replay drops (duplicate/out-of-window packets): 97
   SHA-256 match: Yes
 
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Test 1 / Phase 2 Secure Transfer
+Timestamp: 2026-04-17 04:28:26
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         True
+Size of the transferred file:             838860800 bytes
+Number of packets received from server:   819305
+Number of duplicate packets:              97
+Number of out-of-order packets:           97
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:05:38
+Received file MD5:                        4067155e98ab9e162baab0b6341f275a
+AEAD authentication failures:             1
+SHA-256 match:                            Yes
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
 [ec2-user@ip-172-31-18-97 ~]$

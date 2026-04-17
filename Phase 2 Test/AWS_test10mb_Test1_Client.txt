@@ -1,47 +1,13 @@
-PS C:\Users\vicky\Desktop> ssh -i srft-key.pem ec2-user@54.147.178.217
-The authenticity of host '54.147.178.217 (54.147.178.217)' can't be established.
-ED25519 key fingerprint is SHA256:Kqe+HRPx2Nz/SsLkKL1p4oODYEJAEu3Nc4yhu8fGg7Y.
-This host key is known by the following other names/addresses:
-    C:\Users\vicky/.ssh/known_hosts:6: 54.209.202.129
-    C:\Users\vicky/.ssh/known_hosts:9: 18.204.228.162
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '54.147.178.217' (ED25519) to the list of known hosts.
-
-A newer release of "Amazon Linux" is available.
-  Version 2023.10.20260325:
-  Version 2023.10.20260330:
-Run "/usr/bin/dnf check-release-update" for full release and version update info
-   ,     #_
-   ~\_  ####_        Amazon Linux 2023
-  ~~  \_#####\
-  ~~     \###|
-  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
-   ~~       V~' '->
-    ~~~         /
-      ~~._.   _/
-         _/ _/
-       _/m/'
-Last login: Tue Mar 31 03:31:47 2026 from 63.199.218.98
-[ec2-user@ip-172-31-18-97 ~]$ ping 172.31.27.171 -c 5
-PING 172.31.27.171 (172.31.27.171) 56(84) bytes of data.
-64 bytes from 172.31.27.171: icmp_seq=1 ttl=127 time=0.340 ms
-64 bytes from 172.31.27.171: icmp_seq=2 ttl=127 time=0.362 ms
-64 bytes from 172.31.27.171: icmp_seq=3 ttl=127 time=0.359 ms
-64 bytes from 172.31.27.171: icmp_seq=4 ttl=127 time=0.352 ms
-64 bytes from 172.31.27.171: icmp_seq=5 ttl=127 time=0.378 ms
-
---- 172.31.27.171 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 4169ms
-rtt min/avg/max/mdev = 0.340/0.358/0.378/0.012 ms
 [ec2-user@ip-172-31-18-97 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
 
 
- Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
- CS5700 SRFT Client
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu 
+ CS5700 SRFT Client 
  Phase 2: Secure Reliable File Transfer
 
 
 requesting file: test_10mb_file
+ AEAD cipher: AES-256-GCM
 
 [socket] creating client socket
     (Linux) SOCK_RAW + IP_HDRINCL
@@ -61,8 +27,8 @@ requesting file: test_10mb_file
   [security] ServerHello HMAC verified ok
 [handshake] server authenticated ok
 [handshake] session key derived (HKDF-SHA256)
- session ID: c4c03055fc70d126
- enc_key (first 8 bytes): 785e8456f827f30f...
+ session ID: 7bd9b7836be991b8
+ enc_key (first 8 bytes): 209d747af3605b00...
 
 [handshake] Success and secure session established
  cipher: AES-256-GCM (AEAD)
@@ -306,7 +272,7 @@ requesting file: test_10mb_file
 [sha-256] pre-FIN_ACK verify: MATCH
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=10240, duplicate=0, outOfOrder=0, acksSent=10260
+[stats] valid=10240, duplicate=0, outOfOrder=0, acksSent=10254
   AEAD failures=0, replay drops=0
 
 [verify] checking received file
@@ -336,5 +302,25 @@ requesting file: test_10mb_file
   SHA-256 match: Yes
 
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Test 1 / Phase 2 Secure Transfer
+Timestamp: 2026-04-17 03:36:14
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         True
+Size of the transferred file:             10485760 bytes
+Number of packets received from server:   10247
+Number of duplicate packets:              0
+Number of out-of-order packets:           0
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:00:05
+Received file MD5:                        f1c9645dbc14efddc7d8a322685f26eb
+AEAD authentication failures:             0
+SHA-256 match:                            Yes
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
-[ec2-user@ip-172-31-18-97 ~]$

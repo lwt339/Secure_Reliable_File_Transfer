@@ -11,6 +11,7 @@
 [warning] PSK may cause handshake failure (see above)
   client will continue
 requesting file: test_800mb_file
+ AEAD cipher: AES-256-GCM
 
 [socket] creating client socket
     (Linux) SOCK_RAW + IP_HDRINCL
@@ -55,5 +56,26 @@ requesting file: test_800mb_file
   SHA-256 match: No
 
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 04:06:29
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         False
+Size of the transferred file:             0 bytes
+Number of packets received from server:   0
+Number of duplicate packets:              0
+Number of out-of-order packets:           0
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:00:00
+Received file MD5:                        N/A
+AEAD authentication failures:             0
+SHA-256 match:                            No
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
 [ec2-user@ip-172-31-18-97 ~]$

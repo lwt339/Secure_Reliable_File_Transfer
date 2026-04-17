@@ -3,7 +3,7 @@
 
  Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
  CS5700 SRFT Server
-  Phase 2: Secure Reliable File Transfer
+ Phase 2: Secure Reliable File Transfer
 
 
 [socket] creating server socket
@@ -28,29 +28,34 @@
 
 [handshake] waiting for ClientHello
 [handshake] received ClientHello
-  [security] ClientHello HMAC Failed
+  [security] ClientHello HMAC FAILED!
   -> PSK mismatch. connection rejected.
 [handshake] Failed b/c client PSK mismatch!
 
 [error] handshake failed
 
-SRFT Transfer Report - Test 2 Wrong PSK (Authentication Failure)
-Timestamp: 2026-04-04 02:49:37
-File: test_10mb_file
+============================================================
+SERVER REPORT
+============================================================
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 04:04:20
 
-- Name of the transferred file: test_10mb_file
-- Size of the transferred file: 10485760 bytes
-- The number of packets sent from the server: 0
-- The number of retransmitted packets from the server: 0
-- The number of packets received from the client: 2
-- The time duration of the file transfer (hh:min:ss): 00:00:00
-- Security enabled (PSK + AEAD): Yes
-- Handshake status: Fail
-- AEAD authentication failures (invalid packets dropped): 0
-- Replay drops (duplicate/out-of-window packets): 0
-- SHA-256 match: No
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
 
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+============================================================
 
-report save to report.txt
+report save to Server_Report.txt
 socket closed
 [ec2-user@ip-172-31-27-171 ~]$

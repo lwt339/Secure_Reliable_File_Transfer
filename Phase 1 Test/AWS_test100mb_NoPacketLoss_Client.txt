@@ -85,7 +85,6 @@ requesting file: test_100mb_file
  progress: 2750/102400 [2%]
  progress: 2800/102400 [2%]
  progress: 2850/102400 [2%]
- progress: 2900/102400 [2%]
  progress: 2950/102400 [2%]
  progress: 3000/102400 [2%]
  progress: 3050/102400 [2%]
@@ -2082,7 +2081,7 @@ requesting file: test_100mb_file
 [fin] received finish signal from server
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=102400, duplicate=0, outOfOrder=0, acksSent=102469
+[stats] valid=102400, duplicate=9, outOfOrder=9, acksSent=102475
 
 [verify] checking received file
 [verify] all 102400 chunks received
@@ -2095,7 +2094,26 @@ requesting file: test_100mb_file
 
  File Transfer successful
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 04:31:16
+
+Security enabled (PSK + AEAD):            No
+Handshake status:                         False
+Size of the transferred file:             104857600 bytes
+Number of packets received from server:   102412
+Number of duplicate packets:              9
+Number of out-of-order packets:           9
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:00:33
+Received file MD5:                        2f282b84e7e608d5852449ed940bfc51
+AEAD authentication failures:             0
+SHA-256 match:                            No
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
-[ec2-user@ip-172-31-18-97 ~]$ md5sum client/test_100mb_file
-2f282b84e7e608d5852449ed940bfc51  client/test_100mb_file
 [ec2-user@ip-172-31-18-97 ~]$

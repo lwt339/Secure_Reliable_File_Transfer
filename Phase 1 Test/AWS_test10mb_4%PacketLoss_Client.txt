@@ -1,13 +1,37 @@
+[ec2-user@ip-172-31-18-97 ~]$ ping 172.31.27.171 -c 20
+PING 172.31.27.171 (172.31.27.171) 56(84) bytes of data.
+64 bytes from 172.31.27.171: icmp_seq=1 ttl=127 time=0.802 ms
+64 bytes from 172.31.27.171: icmp_seq=2 ttl=127 time=0.365 ms
+64 bytes from 172.31.27.171: icmp_seq=3 ttl=127 time=0.326 ms
+64 bytes from 172.31.27.171: icmp_seq=4 ttl=127 time=0.314 ms
+64 bytes from 172.31.27.171: icmp_seq=5 ttl=127 time=0.304 ms
+64 bytes from 172.31.27.171: icmp_seq=6 ttl=127 time=0.315 ms
+64 bytes from 172.31.27.171: icmp_seq=7 ttl=127 time=0.325 ms
+64 bytes from 172.31.27.171: icmp_seq=8 ttl=127 time=0.327 ms
+64 bytes from 172.31.27.171: icmp_seq=9 ttl=127 time=0.312 ms
+64 bytes from 172.31.27.171: icmp_seq=10 ttl=127 time=0.303 ms
+64 bytes from 172.31.27.171: icmp_seq=11 ttl=127 time=0.363 ms
+64 bytes from 172.31.27.171: icmp_seq=12 ttl=127 time=0.330 ms
+64 bytes from 172.31.27.171: icmp_seq=13 ttl=127 time=0.316 ms
+64 bytes from 172.31.27.171: icmp_seq=14 ttl=127 time=0.310 ms
+64 bytes from 172.31.27.171: icmp_seq=15 ttl=127 time=0.356 ms
+64 bytes from 172.31.27.171: icmp_seq=16 ttl=127 time=0.316 ms
+64 bytes from 172.31.27.171: icmp_seq=17 ttl=127 time=0.307 ms
+64 bytes from 172.31.27.171: icmp_seq=19 ttl=127 time=0.315 ms
+64 bytes from 172.31.27.171: icmp_seq=20 ttl=127 time=0.309 ms
+
+--- 172.31.27.171 ping statistics ---
+20 packets transmitted, 19 received, 5% packet loss, time 19759ms
+rtt min/avg/max/mdev = 0.303/0.348/0.802/0.108 ms
 [ec2-user@ip-172-31-18-97 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
 
 
  Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
  CS5700 SRFT Client
- Phase 2: Secure Reliable File Transfer
+ Phase 1: Reliable File Transfer
 
 
 requesting file: test_10mb_file
- AEAD cipher: AES-256-GCM
 
 [socket] creating client socket
     (Linux) SOCK_RAW + IP_HDRINCL
@@ -16,23 +40,6 @@ requesting file: test_10mb_file
 [request] send file request: test_10mb_file
  server: 172.31.27.171:12000
  request sent
-
- Phase 2: Security Handshake
-
-[handshake] building ClientHello
-[handshake] sending ClientHello to server
- ClientHello sent (with HMAC proof)
-[handshake] waiting for ServerHello
-[handshake] receive ServerHello
-  [security] ServerHello HMAC verified ok
-[handshake] server authenticated ok
-[handshake] session key derived (HKDF-SHA256)
- session ID: 88df7602341071a8
- enc_key (first 8 bytes): 6df0037b234e1197...
-
-[handshake] Success and secure session established
- cipher: AES-256-GCM (AEAD)
-
 
 [wait] waiting for file info from server
 
@@ -46,28 +53,20 @@ requesting file: test_10mb_file
   pre allocated 10485760 bytes
 
 [receive] starting to receive data (10240 chunks expected)
- decryption: AES-256-GCM (AEAD)
- replay protection: receivedSet + window limit (5000)
- [security] AEAD Fail for seq=99999! packet dropped.
  progress: 50/10240 [0%]
  progress: 100/10240 [0%]
  progress: 150/10240 [1%]
  progress: 200/10240 [1%]
  progress: 250/10240 [2%]
- progress: 300/10240 [2%]
- progress: 350/10240 [3%]
  progress: 400/10240 [3%]
  progress: 450/10240 [4%]
- progress: 500/10240 [4%]
  progress: 550/10240 [5%]
- progress: 600/10240 [5%]
  progress: 650/10240 [6%]
  progress: 700/10240 [6%]
  progress: 750/10240 [7%]
  progress: 800/10240 [7%]
  progress: 850/10240 [8%]
  progress: 900/10240 [8%]
- progress: 950/10240 [9%]
  progress: 1000/10240 [9%]
  progress: 1050/10240 [10%]
  progress: 1100/10240 [10%]
@@ -77,45 +76,57 @@ requesting file: test_10mb_file
  progress: 1300/10240 [12%]
  progress: 1350/10240 [13%]
  progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
+ progress: 1400/10240 [13%]
  progress: 1450/10240 [14%]
  progress: 1500/10240 [14%]
  progress: 1550/10240 [15%]
  progress: 1600/10240 [15%]
- progress: 1650/10240 [16%]
+ progress: 1700/10240 [16%]
+ progress: 1700/10240 [16%]
+ progress: 1700/10240 [16%]
+ progress: 1700/10240 [16%]
+ progress: 1700/10240 [16%]
+ progress: 1700/10240 [16%]
+ progress: 1700/10240 [16%]
+ progress: 1700/10240 [16%]
  progress: 1700/10240 [16%]
  progress: 1750/10240 [17%]
  progress: 1800/10240 [17%]
  progress: 1850/10240 [18%]
  progress: 1900/10240 [18%]
- progress: 1950/10240 [19%]
- progress: 2000/10240 [19%]
- progress: 2050/10240 [20%]
  progress: 2100/10240 [20%]
  progress: 2150/10240 [20%]
  progress: 2200/10240 [21%]
- progress: 2250/10240 [21%]
  progress: 2300/10240 [22%]
  progress: 2350/10240 [22%]
- progress: 2400/10240 [23%]
  progress: 2450/10240 [23%]
- progress: 2500/10240 [24%]
  progress: 2550/10240 [24%]
- progress: 2600/10240 [25%]
  progress: 2650/10240 [25%]
- progress: 2700/10240 [26%]
- progress: 2750/10240 [26%]
- progress: 2800/10240 [27%]
- progress: 2850/10240 [27%]
  progress: 2900/10240 [28%]
  progress: 2950/10240 [28%]
  progress: 3000/10240 [29%]
- progress: 3050/10240 [29%]
  progress: 3100/10240 [30%]
  progress: 3150/10240 [30%]
  progress: 3200/10240 [31%]
  progress: 3250/10240 [31%]
  progress: 3300/10240 [32%]
- progress: 3350/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
+ progress: 3300/10240 [32%]
  progress: 3400/10240 [33%]
  progress: 3450/10240 [33%]
  progress: 3500/10240 [34%]
@@ -124,42 +135,30 @@ requesting file: test_10mb_file
  progress: 3650/10240 [35%]
  progress: 3700/10240 [36%]
  progress: 3750/10240 [36%]
- progress: 3800/10240 [37%]
  progress: 3850/10240 [37%]
  progress: 3900/10240 [38%]
  progress: 3950/10240 [38%]
  progress: 4000/10240 [39%]
  progress: 4050/10240 [39%]
  progress: 4100/10240 [40%]
- progress: 4150/10240 [40%]
  progress: 4200/10240 [41%]
  progress: 4250/10240 [41%]
- progress: 4300/10240 [41%]
  progress: 4350/10240 [42%]
- progress: 4400/10240 [42%]
  progress: 4450/10240 [43%]
  progress: 4500/10240 [43%]
  progress: 4550/10240 [44%]
- progress: 4600/10240 [44%]
- progress: 4650/10240 [45%]
- progress: 4700/10240 [45%]
  progress: 4750/10240 [46%]
  progress: 4800/10240 [46%]
- progress: 4850/10240 [47%]
  progress: 4900/10240 [47%]
- progress: 4950/10240 [48%]
- progress: 5000/10240 [48%]
  progress: 5050/10240 [49%]
  progress: 5100/10240 [49%]
  progress: 5150/10240 [50%]
  progress: 5200/10240 [50%]
  progress: 5250/10240 [51%]
- progress: 5300/10240 [51%]
  progress: 5350/10240 [52%]
  progress: 5400/10240 [52%]
  progress: 5450/10240 [53%]
  progress: 5500/10240 [53%]
- progress: 5550/10240 [54%]
  progress: 5600/10240 [54%]
  progress: 5650/10240 [55%]
  progress: 5700/10240 [55%]
@@ -170,11 +169,7 @@ requesting file: test_10mb_file
  progress: 5950/10240 [58%]
  progress: 6000/10240 [58%]
  progress: 6050/10240 [59%]
- progress: 6100/10240 [59%]
- progress: 6150/10240 [60%]
  progress: 6200/10240 [60%]
- progress: 6250/10240 [61%]
- progress: 6300/10240 [61%]
  progress: 6350/10240 [62%]
  progress: 6400/10240 [62%]
  progress: 6450/10240 [62%]
@@ -182,36 +177,37 @@ requesting file: test_10mb_file
  progress: 6550/10240 [63%]
  progress: 6600/10240 [64%]
  progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
+ progress: 6650/10240 [64%]
  progress: 6700/10240 [65%]
  progress: 6750/10240 [65%]
  progress: 6800/10240 [66%]
- progress: 6850/10240 [66%]
  progress: 6900/10240 [67%]
  progress: 6950/10240 [67%]
  progress: 7000/10240 [68%]
  progress: 7050/10240 [68%]
  progress: 7100/10240 [69%]
  progress: 7150/10240 [69%]
- progress: 7200/10240 [70%]
- progress: 7250/10240 [70%]
- progress: 7300/10240 [71%]
  progress: 7350/10240 [71%]
- progress: 7400/10240 [72%]
  progress: 7450/10240 [72%]
  progress: 7500/10240 [73%]
- progress: 7550/10240 [73%]
  progress: 7600/10240 [74%]
  progress: 7650/10240 [74%]
  progress: 7700/10240 [75%]
  progress: 7750/10240 [75%]
- progress: 7800/10240 [76%]
  progress: 7850/10240 [76%]
  progress: 7900/10240 [77%]
  progress: 7950/10240 [77%]
  progress: 8000/10240 [78%]
  progress: 8050/10240 [78%]
  progress: 8100/10240 [79%]
- progress: 8150/10240 [79%]
  progress: 8200/10240 [80%]
  progress: 8250/10240 [80%]
  progress: 8300/10240 [81%]
@@ -222,59 +218,34 @@ requesting file: test_10mb_file
  progress: 8550/10240 [83%]
  progress: 8600/10240 [83%]
  progress: 8650/10240 [84%]
- progress: 8700/10240 [84%]
  progress: 8750/10240 [85%]
- progress: 8800/10240 [85%]
  progress: 8850/10240 [86%]
  progress: 8900/10240 [86%]
  progress: 8950/10240 [87%]
  progress: 9000/10240 [87%]
  progress: 9050/10240 [88%]
- progress: 9100/10240 [88%]
  progress: 9150/10240 [89%]
  progress: 9200/10240 [89%]
- progress: 9250/10240 [90%]
  progress: 9300/10240 [90%]
  progress: 9350/10240 [91%]
- progress: 9400/10240 [91%]
  progress: 9450/10240 [92%]
- progress: 9500/10240 [92%]
  progress: 9550/10240 [93%]
  progress: 9600/10240 [93%]
  progress: 9650/10240 [94%]
  progress: 9700/10240 [94%]
  progress: 9750/10240 [95%]
- progress: 9800/10240 [95%]
  progress: 9850/10240 [96%]
- progress: 9900/10240 [96%]
  progress: 9950/10240 [97%]
  progress: 10000/10240 [97%]
- progress: 10050/10240 [98%]
- progress: 10100/10240 [98%]
- progress: 10150/10240 [99%]
  progress: 10200/10240 [99%]
  progress: 10240/10240 [100%]
 
 [done] all 10240 chunks received!
 
-[sha-256] received SHA-256 hash from server
- server SHA-256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
-
-[sha-256] received SHA-256 hash from server
- server SHA-256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
-
-[sha-256] received SHA-256 hash from server
- server SHA-256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
-
-[sha-256] received SHA-256 hash from server
- server SHA-256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
-
 [fin] received finish signal from server
-[sha-256] pre-FIN_ACK verify: MATCH
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=10240, duplicate=0, outOfOrder=0, acksSent=10254
-  AEAD failures=1, replay drops=0
+[stats] valid=10240, duplicate=2745, outOfOrder=2764, acksSent=12497
 
 [verify] checking received file
 [verify] all 10240 chunks received
@@ -284,43 +255,27 @@ requesting file: test_10mb_file
  received MD5: f1c9645dbc14efddc7d8a322685f26eb
  result: MD5 MATCH
 
-[SHA-256 verify]
- server SHA-256:   e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
- received SHA-256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
- result: SHA-256 match
-
 
  File Transfer successful
-
-
-
- Security Report (Client Side)
-
-  Security enabled (PSK + AEAD): Yes
-  Handshake status: Success
-  AEAD authentication failures (invalid packets dropped): 1
-  Replay drops (duplicate/out-of-window packets): 0
-  SHA-256 match: Yes
-
 
 
 ============================================================
 CLIENT REPORT
 ============================================================
-Test: Test 1 / Phase 2 Secure Transfer
-Timestamp: 2026-04-17 03:43:25
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 05:04:14
 
-Security enabled (PSK + AEAD):            Yes
-Handshake status:                         True
+Security enabled (PSK + AEAD):            No
+Handshake status:                         False
 Size of the transferred file:             10485760 bytes
-Number of packets received from server:   10248
-Number of duplicate packets:              0
-Number of out-of-order packets:           0
+Number of packets received from server:   12988
+Number of duplicate packets:              2745
+Number of out-of-order packets:           2764
 Number of packets with checksum errors:   0
-Time duration of the file transfer:       00:00:05
+Time duration of the file transfer:       00:11:18
 Received file MD5:                        f1c9645dbc14efddc7d8a322685f26eb
-AEAD authentication failures:             1
-SHA-256 match:                            Yes
+AEAD authentication failures:             0
+SHA-256 match:                            No
 ============================================================
 
 client report saved to Client_Report.txt

@@ -9,7 +9,9 @@ import threading
 
 from socket import *
 from config import *
+import config
 from packet_helper import *
+import packet_helper
 
 
 
@@ -28,6 +30,7 @@ fileName = ''
 fileSize = 0
 numChunks = 0
 serverMD5 = ''
+receivedMD5 = ''
 
 # transfer
 isDone = False
@@ -37,6 +40,13 @@ ackCount = 0
 validCount = 0
 duplicateCount = 0
 outOfOrderCount = 0
+# count recvfrom
+# including dropped by checksum or AEAD
+totalRecvCount = 0
+
+# timing (client side, for the client report)
+startTime = 0.0
+endTime = 0.0
 
 # security
 
@@ -50,7 +60,7 @@ handshakeOk = False
 
 # security counters
 
-# AEAD failures (tampered/forged)
+# AEAD fail (tampered/forged)
 aeadFailCount = 0
 # replay/duplicate/out of window drops
 replayDropCount = 0
@@ -138,10 +148,12 @@ def doSecurityHandshake(sock):
     print(' session ID: ' + sessionId.hex())
     print(' enc_key (first 8 bytes): ' + sessionKey[0:8].hex() + '...')
 
+    set_session_cipher(config.cipherInfo)
+
     handshakeOk = True
     print('')
     print('[handshake] Success and secure session established')
-    print(' cipher: AES-256-GCM (AEAD)')
+    print(' cipher: ' + config.cipherInfo + ' (AEAD)')
     print('')
     return True
 
@@ -215,24 +227,41 @@ def waitForFileInfo(sock, filename):
 
 
 # Output File on Disk
-# pre-allocate so we can write chunks at any offset (out of order)
+# pre allocate so we can write chunks at any offset (out of order)
 
 def prepareOutputFile():
     global outputFile
     if not os.path.exists(clientDir):
-        os.makedirs(clientDir)
+        try:
+            os.makedirs(clientDir)
+        except OSError as e:
+            print('[error] prepareOutputFile: cannot create clientDir ' +
+                  repr(clientDir))
+            print('        ' + str(e))
+            raise
 
     outputPath = os.path.join(clientDir, fileName)
 
-    # create file and pre allocate to expected size
-    f = open(outputPath, 'wb')
-    if fileSize > 0:
-        f.seek(fileSize - 1)
-        f.write(b'\x00')
-    f.close()
+    try:
+        f = open(outputPath, 'wb')
+        if fileSize > 0:
+            f.seek(fileSize - 1)
+            f.write(b'\x00')
+        f.close()
+    except OSError as e:
+        print('[error] prepareOutputFile: cannot create/preallocate file ' +
+              repr(outputPath))
+        print('        fileSize=' + str(fileSize))
+        print('        ' + str(e))
+        raise
 
-    # reopen for random access writing
-    outputFile = open(outputPath, 'r+b')
+    try:
+        outputFile = open(outputPath, 'r+b')
+    except OSError as e:
+        print('[error] prepareOutputFile: cannot reopen for r+b ' +
+              repr(outputPath))
+        print('        ' + str(e))
+        raise
 
     print('')
     print('[prepare] output file ready: ' + outputPath)
@@ -246,13 +275,17 @@ def writeChunkToDisk(seqNum, data):
     # returns True if write succeess, False if  failed
     # caller only add to receivedSet if True
     global outputFile
+    offset = seqNum * chunkSize
     try:
-        offset = seqNum * chunkSize
         outputFile.seek(offset)
         outputFile.write(data)
         return True
     except Exception as e:
-        print(' [error] failed to write chunk #' + str(seqNum) + ': ' + str(e))
+        print('[error] writeChunkToDisk failed')
+        print('        seqNum=' + str(seqNum) +
+              ', offset=' + str(offset) +
+              ', len(data)=' + str(len(data)))
+        print('        ' + type(e).__name__ + ': ' + str(e))
         return False
 
 
@@ -355,34 +388,26 @@ def ackSenderThread(sock):
 # Receive Data Packets from Server
 # main receive loop
 # with all validation checks
-#
-#  receiver validation order (defense in depth):
-#    1. bounds check: seqNum >= numChunks? (invalid file range)
-#    2. window check: seqNum > expectedSeq + limit? (way out of window)
-#       Phase 1: drop immediately (no AEAD to catch it)
-#       Phase 2: let it pass to AEAD (so forged packets increment
-#                aeadFailCount correctly for Test 5)
-#    3. replay check: seqNum already in receivedSet? (duplicate)
-#    4. AEAD decrypt: tampered/forged/wrong key? (integrity)
-#    5. write valid data to disk
-#    6. send cumulative ACK periodically
-# ============================================================
-
 def receiveData(sock):
     global expectedSeq, isDone
-    global validCount, duplicateCount, outOfOrderCount
+    global validCount, duplicateCount, outOfOrderCount, totalRecvCount
     global serverSHA256, sha256Match
     global aeadFailCount, replayDropCount
+    global startTime, endTime
 
     print('')
     print('[receive] starting to receive data (' +
           str(numChunks) + ' chunks expected)')
     if securityEnabled:
-        print(' decryption: AES-256-GCM (AEAD)')
+        print(' decryption: ' + get_session_cipher() + ' (AEAD)')
         print(' replay protection: receivedSet + window limit (' + str(recvWindowLimit) + ')')
+
+    # start client timer (for client report duration)
+    startTime = time.time()
 
     # handle empty
     if numChunks == 0:
+        endTime = time.time()
         print('[done] empty file, no chunks to receive')
         return
 
@@ -416,6 +441,8 @@ def receiveData(sock):
                 continue
 
             timeoutCount = 0  # reset timeout counter (receive packet)
+            # count every packet we accepted past checksum
+            totalRecvCount = totalRecvCount + 1
 
             # SHA 256 verification
             if parsed['pktType'] == typeShaVerify:
@@ -497,6 +524,8 @@ def receiveData(sock):
                 finally:
                     clientLock.release()
                 print('[fin] FIN_ACK sent (with security counters)')
+                # end timer right after FIN_ACK sent
+                endTime = time.time()
                 isDone = True
                 break
 
@@ -645,6 +674,10 @@ def receiveData(sock):
                 clientLock.release()
             lastAckTime = time.time()
 
+    # if exited without setting endTime
+    if endTime <= 0:
+        endTime = time.time()
+
     # print final stats
     print('')
     print('[stats] valid=' + str(validCount) +
@@ -658,7 +691,7 @@ def receiveData(sock):
 
 # verify receive file with MD5 + SHA-256
 def verifyFile():
-    global outputFile, sha256Match
+    global outputFile, sha256Match, receivedMD5
 
     print('')
     print('[verify] checking received file')
@@ -738,6 +771,111 @@ def printSecurityReport():
     print('')
 
 
+# client side report
+def writeClientReport():
+    # safe duration
+    if endTime > 0 and startTime > 0 and endTime >= startTime:
+        duration = endTime - startTime
+    else:
+        duration = 0.0
+
+    # read checksum error counter from packet_helper
+    # whenever verifyChecksum returns False
+    checksumErrors = packet_helper.checksumErrorCount
+
+    # test label (helpful when appending many test runs)
+    if not securityEnabled:
+        testLabel = 'Phase 1 Reliable Transfer (no security)'
+    elif not handshakeOk:
+        testLabel = 'Test 2 Wrong PSK (Authentication Failure)'
+    else:
+        testLabel = 'Test 1 / Phase 2 Secure Transfer'
+
+    barLine = '=' * 60
+    lines = []
+    lines.append('')
+    lines.append(barLine)
+    lines.append('CLIENT REPORT')
+    lines.append(barLine)
+    lines.append('Test: ' + testLabel)
+    lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S'))
+    lines.append('')
+
+    lines.append('Security enabled (PSK + AEAD):            ' +
+                 ('Yes' if securityEnabled else 'No'))
+    lines.append('Handshake status:                         ' +
+                 ('True' if handshakeOk else 'False'))
+    lines.append('Size of the transferred file:             ' +
+                 str(fileSize) + ' bytes')
+    lines.append('Number of packets received from server:   ' +
+                 str(totalRecvCount))
+    lines.append('Number of duplicate packets:              ' +
+                 str(duplicateCount))
+    lines.append('Number of out-of-order packets:           ' +
+                 str(outOfOrderCount))
+    lines.append('Number of packets with checksum errors:   ' +
+                 str(checksumErrors))
+    lines.append('Time duration of the file transfer:       ' +
+                 formatTime(duration))
+    lines.append('Received file MD5:                        ' +
+                 (receivedMD5 if receivedMD5 != '' else 'N/A'))
+    lines.append('AEAD authentication failures:             ' +
+                 str(aeadFailCount))
+    lines.append('SHA-256 match:                            ' +
+                 ('Yes' if sha256Match else 'No'))
+    lines.append(barLine)
+    lines.append('')
+
+    report = '\n'.join(lines)
+    print(report)
+
+    # append so each test adds a new block
+    try:
+        with open(clientReportPath, 'a') as f:
+            f.write(report + '\n')
+        print('client report saved to ' + clientReportPath)
+    except PermissionError:
+        altPath = os.path.expanduser('~/Client_Report.txt')
+        try:
+            with open(altPath, 'a') as f:
+                f.write(report + '\n')
+            print('client report saved to ' + altPath)
+            print('  (permission denied on ' + clientReportPath + ', used ' + altPath + ')')
+            print('  tip: sudo chmod 666 ' + clientReportPath)
+        except Exception as e2:
+            print('warning: could not save client report: ' + str(e2))
+    except Exception as e:
+        print('warning: could not save client report: ' + str(e))
+
+
+# tiny helper: parse --cipher flag from command line
+def parse_client_argv(argv):
+    # argv = sys.argv[1:]
+    # sets config.cipherInfo when --cipher is used
+    # returns filename or None
+    args = list(argv)
+    if len(args) < 1:
+        return None
+    if '--cipher' in args:
+        i = args.index('--cipher')
+        if i + 1 >= len(args):
+            print('[error] --cipher requires a value (aes-gcm or chacha)')
+            return None
+        val = args[i + 1].lower()
+        args = args[0:i] + args[i + 2:]
+        if val in ('aes-gcm', 'aes', 'gcm'):
+            config.cipherInfo = CIPHER_AES_GCM
+        elif val in ('chacha', 'chacha20', 'chacha20-poly1305'):
+            config.cipherInfo = CIPHER_CHACHA
+        else:
+            print('[error] unknown --cipher ' + repr(val))
+            print('  use: aes-gcm | chacha')
+            return None
+    if len(args) != 1:
+        return None
+    return args[0]
+
+
 # main
 
 if __name__ == '__main__':
@@ -753,14 +891,22 @@ if __name__ == '__main__':
     print('')
     print('')
 
+    # reset checksum error counter so each run starts clean
+    packet_helper.resetChecksumErrorCount()
+
     # check command line args
     if len(sys.argv) < 2:
-        print('usage: python3 SRFT_UDPClient.py <filename>')
+        print('usage: python3 SRFT_UDPClient.py [--cipher aes-gcm|chacha] <filename>')
         print(' example: python3 SRFT_UDPClient.py test_10mb_file')
-        print(' example: python3 SRFT_UDPClient.py test_100mb_file')
+        print(' example: python3 SRFT_UDPClient.py --cipher chacha test_10mb_file')
         sys.exit(1)
 
-    fileName = sys.argv[1]
+    fileName = parse_client_argv(sys.argv[1:])
+    if fileName is None:
+        print('usage: python3 SRFT_UDPClient.py [--cipher aes-gcm|chacha] <filename>')
+        print(' example: python3 SRFT_UDPClient.py test_10mb_file')
+        print(' example: python3 SRFT_UDPClient.py --cipher chacha test_10mb_file')
+        sys.exit(1)
 
     # validate filename before send
     if not validateFilename(fileName):
@@ -774,6 +920,8 @@ if __name__ == '__main__':
             print('  client will continue')
 
     print('requesting file: ' + fileName)
+    if securityEnabled:
+        print(' AEAD cipher: ' + config.cipherInfo)
 
     # create client socket
     print('')
@@ -792,6 +940,11 @@ if __name__ == '__main__':
                 print('')
                 print('[error] handshake failed and connection rejected.')
                 printSecurityReport()
+                # still write client report so Test 2 has a record
+                # even though file never transferred
+                startTime = time.time()
+                endTime = startTime
+                writeClientReport()
                 mySocket.close()
                 sys.exit(1)
 
@@ -818,9 +971,12 @@ if __name__ == '__main__':
             print(' Warnning: file transfer may be incomplete')
         print('')
 
-        # print security summary
+        # print security summary on screen
         if securityEnabled:
             printSecurityReport()
+
+        # write the full client report to disk (appends each run)
+        writeClientReport()
 
     except KeyboardInterrupt:
         print('')

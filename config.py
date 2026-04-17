@@ -99,7 +99,7 @@ chunkSize = 1024
 # socket receive buffer size
 recvBufferSize = 65535
 # retransmission timeout
-timeoutValue = 2.0
+timeoutValue = 0.2
 # sliding window size (how many unacked packets)
 windowSize = 10
 # send cumulative ACK every 3 packets received
@@ -122,8 +122,10 @@ recvWindowLimit = 5000
 serverDir = './server/'
 # received file
 clientDir = './client/'
-# report
-reportPath = 'report.txt'
+# server side report (run on server EC2)
+reportPath = 'Server_Report.txt'
+# client side report (run on client EC2)
+clientReportPath = 'Client_Report.txt'
 
 
 
@@ -160,7 +162,14 @@ handshakeNonceSize = 16
 # random session ID
 sessionIdSize = 8
 protocolVersion = 1
-cipherInfo = 'AES-256-GCM'
+
+# AEAD names sent in ClientHello (must match packet_helper / handshake)
+CIPHER_AES_GCM = 'AES-256-GCM'
+CIPHER_CHACHA = 'ChaCha20-Poly1305'
+ALLOWED_CIPHERS = (CIPHER_AES_GCM, CIPHER_CHACHA)
+
+# default: AES-256-GCM; client may override via --cipher before handshake
+cipherInfo = CIPHER_AES_GCM
 
 
 # attack test mode (Phase 2 testing)

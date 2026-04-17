@@ -7,6 +7,7 @@
 
 
 requesting file: test_10mb_file
+ AEAD cipher: AES-256-GCM
 
 [socket] creating client socket
     (Linux) SOCK_RAW + IP_HDRINCL
@@ -26,8 +27,8 @@ requesting file: test_10mb_file
   [security] ServerHello HMAC verified ok
 [handshake] server authenticated ok
 [handshake] session key derived (HKDF-SHA256)
- session ID: f29843f86db52bca
- enc_key (first 8 bytes): 3e6cf558b2510d53...
+ session ID: 4b467c5fa94d6d1a
+ enc_key (first 8 bytes): 37b2f0afb119b44d...
 
 [handshake] Success and secure session established
  cipher: AES-256-GCM (AEAD)
@@ -272,7 +273,7 @@ requesting file: test_10mb_file
 [sha-256] pre-FIN_ACK verify: MATCH
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=10240, duplicate=0, outOfOrder=0, acksSent=10254
+[stats] valid=10240, duplicate=0, outOfOrder=0, acksSent=10255
   AEAD failures=1, replay drops=0
 
 [verify] checking received file
@@ -302,5 +303,26 @@ requesting file: test_10mb_file
   SHA-256 match: Yes
 
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Test 1 / Phase 2 Secure Transfer
+Timestamp: 2026-04-17 03:42:07
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         True
+Size of the transferred file:             10485760 bytes
+Number of packets received from server:   10248
+Number of duplicate packets:              0
+Number of out-of-order packets:           0
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:00:05
+Received file MD5:                        f1c9645dbc14efddc7d8a322685f26eb
+AEAD authentication failures:             1
+SHA-256 match:                            Yes
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
 [ec2-user@ip-172-31-18-97 ~]$

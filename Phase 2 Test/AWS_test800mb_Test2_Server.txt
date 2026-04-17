@@ -34,23 +34,28 @@
 
 [error] handshake failed
 
-SRFT Transfer Report - Test 2 Wrong PSK (Authentication Failure)
-Timestamp: 2026-04-04 03:06:09
-File: test_800mb_file
+============================================================
+SERVER REPORT
+============================================================
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 04:05:42
 
-- Name of the transferred file: test_800mb_file
-- Size of the transferred file: 838860800 bytes
-- The number of packets sent from the server: 0
-- The number of retransmitted packets from the server: 0
-- The number of packets received from the client: 2
-- The time duration of the file transfer (hh:min:ss): 00:00:00
-- Security enabled (PSK + AEAD): Yes
-- Handshake status: Fail
-- AEAD authentication failures (invalid packets dropped): 0
-- Replay drops (duplicate/out-of-window packets): 0
-- SHA-256 match: No
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
 
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+============================================================
 
-report save to report.txt
+report save to Server_Report.txt
 socket closed
 [ec2-user@ip-172-31-27-171 ~]$

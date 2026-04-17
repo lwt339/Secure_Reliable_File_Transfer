@@ -27,6 +27,11 @@ requesting file: test_500mb_file
 [request] send file request: test_500mb_file
  server: 172.31.27.171:12000
  request sent
+ timeout, resending file request (3/15)
+
+[request] send file request: test_500mb_file
+ server: 172.31.27.171:12000
+ request sent
 
 [info] got file info from server
  filename: test_500mb_file
@@ -8395,7 +8400,6 @@ requesting file: test_500mb_file
  progress: 417750/512000 [81%]
  progress: 417800/512000 [81%]
  progress: 417850/512000 [81%]
- progress: 417900/512000 [81%]
  progress: 417950/512000 [81%]
  progress: 418000/512000 [81%]
  progress: 418050/512000 [81%]
@@ -10284,7 +10288,7 @@ requesting file: test_500mb_file
 [fin] received finish signal from server
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=512000, duplicate=0, outOfOrder=0, acksSent=512316
+[stats] valid=512000, duplicate=44, outOfOrder=44, acksSent=512354
 
 [verify] checking received file
 [verify] all 512000 chunks received
@@ -10297,7 +10301,26 @@ requesting file: test_500mb_file
 
  File Transfer successful
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 04:34:37
+
+Security enabled (PSK + AEAD):            No
+Handshake status:                         False
+Size of the transferred file:             524288000 bytes
+Number of packets received from server:   512047
+Number of duplicate packets:              44
+Number of out-of-order packets:           44
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:02:42
+Received file MD5:                        d8b61b2c0025919d5321461045c8226f
+AEAD authentication failures:             0
+SHA-256 match:                            No
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
-[ec2-user@ip-172-31-18-97 ~]$ md5sum client/test_500mb_file
-d8b61b2c0025919d5321461045c8226f  client/test_500mb_file
 [ec2-user@ip-172-31-18-97 ~]$

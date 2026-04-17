@@ -11,12 +11,13 @@ import sys
 
 from socket import *
 from config import *
+import config as _config
 
 # need cryptography library for AES GCM and HKDF
 
 # install: pip install cryptography
 # on AWS:  pip install cryptography --break-system-packages
-from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM, ChaCha20Poly1305
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives import hashes
 
@@ -26,9 +27,42 @@ from cryptography.hazmat.primitives import hashes
 # Linux (AWS) = real SOCK_RAW + IP_HDRINCL
 isMac = (sys.platform == 'darwin')
 
+# negotiated AEAD
+# client calls set_session_cipher after handshake)
+# None = use AES-GCM.
+_session_aead_cipher = None
+
+
+def set_session_cipher(name):
+    # must match ALLOWED_CIPHERS
+    # called after handshake on client and server
+    global _session_aead_cipher
+    if name not in ALLOWED_CIPHERS:
+        raise ValueError('unsupported session cipher: ' + repr(name))
+    _session_aead_cipher = name
+
+
+def get_session_cipher():
+    if _session_aead_cipher is None:
+        return CIPHER_AES_GCM
+    return _session_aead_cipher
+
 # IP packet ID, increments each packet
 # avoids fragmentation/reassembly confusion
 _ipPacketId = 0
+
+
+# packet stats counter
+# count packets that fail verifyChecksum
+# client prints this in its report
+# reset before each transfer so test get clean numbers
+checksumErrorCount = 0
+
+def resetChecksumErrorCount():
+    # zero out the counter
+    # called by client before starting a new transfer
+    global checksumErrorCount
+    checksumErrorCount = 0
 
 
 # one complement checksum
@@ -93,6 +127,15 @@ def buildIpHeader(srcIP, dstIP, totalLen):
     # increment ID, wrap at 65535
     _ipPacketId = (_ipPacketId + 1) & 0xFFFF
 
+    try:
+        src_bin = inet_aton(srcIP)
+        dst_bin = inet_aton(dstIP)
+    except OSError as e:
+        print('[error] buildIpHeader: invalid IPv4 address')
+        print('        srcIP=' + repr(srcIP) + ', dstIP=' + repr(dstIP))
+        print('        ' + str(e))
+        raise
+
     if isMac:
         # macOS: host byte order for total_length and fragment_offset
         # macOS kernel quirk with raw sockets
@@ -101,8 +144,8 @@ def buildIpHeader(srcIP, dstIP, totalLen):
         part3 = struct.pack('!H', _ipPacketId)
         part4 = struct.pack('H', ipDontFragment)  # host order
         part5 = struct.pack('!BBH', ipTTL, ipProtocolUDP, 0)
-        part6 = inet_aton(srcIP)
-        part7 = inet_aton(dstIP)
+        part6 = src_bin
+        part7 = dst_bin
         header = part1 + part2 + part3 + part4 + part5 + part6 + part7
     else:
         # Linux: everything network byte order (big endian)
@@ -116,8 +159,8 @@ def buildIpHeader(srcIP, dstIP, totalLen):
             ipProtocolUDP,
             # checksum = 0, kernel fills it on Linux
             0,
-            inet_aton(srcIP),
-            inet_aton(dstIP)
+            src_bin,
+            dst_bin
         )
     return header
 
@@ -192,6 +235,7 @@ def buildFullPacket(srcIP, dstIP, srcPort, dstPort,
 # IP - UDP - SRFT - data
 
 def parseFullPacket(rawData, myPort=None):
+    global checksumErrorCount
     try:
         # need at least IP(20) + UDP(8) + SRFT(14) = 42 bytes
         if len(rawData) < ipHeaderLen + udpHeaderLen + srftHeaderLen:
@@ -248,6 +292,8 @@ def parseFullPacket(rawData, myPort=None):
         # verify checksum, drop if corrupted
         srftWithData = rawData[srftStart:dataStart + dataLen]
         if not verifyChecksum(srftWithData):
+            # count it for the client report
+            checksumErrorCount = checksumErrorCount + 1
             if showDebug:
                 print('  checksum failed, packet dropped')
             return None
@@ -321,20 +367,31 @@ def createClientSocket():
 
 def sendPacket(sock, dstIP, dstPort, srcIP, srcPort,
                pktType, seqNum, ackNum, data=b''):
-    if isMac:
-        # macOS: send just SRFT data through UDP socket
-        payload = buildSrftPayload(pktType, seqNum, ackNum, data)
-        sock.sendto(payload, (dstIP, dstPort))
-    else:
-        # Linux: send full packet (IP + UDP + SRFT) through raw socket
-        packet = buildFullPacket(
-            srcIP, dstIP, srcPort, dstPort,
-            pktType, seqNum, ackNum, data
-        )
-        sock.sendto(packet, (dstIP, 0))
+    try:
+        if isMac:
+            # macOS: send just SRFT data through UDP socket
+            payload = buildSrftPayload(pktType, seqNum, ackNum, data)
+            sock.sendto(payload, (dstIP, dstPort))
+        else:
+            # Linux: send full packet (IP + UDP + SRFT) through raw socket
+            packet = buildFullPacket(
+                srcIP, dstIP, srcPort, dstPort,
+                pktType, seqNum, ackNum, data
+            )
+            sock.sendto(packet, (dstIP, 0))
+    except OSError as e:
+        print('[error] sendPacket: sendto failed')
+        print('        dst ' + repr(dstIP) + ':' + str(dstPort) +
+              '  src ' + repr(srcIP) + ':' + str(srcPort))
+        print('        pktType=' + str(pktType) +
+              ' seq=' + str(seqNum) + ' ack=' + str(ackNum) +
+              ' dataLen=' + str(len(data)))
+        print('        ' + str(e))
+        raise
 
 
 def recvPacket(sock, myPort, timeout=None):
+    global checksumErrorCount
     if timeout is not None:
         sock.settimeout(timeout)
     try:
@@ -368,6 +425,8 @@ def recvPacket(sock, myPort, timeout=None):
 
             # verify checksum
             if not verifyChecksum(rawData[0:srftHeaderLen + dataLen]):
+                # count checksum errors for client report (macOS path too)
+                checksumErrorCount = checksumErrorCount + 1
                 return None
 
             return {
@@ -416,29 +475,39 @@ def flushSocket(sock):
 
 
 # file hashing
-# MD5 for Phase 1 (project says use md5sum to compare)
+# MD5 for Phase 1
 # SHA-256 for Phase 2 end to end verification
 def calculateMD5(filepath):
     # MD5 hash of a file (Phase 1 integrity check)
     md5 = hashlib.md5()
-    with open(filepath, 'rb') as f:
-        while True:
-            chunk = f.read(8192)
-            if not chunk:
-                break
-            md5.update(chunk)
+    try:
+        with open(filepath, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                md5.update(chunk)
+    except OSError as e:
+        print('[error] cannot read file for MD5: ' + repr(filepath))
+        print('        ' + str(e))
+        raise
     return md5.hexdigest()
 
 
 def calculateSHA256(filepath):
     # SHA-256 hash of a file (Phase 2 end to end verify)
     sha = hashlib.sha256()
-    with open(filepath, 'rb') as f:
-        while True:
-            chunk = f.read(8192)
-            if not chunk:
-                break
-            sha.update(chunk)
+    try:
+        with open(filepath, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                sha.update(chunk)
+    except OSError as e:
+        print('[error] cannot read file for SHA-256: ' + repr(filepath))
+        print('        ' + str(e))
+        raise
     return sha.hexdigest()
 
 
@@ -447,7 +516,12 @@ def calculateSHA256(filepath):
 
 def countChunks(filepath):
     # calculate how many chunks the file needs
-    fileSize = os.path.getsize(filepath)
+    try:
+        fileSize = os.path.getsize(filepath)
+    except OSError as e:
+        print('[error] cannot stat file for chunk count: ' + repr(filepath))
+        print('        ' + str(e))
+        raise
     # empty file (0 bytes = 0 chunks)
     if fileSize == 0:
         return 0
@@ -457,6 +531,8 @@ def countChunks(filepath):
 # read one chunk from file at the correct offset
 # avoids loading entire large file into memory
 def readChunk(filepath, seqNum):
+    if seqNum < 0:
+        raise ValueError('readChunk: seqNum must be >= 0, got ' + str(seqNum))
     offset = seqNum * chunkSize
     with open(filepath, 'rb') as f:
         f.seek(offset)
@@ -466,7 +542,9 @@ def readChunk(filepath, seqNum):
 # read one chunk using an already open file handle
 # way faster for big files, no open/close each time
 def readChunkFromHandle(fileHandle, seqNum):
-
+    if seqNum < 0:
+        raise ValueError(
+            'readChunkFromHandle: seqNum must be >= 0, got ' + str(seqNum))
     offset = seqNum * chunkSize
     fileHandle.seek(offset)
     data = fileHandle.read(chunkSize)
@@ -587,11 +665,10 @@ def buildAad(sessionId, pktType, seqNum, ackNum):
     aad = sessionId + struct.pack('!BII', pktType, seqNum, ackNum)
     return aad
 
-# encrypt with AES-256-GCM
+# encrypt with AEAD (AES-256-GCM or ChaCha20-Poly1305 from handshake)
 # returns: nonce(12 bytes) + ciphertext + tag(16 bytes)
 def encryptData(sessionKey, plaintext, sessionId, pktType, seqNum, ackNum):
-    # create AES-GCM cipher with our session key
-    aesgcm = AESGCM(sessionKey)
+    mode = get_session_cipher()
 
     # random 12 byte nonce (unique packet)
     nonce = os.urandom(nonceSize)
@@ -599,15 +676,21 @@ def encryptData(sessionKey, plaintext, sessionId, pktType, seqNum, ackNum):
     # AAD from packet metadata
     aad = buildAad(sessionId, pktType, seqNum, ackNum)
 
-    # encrypt: output = ciphertext + 16 byte auth tag appended
-    ciphertext = aesgcm.encrypt(nonce, plaintext, aad)
+    if mode == CIPHER_AES_GCM:
+        aesgcm = AESGCM(sessionKey)
+        ciphertext = aesgcm.encrypt(nonce, plaintext, aad)
+    elif mode == CIPHER_CHACHA:
+        chacha = ChaCha20Poly1305(sessionKey)
+        ciphertext = chacha.encrypt(nonce, plaintext, aad)
+    else:
+        raise ValueError('encryptData: unknown session cipher ' + repr(mode))
 
     # prepend nonce so receiver knows what nonce we used
     encrypted = nonce + ciphertext
     return encrypted
 
 
-# decrypt AES-256-GCM
+# decrypt AEAD (must match sender session cipher)
 # returns plaintext or None if tampered/forged/wrong key
 def decryptData(sessionKey, encryptedData, sessionId, pktType, seqNum, ackNum):
 
@@ -620,14 +703,20 @@ def decryptData(sessionKey, encryptedData, sessionId, pktType, seqNum, ackNum):
         nonce = encryptedData[0:nonceSize]
         ciphertext = encryptedData[nonceSize:]
 
-        aesgcm = AESGCM(sessionKey)
+        mode = get_session_cipher()
 
         # AAD must match what sender used exactly
         aad = buildAad(sessionId, pktType, seqNum, ackNum)
 
-        # decrypt and verify auth tag
-        # throws exception if verification fails (tampered/forged)
-        plaintext = aesgcm.decrypt(nonce, ciphertext, aad)
+        if mode == CIPHER_AES_GCM:
+            aesgcm = AESGCM(sessionKey)
+            plaintext = aesgcm.decrypt(nonce, ciphertext, aad)
+        elif mode == CIPHER_CHACHA:
+            chacha = ChaCha20Poly1305(sessionKey)
+            plaintext = chacha.decrypt(nonce, ciphertext, aad)
+        else:
+            return None
+
         return plaintext
 
     except Exception:
@@ -652,9 +741,8 @@ def buildClientHello(pskKey):
     # protocol version (1 byte)
     versionByte = struct.pack('!B', protocolVersion)
 
-    # cipher info as bytes
-    # tells server what cipher we want
-    cipherBytes = cipherInfo.encode('utf-8')
+    # cipher info as bytes (read from config module so CLI can set cipherInfo)
+    cipherBytes = _config.cipherInfo.encode('utf-8')
     cipherLen = struct.pack('!H', len(cipherBytes))
 
     # message to sign = nonce + version + cipher info
@@ -669,7 +757,7 @@ def buildClientHello(pskKey):
 
 
 # parse ClientHello from client, verify HMAC
-# returns clientNonce if ok, None if bad PSK
+# returns (clientNonce, cipher_str) if ok, None if bad PSK or invalid cipher
 def parseClientHello(pskKey, data):
     try:
         # min size: nonce(16) + version(1) + cipherLen(2) + tag(32) = 51
@@ -697,6 +785,17 @@ def parseClientHello(pskKey, data):
         cipherBytes = data[pos:pos+cipherLen]
         pos = pos + cipherLen
 
+        try:
+            cipher_str = cipherBytes.decode('utf-8')
+        except UnicodeDecodeError:
+            print('  [security] ClientHello cipher info not valid UTF-8')
+            return None
+
+        if cipher_str not in ALLOWED_CIPHERS:
+            print('  [security] ClientHello unknown cipher: ' + repr(cipher_str))
+            print('  allowed: ' + str(ALLOWED_CIPHERS))
+            return None
+
         # HMAC tag (last 32 bytes)
         receivedTag = data[pos:pos+32]
 
@@ -710,7 +809,7 @@ def parseClientHello(pskKey, data):
             return None
 
         print('  [security] ClientHello HMAC verified ok')
-        return clientNonce
+        return (clientNonce, cipher_str)
 
     except Exception as e:
         print('  [security] error parsing ClientHello: ' + str(e))

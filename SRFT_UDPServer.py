@@ -1,4 +1,4 @@
-# Sever
+# Server
 
 import os
 import sys
@@ -142,7 +142,7 @@ def waitForRequest(sock):
 
 
 # security handshake (server side)
-#  from project: before file transfer, perform a handshake
+# from project: before file transfer, perform a handshake
 
 def doSecurityHandshake(sock):
     global sessionKey, sessionId, handshakeOk
@@ -163,15 +163,16 @@ def doSecurityHandshake(sock):
         if parsed['pktType'] == typeClientHello:
             addReceived()
             print('[handshake] received ClientHello')
-            # verify HMAC
-            # check if client knows PSK
-            clientNonce = parseClientHello(psk, parsed['data'])
-            if clientNonce is None:
+            # verify HMAC and negotiated cipher
+            helloResult = parseClientHello(psk, parsed['data'])
+            if helloResult is None:
                 # HMAC failed = client has different PSK
                 print('[handshake] Failed b/c client PSK mismatch!')
                 handshakeOk = False
                 return False
-            print('[handshake] client authenticated ok')
+            clientNonce, negotiated_cipher = helloResult
+            set_session_cipher(negotiated_cipher)
+            print('[handshake] client authenticated ok, cipher=' + negotiated_cipher)
             break
         else:
             addReceived()
@@ -202,7 +203,7 @@ def doSecurityHandshake(sock):
     handshakeOk = True
     print('')
     print('[handshake] Success secure session established')
-    print('  cipher: AES-256-GCM (AEAD)')
+    print('  cipher: ' + get_session_cipher() + ' (AEAD)')
     print('')
     return True
 
@@ -656,9 +657,9 @@ def sendFinish(sock, md5Hash, sha256Hash):
     return False
 
 
-# report
+# server report
 
-def writeReport(filename, fSize, sha256Hash, sha256Match):
+def writeReport(filename, fSize, md5Hash, sha256Hash, sha256Match):
     # safe duration calc
     # handles edge cases
     if endTime > 0 and startTime > 0 and endTime >= startTime:
@@ -666,7 +667,7 @@ def writeReport(filename, fSize, sha256Hash, sha256Match):
     else:
         duration = 0.0
 
-    # determine test
+    # pick a test label so each report block is easy to find
     if currentAttackMode == 'wrongpsk':
         testLabel = 'Test 2 Wrong PSK (Authentication Failure)'
     elif securityEnabled and not handshakeOk and currentAttackMode == 'none':
@@ -682,54 +683,67 @@ def writeReport(filename, fSize, sha256Hash, sha256Match):
     else:
         testLabel = 'Test 1 Secure Transfer (Baseline)'
 
-    lines = []
-    lines.append('')
-    lines.append('SRFT Transfer Report - ' + testLabel)
-    lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S'))
-    lines.append('File: ' + filename)
-    lines.append('')
-
-    # Phase 1 report
-    lines.append('- Name of the transferred file: ' + filename)
-    lines.append('- Size of the transferred file: ' + str(fSize) + ' bytes')
-    lines.append('- The number of packets sent from the server: ' + str(totalSent))
-    lines.append('- The number of retransmitted packets from the server: ' + str(totalRetransmit))
-    lines.append('- The number of packets received from the client: ' + str(totalReceived))
-    lines.append('- The time duration of the file transfer (hh:min:ss): ' + formatTime(duration))
-
-    # Phase 2 report
+    # actual SHA-256
     if securityEnabled:
-        # use client side counter only
-        totalAeadFail = clientAeadFailCount
-        totalReplayDrop = clientReplayDropCount
-
-        # log server side noise (debug, not in report)
+        # server side AEAD/replay counters
         if aeadFailCount > 0 or replayDropCount > 0:
             print('[note] server-side noise: ' +
                   str(aeadFailCount) + ' corrupted ACKs, ' +
                   str(replayDropCount) + ' replay on ACKs')
 
-        # client actual SHA-256 verify result
+        # final result: trust what client told us in FIN_ACK
         if clientSha256Match:
             finalSha256 = True
         else:
             finalSha256 = sha256Match
-
-        lines.append('- Security enabled (PSK + AEAD): Yes')
-        lines.append('- Handshake status: ' + ('Success' if handshakeOk else 'Fail'))
-        lines.append('- AEAD authentication failures (invalid packets dropped): ' + str(totalAeadFail))
-        lines.append('- Replay drops (duplicate/out-of-window packets): ' + str(totalReplayDrop))
-        lines.append('- SHA-256 match: ' + ('Yes' if finalSha256 else 'No'))
-        if currentAttackMode != 'none':
-            lines.append('- Attack test mode: ' + currentAttackMode)
+        # use client counters for Sample fields
+        reportAeadFail = clientAeadFailCount
+        reportReplayDrop = clientReplayDropCount
     else:
-        lines.append('- Security enabled (PSK + AEAD): No')
-        lines.append('- Handshake status: N/A')
-        lines.append('- AEAD authentication failures (invalid packets dropped): 0')
-        lines.append('- Replay drops (duplicate/out-of-window packets): 0')
-        lines.append('- SHA-256 match: N/A')
+        finalSha256 = False
+        reportAeadFail = 0
+        reportReplayDrop = 0
 
+    # build the banner block
+    barLine = '=' * 60
+    lines = []
     lines.append('')
+    lines.append(barLine)
+    lines.append('SERVER REPORT')
+    lines.append(barLine)
+    lines.append('Test: ' + testLabel)
+    lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S'))
+    lines.append('')
+    lines.append('Name of the transferred file:            ' + filename)
+    lines.append('Size of the transferred file:            ' + str(fSize) + ' bytes')
+    lines.append('Number of packets sent from the server:  ' + str(totalSent))
+    lines.append('Number of retransmitted packets:         ' + str(totalRetransmit))
+    lines.append('Number of packets received from client:  ' + str(totalReceived))
+    lines.append('Time duration of the file transfer:      ' + formatTime(duration))
+    lines.append('Original file MD5:                       ' + md5Hash)
+
+    # Phase 2 extra fields
+    if securityEnabled:
+        lines.append('')
+        lines.append('Phase 2 security fields')
+        lines.append('Security enabled (PSK + AEAD):                        Yes')
+        lines.append('Handshake status:                                     ' +
+                     ('Success' if handshakeOk else 'Fail'))
+        lines.append('AEAD authentication failures (invalid packets drop):  ' +
+                     str(reportAeadFail))
+        lines.append('Replay drops (duplicate/out-of-window packets):       ' +
+                     str(reportReplayDrop))
+        lines.append('SHA-256 match:                                        ' +
+                     ('Yes' if finalSha256 else 'No'))
+        if currentAttackMode != 'none':
+            lines.append('Attack test mode:                                     ' +
+                         currentAttackMode)
+    else:
+        lines.append('')
+        lines.append('Phase 1 (security off)')
+        lines.append('Security enabled (PSK + AEAD):                        No')
+
+    lines.append(barLine)
     lines.append('')
 
     report = '\n'.join(lines)
@@ -741,8 +755,7 @@ def writeReport(filename, fSize, sha256Hash, sha256Match):
             f.write(report + '\n')
         print('report save to ' + reportPath)
     except PermissionError:
-        # sudo might own the file
-        altPath = os.path.expanduser('~/report.txt')
+        altPath = os.path.expanduser('~/Server_Report.txt')
         try:
             with open(altPath, 'a') as f:
                 f.write(report + '\n')
@@ -856,7 +869,7 @@ if __name__ == '__main__':
                 endTime = time.time()
                 startTime = endTime
                 # wrong PSK but still write report
-                writeReport(filename, fSize, sha256Hash, False)
+                writeReport(filename, fSize, md5Hash, sha256Hash, False)
                 serverSocket.close()
                 sys.exit(1)
 
@@ -881,7 +894,7 @@ if __name__ == '__main__':
         print('  timeout: ' + str(timeoutValue) + 's')
         print('  chunk size: ' + str(chunkSize) + ' bytes')
         if securityEnabled:
-            print('  encryption: AES-256-GCM (AEAD)')
+            print('  encryption: ' + get_session_cipher() + ' (AEAD)')
 
         windowBase = 0
         nextToSend = 0
@@ -922,8 +935,8 @@ if __name__ == '__main__':
         # use client actual result
         sha256Match = clientSha256Match
 
-        # report
-        writeReport(filename, fSize, sha256Hash, sha256Match)
+        # report (now includes original MD5 in banner format)
+        writeReport(filename, fSize, md5Hash, sha256Hash, sha256Match)
         print('')
         print('server complete')
         print('')

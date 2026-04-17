@@ -7,6 +7,7 @@
 
 
 requesting file: test_800mb_file
+ AEAD cipher: AES-256-GCM
 
 [socket] creating client socket
     (Linux) SOCK_RAW + IP_HDRINCL
@@ -28,8 +29,8 @@ requesting file: test_800mb_file
   [security] ServerHello HMAC verified ok
 [handshake] server authenticated ok
 [handshake] session key derived (HKDF-SHA256)
- session ID: 58ee83699b72fb4f
- enc_key (first 8 bytes): 43fb7748edce22f6...
+ session ID: 4255d717494f64f2
+ enc_key (first 8 bytes): be4ca8acdd7d2d80...
 
 [handshake] Success and secure session established
  cipher: AES-256-GCM (AEAD)
@@ -7574,6 +7575,15 @@ requesting file: test_800mb_file
  progress: 376150/819200 [45%]
  progress: 376200/819200 [45%]
  progress: 376250/819200 [45%]
+  [security] replay dropped: seq=376241
+  [security] replay dropped: seq=376242
+  [security] replay dropped: seq=376243
+  [security] replay dropped: seq=376244
+  [security] replay dropped: seq=376245
+  [security] replay dropped: seq=376246
+  [security] replay dropped: seq=376247
+  [security] replay dropped: seq=376248
+  [security] replay dropped: seq=376249
  progress: 376300/819200 [45%]
  progress: 376350/819200 [45%]
  progress: 376400/819200 [45%]
@@ -9339,6 +9349,7 @@ requesting file: test_800mb_file
  progress: 464400/819200 [56%]
  progress: 464450/819200 [56%]
  progress: 464500/819200 [56%]
+  [security] replay dropped: seq=464518
  progress: 464550/819200 [56%]
  progress: 464600/819200 [56%]
  progress: 464650/819200 [56%]
@@ -9647,7 +9658,6 @@ requesting file: test_800mb_file
  progress: 479800/819200 [58%]
  progress: 479850/819200 [58%]
  progress: 479900/819200 [58%]
- progress: 479950/819200 [58%]
  progress: 480000/819200 [58%]
  progress: 480050/819200 [58%]
  progress: 480100/819200 [58%]
@@ -14056,7 +14066,6 @@ requesting file: test_800mb_file
  progress: 700250/819200 [85%]
  progress: 700300/819200 [85%]
  progress: 700350/819200 [85%]
- progress: 700400/819200 [85%]
  progress: 700450/819200 [85%]
  progress: 700500/819200 [85%]
  progress: 700550/819200 [85%]
@@ -16010,6 +16019,15 @@ requesting file: test_800mb_file
  progress: 797950/819200 [97%]
  progress: 798000/819200 [97%]
  progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
+ progress: 798050/819200 [97%]
  progress: 798100/819200 [97%]
  progress: 798150/819200 [97%]
  progress: 798200/819200 [97%]
@@ -16452,8 +16470,8 @@ requesting file: test_800mb_file
 [sha-256] pre-FIN_ACK verify: MATCH
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=819200, duplicate=0, outOfOrder=0, acksSent=819868
-  AEAD failures=0, replay drops=0
+[stats] valid=819200, duplicate=99, outOfOrder=99, acksSent=819950
+  AEAD failures=0, replay drops=99
 
 [verify] checking received file
 [verify] all 819200 chunks received
@@ -16478,9 +16496,30 @@ requesting file: test_800mb_file
   Security enabled (PSK + AEAD): Yes
   Handshake status: Success
   AEAD authentication failures (invalid packets dropped): 0
-  Replay drops (duplicate/out-of-window packets): 0
+  Replay drops (duplicate/out-of-window packets): 99
   SHA-256 match: Yes
 
 
+
+============================================================
+CLIENT REPORT
+============================================================
+Test: Test 1 / Phase 2 Secure Transfer
+Timestamp: 2026-04-17 04:03:32
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         True
+Size of the transferred file:             838860800 bytes
+Number of packets received from server:   819306
+Number of duplicate packets:              99
+Number of out-of-order packets:           99
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:05:38
+Received file MD5:                        4067155e98ab9e162baab0b6341f275a
+AEAD authentication failures:             0
+SHA-256 match:                            Yes
+============================================================
+
+client report saved to Client_Report.txt
 socket closed
 [ec2-user@ip-172-31-18-97 ~]$
