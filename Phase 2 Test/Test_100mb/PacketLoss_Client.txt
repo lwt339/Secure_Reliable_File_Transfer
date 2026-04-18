@@ -1,0 +1,399 @@
+[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_100mb_file
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Client
+ Phase 2: Secure Reliable File Transfer
+
+
+requesting file: test_100mb_file
+ AEAD cipher: AES-256-GCM
+
+[socket] creating client socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  client socket created
+
+[request] send file request: test_100mb_file
+ server: 172.31.28.20:12000
+ request sent
+
+ Phase 2: Security Handshake
+
+[handshake] building ClientHello
+[handshake] sending ClientHello to server
+ ClientHello sent (with HMAC proof)
+[handshake] waiting for ServerHello
+[handshake] receive ServerHello
+  [security] ServerHello HMAC verified ok
+[handshake] server authenticated ok
+[handshake] session key derived (HKDF-SHA256)
+ session ID: d0aa3edf188776ad
+ enc_key (first 8 bytes): 3d19b192fe229485...
+
+[handshake] Success and secure session established
+ cipher: AES-256-GCM (AEAD)
+
+
+[wait] waiting for file info from server
+
+[info] got file info from server
+ filename: test_100mb_file
+ size: 104857600 bytes (102400 KB)
+ chunks: 102400
+ server MD5: 2f282b84e7e608d5852449ed940bfc51
+
+[prepare] output file ready: ./client/test_100mb_file
+  pre allocated 104857600 bytes
+
+[receive] starting to receive data (102400 chunks expected)
+ decryption: AES-256-GCM (AEAD)
+ replay protection: receivedSet + window limit (5000)
+  [security] replay dropped: seq=86
+  [security] replay dropped: seq=87
+  [security] replay dropped: seq=88
+  [security] replay dropped: seq=89
+  [security] replay dropped: seq=90
+  [security] replay dropped: seq=91
+  [security] replay dropped: seq=92
+  [security] replay dropped: seq=93
+  [security] replay dropped: seq=94
+  [security] replay dropped: seq=95
+ progress: 12000/102400 [11%]
+ progress: 27000/102400 [26%]
+ progress: 28500/102400 [27%]
+ progress: 31000/102400 [30%]
+ progress: 34500/102400 [33%]
+ progress: 43000/102400 [41%]
+ progress: 45500/102400 [44%]
+ progress: 47000/102400 [45%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 52000/102400 [50%]
+ progress: 56500/102400 [55%]
+ progress: 60000/102400 [58%]
+ progress: 61500/102400 [60%]
+ progress: 67500/102400 [65%]
+ progress: 68000/102400 [66%]
+ progress: 69500/102400 [67%]
+ progress: 71500/102400 [69%]
+ progress: 72000/102400 [70%]
+ progress: 73000/102400 [71%]
+ progress: 78500/102400 [76%]
+ progress: 84500/102400 [82%]
+ progress: 87000/102400 [84%]
+ progress: 94000/102400 [91%]
+ progress: 95500/102400 [93%]
+ progress: 100500/102400 [98%]
+ progress: 102000/102400 [99%]
+ progress: 102400/102400 [100%]
+
+[done] all 102400 chunks received!
+
+[sha-256] received SHA-256 hash from server
+ server SHA-256: 20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+
+[sha-256] received SHA-256 hash from server
+ server SHA-256: 20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+
+[sha-256] received SHA-256 hash from server
+ server SHA-256: 20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+
+[fin] received finish signal from server
+[sha-256] pre-FIN_ACK verify: MATCH
+[fin] FIN_ACK sent (with security counters)
+
+[stats] valid=102400, duplicate=96633, outOfOrder=88552, acksSent=140849
+  AEAD failures=0, replay drops=96633
+
+[verify] checking received file
+[verify] all 102400 chunks received
+
+[MD5 verify]
+ server MD5:   2f282b84e7e608d5852449ed940bfc51
+ received MD5: 2f282b84e7e608d5852449ed940bfc51
+ result: MD5 MATCH
+
+[SHA-256 verify]
+ server SHA-256:   20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+ received SHA-256: 20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+ result: SHA-256 match
+
+
+ File Transfer successful
+
+
+
+ Security Report (Client Side)
+
+  Security enabled (PSK + AEAD): Yes
+  Handshake status: Success
+  AEAD authentication failures (invalid packets dropped): 0
+  Replay drops (duplicate/out-of-window packets): 96633
+  SHA-256 match: Yes
+
+
+
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Test 1 / Phase 2 Secure Transfer
+Timestamp: 2026-04-17 23:34:54
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         True
+Size of the transferred file:             104857600 bytes
+Number of packets received from server:   199039
+Number of duplicate packets:              96633
+Number of out-of-order packets:           88552
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:01:24
+Received file MD5:                        2f282b84e7e608d5852449ed940bfc51
+AEAD authentication failures:             0
+SHA-256 match:                            Yes
+------------------------------------------------------------
+
+client report saved to Client_Report.txt
+socket closed
+[ec2-user@ip-172-31-21-57 ~]$

@@ -99,9 +99,9 @@ chunkSize = 1024
 # socket receive buffer size
 recvBufferSize = 65535
 # retransmission timeout
-timeoutValue = 0.2
+timeoutValue = 0.1
 # sliding window size (how many unacked packets)
-windowSize = 10
+windowSize = 64
 # send cumulative ACK every 3 packets received
 ackEvery = 3
 # max retries for handshake or FIN
@@ -114,6 +114,11 @@ maxTimeouts = 30
 # seqNum > expectedSeq + 5000
 # get dropped
 recvWindowLimit = 5000
+
+# packet loss
+# 0 means no tc command active
+# 2, 3, 4 match the three loss rate tests
+packetLoss = 0
 
 
 # file paths
@@ -134,12 +139,12 @@ clientReportPath = 'Client_Report.txt'
 # print debug messages
 showDebug = True
 # progress every N packets
-printEvery = 50
+printEvery = 500
 
 
 # Phase 2: security settings
 # True = encrypted (Phase 2), False = plain (Phase 1)
-securityEnabled = True
+securityEnabled = False
 
 
 # Pre Shared Key (PSK)

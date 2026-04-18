@@ -1,0 +1,507 @@
+[ec2-user@ip-172-31-28-20 ~]$ sudo python3 SRFT_UDPServer.py --attack replay
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 2: Secure Reliable File Transfer
+
+
+[ATTACK MODE] attack test: replay
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.28.20:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.21.57:12001
+ file requested: test_100mb_file
+
+[file] test_100mb_file
+  size: 104857600 bytes (102400 KB)
+  MD5:    2f282b84e7e608d5852449ed940bfc51
+  SHA256: 20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+  chunks: 102400 (each up to 1024 bytes)
+
+
+  Phase 2: Security Handshake
+
+[handshake] waiting for ClientHello
+[handshake] received ClientHello
+  [security] ClientHello HMAC verified ok
+[handshake] client authenticated ok, cipher=AES-256-GCM
+[handshake] sending ServerHello
+[handshake] ServerHello sent (x3)
+[handshake] session key derived (HKDF-SHA256)
+  session ID: 528ba1cbabc26859
+  enc_key (first 8 bytes): 8fbbbe90adc5dd80...
+
+[handshake] Success secure session established
+  cipher: AES-256-GCM (AEAD)
+
+[send] file info sent to client (x3)
+  [clean] cleared 3 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 32
+  timeout: 0.1s
+  chunk size: 1024 bytes
+  encryption: AES-256-GCM (AEAD)
+  -> send seq=0/102399 [0%] (base=0)
+[ATTACK] saved packet seq=5 for replay later
+
+[ATTACK] replay attack: resending old seq=5
+ replayed packet sent. client should reject it (duplicate)
+  -> send seq=500/102399 [0%] (base=485)
+  <- ACK=500: window 499 -> 500/102400
+  -> send seq=1000/102399 [0%] (base=979)
+  <- ACK=1000: window 999 -> 1000/102400
+  -> send seq=1500/102399 [1%] (base=1473)
+  <- ACK=1500: window 1499 -> 1500/102400
+  -> send seq=2000/102399 [1%] (base=1978)
+  <- ACK=2000: window 1999 -> 2000/102400
+  -> send seq=2500/102399 [2%] (base=2481)
+  <- ACK=2500: window 2499 -> 2500/102400
+  -> send seq=3000/102399 [2%] (base=2984)
+  <- ACK=3000: window 2999 -> 3000/102400
+  -> send seq=3500/102399 [3%] (base=3480)
+  <- ACK=3500: window 3499 -> 3500/102400
+  -> send seq=4000/102399 [3%] (base=3983)
+  <- ACK=4000: window 3999 -> 4000/102400
+  -> send seq=4500/102399 [4%] (base=4487)
+  <- ACK=4500: window 4499 -> 4500/102400
+  -> send seq=5000/102399 [4%] (base=4985)
+  <- ACK=5000: window 4999 -> 5000/102400
+  -> send seq=5500/102399 [5%] (base=5480)
+  <- ACK=5500: window 5499 -> 5500/102400
+  -> send seq=6000/102399 [5%] (base=5977)
+  <- ACK=6000: window 5999 -> 6000/102400
+  -> send seq=6500/102399 [6%] (base=6472)
+  <- ACK=6500: window 6499 -> 6500/102400
+  -> send seq=7000/102399 [6%] (base=6977)
+  <- ACK=7000: window 6999 -> 7000/102400
+  -> send seq=7500/102399 [7%] (base=7477)
+  <- ACK=7500: window 7499 -> 7500/102400
+  -> send seq=8000/102399 [7%] (base=7984)
+  <- ACK=8000: window 7999 -> 8000/102400
+  -> send seq=8500/102399 [8%] (base=8475)
+  <- ACK=8500: window 8499 -> 8500/102400
+  -> send seq=9000/102399 [8%] (base=8986)
+  <- ACK=9000: window 8999 -> 9000/102400
+  -> send seq=9500/102399 [9%] (base=9471)
+  <- ACK=9500: window 9499 -> 9500/102400
+  -> send seq=10000/102399 [9%] (base=9973)
+  <- ACK=10000: window 9999 -> 10000/102400
+  -> send seq=10500/102399 [10%] (base=10480)
+  <- ACK=10500: window 10499 -> 10500/102400
+  -> send seq=11000/102399 [10%] (base=10971)
+  <- ACK=11000: window 10999 -> 11000/102400
+  -> send seq=11500/102399 [11%] (base=11480)
+  <- ACK=11500: window 11499 -> 11500/102400
+  -> send seq=12000/102399 [11%] (base=11969)
+  <- ACK=12000: window 11999 -> 12000/102400
+  -> send seq=12500/102399 [12%] (base=12486)
+  <- ACK=12500: window 12499 -> 12500/102400
+  -> send seq=13000/102399 [12%] (base=12982)
+  <- ACK=13000: window 12999 -> 13000/102400
+  -> send seq=13500/102399 [13%] (base=13479)
+  <- ACK=13500: window 13499 -> 13500/102400
+  -> send seq=14000/102399 [13%] (base=13975)
+  <- ACK=14000: window 13999 -> 14000/102400
+  -> send seq=14500/102399 [14%] (base=14486)
+  <- ACK=14500: window 14499 -> 14500/102400
+  -> send seq=15000/102399 [14%] (base=14971)
+  <- ACK=15000: window 14999 -> 15000/102400
+  -> send seq=15500/102399 [15%] (base=15476)
+  <- ACK=15500: window 15499 -> 15500/102400
+  -> send seq=16000/102399 [15%] (base=15986)
+  <- ACK=16000: window 15999 -> 16000/102400
+  -> send seq=16500/102399 [16%] (base=16485)
+  <- ACK=16500: window 16499 -> 16500/102400
+  -> send seq=17000/102399 [16%] (base=16980)
+  <- ACK=17000: window 16999 -> 17000/102400
+  -> send seq=17500/102399 [17%] (base=17470)
+  <- ACK=17500: window 17499 -> 17500/102400
+  -> send seq=18000/102399 [17%] (base=17985)
+  <- ACK=18000: window 17999 -> 18000/102400
+  -> send seq=18500/102399 [18%] (base=18478)
+  <- ACK=18500: window 18499 -> 18500/102400
+  -> send seq=19000/102399 [18%] (base=18988)
+  <- ACK=19000: window 18999 -> 19000/102400
+  -> send seq=19500/102399 [19%] (base=19485)
+  <- ACK=19500: window 19499 -> 19500/102400
+  -> send seq=20000/102399 [19%] (base=19975)
+  <- ACK=20000: window 19999 -> 20000/102400
+  -> send seq=20500/102399 [20%] (base=20478)
+  <- ACK=20500: window 20499 -> 20500/102400
+  -> send seq=21000/102399 [20%] (base=20975)
+  <- ACK=21000: window 20999 -> 21000/102400
+  -> send seq=21500/102399 [20%] (base=21473)
+  <- ACK=21500: window 21499 -> 21500/102400
+  -> send seq=22000/102399 [21%] (base=21983)
+  <- ACK=22000: window 21999 -> 22000/102400
+  -> send seq=22500/102399 [21%] (base=22488)
+  <- ACK=22500: window 22499 -> 22500/102400
+  -> send seq=23000/102399 [22%] (base=22980)
+  <- ACK=23000: window 22999 -> 23000/102400
+  -> send seq=23500/102399 [22%] (base=23474)
+  <- ACK=23500: window 23499 -> 23500/102400
+  -> send seq=24000/102399 [23%] (base=23973)
+  <- ACK=24000: window 23999 -> 24000/102400
+  -> send seq=24500/102399 [23%] (base=24474)
+  <- ACK=24500: window 24499 -> 24500/102400
+  -> send seq=25000/102399 [24%] (base=24975)
+  <- ACK=25000: window 24999 -> 25000/102400
+  -> send seq=25500/102399 [24%] (base=25469)
+  <- ACK=25500: window 25499 -> 25500/102400
+  -> send seq=26000/102399 [25%] (base=25973)
+  <- ACK=26000: window 25999 -> 26000/102400
+  -> send seq=26500/102399 [25%] (base=26487)
+  <- ACK=26500: window 26499 -> 26500/102400
+  -> send seq=27000/102399 [26%] (base=26987)
+  <- ACK=27000: window 26999 -> 27000/102400
+  -> send seq=27500/102399 [26%] (base=27484)
+  <- ACK=27500: window 27499 -> 27500/102400
+  -> send seq=28000/102399 [27%] (base=27984)
+  <- ACK=28000: window 27999 -> 28000/102400
+  -> send seq=28500/102399 [27%] (base=28487)
+  <- ACK=28500: window 28499 -> 28500/102400
+  -> send seq=29000/102399 [28%] (base=28980)
+  <- ACK=29000: window 28999 -> 29000/102400
+  -> send seq=29500/102399 [28%] (base=29479)
+  <- ACK=29500: window 29499 -> 29500/102400
+  -> send seq=30000/102399 [29%] (base=29971)
+  <- ACK=30000: window 29999 -> 30000/102400
+  -> send seq=30500/102399 [29%] (base=30471)
+  <- ACK=30500: window 30499 -> 30500/102400
+  -> send seq=31000/102399 [30%] (base=30985)
+  <- ACK=31000: window 30999 -> 31000/102400
+  -> send seq=31500/102399 [30%] (base=31482)
+  <- ACK=31500: window 31499 -> 31500/102400
+  -> send seq=32000/102399 [31%] (base=31982)
+  <- ACK=32000: window 31999 -> 32000/102400
+  -> send seq=32500/102399 [31%] (base=32477)
+  <- ACK=32500: window 32499 -> 32500/102400
+  -> send seq=33000/102399 [32%] (base=32985)
+  <- ACK=33000: window 32999 -> 33000/102400
+  -> send seq=33500/102399 [32%] (base=33479)
+  <- ACK=33500: window 33499 -> 33500/102400
+  -> send seq=34000/102399 [33%] (base=33988)
+  <- ACK=34000: window 33999 -> 34000/102400
+  -> send seq=34500/102399 [33%] (base=34474)
+  <- ACK=34500: window 34499 -> 34500/102400
+  -> send seq=35000/102399 [34%] (base=34970)
+  <- ACK=35000: window 34999 -> 35000/102400
+  -> send seq=35500/102399 [34%] (base=35488)
+  <- ACK=35500: window 35499 -> 35500/102400
+  -> send seq=36000/102399 [35%] (base=35985)
+  <- ACK=36000: window 35999 -> 36000/102400
+  -> send seq=36500/102399 [35%] (base=36485)
+  <- ACK=36500: window 36499 -> 36500/102400
+  -> send seq=37000/102399 [36%] (base=36984)
+  <- ACK=37000: window 36999 -> 37000/102400
+  -> send seq=37500/102399 [36%] (base=37477)
+  <- ACK=37500: window 37499 -> 37500/102400
+  -> send seq=38000/102399 [37%] (base=37976)
+  <- ACK=38000: window 37999 -> 38000/102400
+  -> send seq=38500/102399 [37%] (base=38472)
+  <- ACK=38500: window 38499 -> 38500/102400
+  -> send seq=39000/102399 [38%] (base=38985)
+  <- ACK=39000: window 38999 -> 39000/102400
+  -> send seq=39500/102399 [38%] (base=39485)
+  <- ACK=39500: window 39499 -> 39500/102400
+  -> send seq=40000/102399 [39%] (base=39977)
+  <- ACK=40000: window 39999 -> 40000/102400
+  -> send seq=40500/102399 [39%] (base=40473)
+  <- ACK=40500: window 40499 -> 40500/102400
+  -> send seq=41000/102399 [40%] (base=40978)
+  <- ACK=41000: window 40999 -> 41000/102400
+  -> send seq=41500/102399 [40%] (base=41478)
+  <- ACK=41500: window 41499 -> 41500/102400
+  -> send seq=42000/102399 [41%] (base=41975)
+  <- ACK=42000: window 41999 -> 42000/102400
+  -> send seq=42500/102399 [41%] (base=42485)
+  <- ACK=42500: window 42499 -> 42500/102400
+  -> send seq=43000/102399 [41%] (base=42980)
+  <- ACK=43000: window 42999 -> 43000/102400
+  -> send seq=43500/102399 [42%] (base=43485)
+  <- ACK=43500: window 43499 -> 43500/102400
+  -> send seq=44000/102399 [42%] (base=43977)
+  <- ACK=44000: window 43999 -> 44000/102400
+  -> send seq=44500/102399 [43%] (base=44483)
+  <- ACK=44500: window 44499 -> 44500/102400
+  -> send seq=45000/102399 [43%] (base=44981)
+  <- ACK=45000: window 44999 -> 45000/102400
+  -> send seq=45500/102399 [44%] (base=45475)
+  <- ACK=45500: window 45499 -> 45500/102400
+  -> send seq=46000/102399 [44%] (base=45979)
+  <- ACK=46000: window 45999 -> 46000/102400
+  -> send seq=46500/102399 [45%] (base=46489)
+  <- ACK=46500: window 46499 -> 46500/102400
+  -> send seq=47000/102399 [45%] (base=46990)
+  <- ACK=47000: window 46999 -> 47000/102400
+  -> send seq=47500/102399 [46%] (base=47472)
+  <- ACK=47500: window 47499 -> 47500/102400
+  -> send seq=48000/102399 [46%] (base=47972)
+  <- ACK=48000: window 47999 -> 48000/102400
+  -> send seq=48500/102399 [47%] (base=48471)
+  <- ACK=48500: window 48499 -> 48500/102400
+  -> send seq=49000/102399 [47%] (base=48986)
+  <- ACK=49000: window 48999 -> 49000/102400
+  -> send seq=49500/102399 [48%] (base=49489)
+  <- ACK=49500: window 49499 -> 49500/102400
+  -> send seq=50000/102399 [48%] (base=49984)
+  <- ACK=50000: window 49999 -> 50000/102400
+  -> send seq=50500/102399 [49%] (base=50477)
+  <- ACK=50500: window 50499 -> 50500/102400
+  -> send seq=51000/102399 [49%] (base=50980)
+  <- ACK=51000: window 50999 -> 51000/102400
+  -> send seq=51500/102399 [50%] (base=51481)
+  <- ACK=51500: window 51499 -> 51500/102400
+  -> send seq=52000/102399 [50%] (base=51975)
+  <- ACK=52000: window 51999 -> 52000/102400
+  -> send seq=52500/102399 [51%] (base=52472)
+  <- ACK=52500: window 52499 -> 52500/102400
+  -> send seq=53000/102399 [51%] (base=52981)
+  <- ACK=53000: window 52999 -> 53000/102400
+  -> send seq=53500/102399 [52%] (base=53483)
+  <- ACK=53500: window 53499 -> 53500/102400
+  -> send seq=54000/102399 [52%] (base=53977)
+  <- ACK=54000: window 53999 -> 54000/102400
+  -> send seq=54500/102399 [53%] (base=54480)
+  <- ACK=54500: window 54499 -> 54500/102400
+  -> send seq=55000/102399 [53%] (base=54969)
+  <- ACK=55000: window 54999 -> 55000/102400
+  -> send seq=55500/102399 [54%] (base=55470)
+  <- ACK=55500: window 55499 -> 55500/102400
+  -> send seq=56000/102399 [54%] (base=55974)
+  <- ACK=56000: window 55999 -> 56000/102400
+  -> send seq=56500/102399 [55%] (base=56478)
+  <- ACK=56500: window 56499 -> 56500/102400
+  -> send seq=57000/102399 [55%] (base=56971)
+  <- ACK=57000: window 56999 -> 57000/102400
+  -> send seq=57500/102399 [56%] (base=57484)
+  <- ACK=57500: window 57499 -> 57500/102400
+  -> send seq=58000/102399 [56%] (base=57985)
+  <- ACK=58000: window 57999 -> 58000/102400
+  -> send seq=58500/102399 [57%] (base=58470)
+  <- ACK=58500: window 58499 -> 58500/102400
+  -> send seq=59000/102399 [57%] (base=58987)
+  <- ACK=59000: window 58999 -> 59000/102400
+  -> send seq=59500/102399 [58%] (base=59484)
+  <- ACK=59500: window 59499 -> 59500/102400
+  -> send seq=60000/102399 [58%] (base=59986)
+  <- ACK=60000: window 59999 -> 60000/102400
+  -> send seq=60500/102399 [59%] (base=60469)
+  <- ACK=60500: window 60499 -> 60500/102400
+  -> send seq=61000/102399 [59%] (base=60975)
+  <- ACK=61000: window 60999 -> 61000/102400
+  -> send seq=61500/102399 [60%] (base=61470)
+  <- ACK=61500: window 61499 -> 61500/102400
+  -> send seq=62000/102399 [60%] (base=61969)
+  <- ACK=62000: window 61999 -> 62000/102400
+  -> send seq=62500/102399 [61%] (base=62475)
+  <- ACK=62500: window 62499 -> 62500/102400
+  -> send seq=63000/102399 [61%] (base=62975)
+  <- ACK=63000: window 62999 -> 63000/102400
+  -> send seq=63500/102399 [62%] (base=63486)
+  <- ACK=63500: window 63499 -> 63500/102400
+  -> send seq=64000/102399 [62%] (base=63977)
+  <- ACK=64000: window 63999 -> 64000/102400
+  -> send seq=64500/102399 [62%] (base=64486)
+  <- ACK=64500: window 64499 -> 64500/102400
+  -> send seq=65000/102399 [63%] (base=64970)
+  <- ACK=65000: window 64999 -> 65000/102400
+  -> send seq=65500/102399 [63%] (base=65483)
+  <- ACK=65500: window 65499 -> 65500/102400
+  -> send seq=66000/102399 [64%] (base=65976)
+  <- ACK=66000: window 65999 -> 66000/102400
+  -> send seq=66500/102399 [64%] (base=66479)
+  <- ACK=66500: window 66499 -> 66500/102400
+  -> send seq=67000/102399 [65%] (base=66984)
+  <- ACK=67000: window 66999 -> 67000/102400
+  -> send seq=67500/102399 [65%] (base=67487)
+  <- ACK=67500: window 67499 -> 67500/102400
+  -> send seq=68000/102399 [66%] (base=67975)
+  <- ACK=68000: window 67999 -> 68000/102400
+  -> send seq=68500/102399 [66%] (base=68470)
+  <- ACK=68500: window 68499 -> 68500/102400
+  -> send seq=69000/102399 [67%] (base=68975)
+  <- ACK=69000: window 68999 -> 69000/102400
+  -> send seq=69500/102399 [67%] (base=69477)
+  <- ACK=69500: window 69499 -> 69500/102400
+  -> send seq=70000/102399 [68%] (base=69978)
+  <- ACK=70000: window 69999 -> 70000/102400
+  -> send seq=70500/102399 [68%] (base=70472)
+  <- ACK=70500: window 70499 -> 70500/102400
+  -> send seq=71000/102399 [69%] (base=70971)
+  <- ACK=71000: window 70999 -> 71000/102400
+  -> send seq=71500/102399 [69%] (base=71475)
+  <- ACK=71500: window 71499 -> 71500/102400
+  -> send seq=72000/102399 [70%] (base=71970)
+  <- ACK=72000: window 71999 -> 72000/102400
+  -> send seq=72500/102399 [70%] (base=72483)
+  <- ACK=72500: window 72499 -> 72500/102400
+  -> send seq=73000/102399 [71%] (base=72981)
+  <- ACK=73000: window 72999 -> 73000/102400
+  -> send seq=73500/102399 [71%] (base=73480)
+  <- ACK=73500: window 73499 -> 73500/102400
+  -> send seq=74000/102399 [72%] (base=73985)
+  <- ACK=74000: window 73999 -> 74000/102400
+  -> send seq=74500/102399 [72%] (base=74485)
+  <- ACK=74500: window 74499 -> 74500/102400
+  -> send seq=75000/102399 [73%] (base=74986)
+  <- ACK=75000: window 74999 -> 75000/102400
+  -> send seq=75500/102399 [73%] (base=75472)
+  <- ACK=75500: window 75499 -> 75500/102400
+  -> send seq=76000/102399 [74%] (base=75969)
+  <- ACK=76000: window 75999 -> 76000/102400
+  -> send seq=76500/102399 [74%] (base=76477)
+  <- ACK=76500: window 76499 -> 76500/102400
+  -> send seq=77000/102399 [75%] (base=76974)
+  <- ACK=77000: window 76999 -> 77000/102400
+  -> send seq=77500/102399 [75%] (base=77481)
+  <- ACK=77500: window 77499 -> 77500/102400
+  -> send seq=78000/102399 [76%] (base=77981)
+  <- ACK=78000: window 77999 -> 78000/102400
+  -> send seq=78500/102399 [76%] (base=78474)
+  <- ACK=78500: window 78499 -> 78500/102400
+  -> send seq=79000/102399 [77%] (base=78984)
+  <- ACK=79000: window 78999 -> 79000/102400
+  -> send seq=79500/102399 [77%] (base=79487)
+  <- ACK=79500: window 79499 -> 79500/102400
+  -> send seq=80000/102399 [78%] (base=79981)
+  <- ACK=80000: window 79999 -> 80000/102400
+  -> send seq=80500/102399 [78%] (base=80481)
+  <- ACK=80500: window 80499 -> 80500/102400
+  -> send seq=81000/102399 [79%] (base=80982)
+  <- ACK=81000: window 80999 -> 81000/102400
+  -> send seq=81500/102399 [79%] (base=81474)
+  <- ACK=81500: window 81499 -> 81500/102400
+  -> send seq=82000/102399 [80%] (base=81974)
+  <- ACK=82000: window 81999 -> 82000/102400
+  -> send seq=82500/102399 [80%] (base=82479)
+  <- ACK=82500: window 82499 -> 82500/102400
+  -> send seq=83000/102399 [81%] (base=82974)
+  <- ACK=83000: window 82999 -> 83000/102400
+  -> send seq=83500/102399 [81%] (base=83487)
+  <- ACK=83500: window 83499 -> 83500/102400
+  -> send seq=84000/102399 [82%] (base=83978)
+  <- ACK=84000: window 83999 -> 84000/102400
+  -> send seq=84500/102399 [82%] (base=84472)
+  <- ACK=84500: window 84499 -> 84500/102400
+  -> send seq=85000/102399 [83%] (base=84972)
+  <- ACK=85000: window 84999 -> 85000/102400
+  -> send seq=85500/102399 [83%] (base=85488)
+  <- ACK=85500: window 85499 -> 85500/102400
+  -> send seq=86000/102399 [83%] (base=85981)
+  <- ACK=86000: window 85999 -> 86000/102400
+  -> send seq=86500/102399 [84%] (base=86488)
+  <- ACK=86500: window 86499 -> 86500/102400
+  -> send seq=87000/102399 [84%] (base=86986)
+  <- ACK=87000: window 86999 -> 87000/102400
+  -> send seq=87500/102399 [85%] (base=87471)
+  <- ACK=87500: window 87499 -> 87500/102400
+  -> send seq=88000/102399 [85%] (base=87976)
+  <- ACK=88000: window 87999 -> 88000/102400
+  -> send seq=88500/102399 [86%] (base=88469)
+  <- ACK=88500: window 88499 -> 88500/102400
+  -> send seq=89000/102399 [86%] (base=88972)
+  <- ACK=89000: window 88999 -> 89000/102400
+  -> send seq=89500/102399 [87%] (base=89488)
+  <- ACK=89500: window 89499 -> 89500/102400
+  -> send seq=90000/102399 [87%] (base=89978)
+  <- ACK=90000: window 89999 -> 90000/102400
+  -> send seq=90500/102399 [88%] (base=90474)
+  <- ACK=90500: window 90499 -> 90500/102400
+  -> send seq=91000/102399 [88%] (base=90978)
+  <- ACK=91000: window 90999 -> 91000/102400
+  -> send seq=91500/102399 [89%] (base=91473)
+  <- ACK=91500: window 91499 -> 91500/102400
+  -> send seq=92000/102399 [89%] (base=91976)
+  <- ACK=92000: window 91999 -> 92000/102400
+  -> send seq=92500/102399 [90%] (base=92487)
+  <- ACK=92500: window 92499 -> 92500/102400
+  -> send seq=93000/102399 [90%] (base=92983)
+  <- ACK=93000: window 92999 -> 93000/102400
+  -> send seq=93500/102399 [91%] (base=93479)
+  <- ACK=93500: window 93499 -> 93500/102400
+  -> send seq=94000/102399 [91%] (base=93969)
+  <- ACK=94000: window 93999 -> 94000/102400
+  -> send seq=94500/102399 [92%] (base=94483)
+  <- ACK=94500: window 94499 -> 94500/102400
+  -> send seq=95000/102399 [92%] (base=94981)
+  <- ACK=95000: window 94999 -> 95000/102400
+  -> send seq=95500/102399 [93%] (base=95476)
+  <- ACK=95500: window 95499 -> 95500/102400
+  -> send seq=96000/102399 [93%] (base=95973)
+  <- ACK=96000: window 95999 -> 96000/102400
+  -> send seq=96500/102399 [94%] (base=96484)
+  <- ACK=96500: window 96499 -> 96500/102400
+  -> send seq=97000/102399 [94%] (base=96987)
+  <- ACK=97000: window 96999 -> 97000/102400
+  -> send seq=97500/102399 [95%] (base=97483)
+  <- ACK=97500: window 97499 -> 97500/102400
+  -> send seq=98000/102399 [95%] (base=97984)
+  <- ACK=98000: window 97999 -> 98000/102400
+  -> send seq=98500/102399 [96%] (base=98483)
+  <- ACK=98500: window 98499 -> 98500/102400
+  -> send seq=99000/102399 [96%] (base=98979)
+  <- ACK=99000: window 98999 -> 99000/102400
+  -> send seq=99500/102399 [97%] (base=99478)
+  <- ACK=99500: window 99499 -> 99500/102400
+  -> send seq=100000/102399 [97%] (base=99978)
+  <- ACK=100000: window 99999 -> 100000/102400
+  -> send seq=100500/102399 [98%] (base=100483)
+  <- ACK=100500: window 100499 -> 100500/102400
+  -> send seq=101000/102399 [98%] (base=100976)
+  <- ACK=101000: window 100999 -> 101000/102400
+  -> send seq=101500/102399 [99%] (base=101479)
+  <- ACK=101500: window 101499 -> 101500/102400
+  -> send seq=102000/102399 [99%] (base=101980)
+  <- ACK=102000: window 101999 -> 102000/102400
+  -> send seq=102399/102399 [100%] (base=102378)
+  <- ACK=102400: window 102399 -> 102400/102400
+
+[done] all 102400 chunks acknowledged
+
+[fin] sending finish
+[sha-256] encrypted SHA 256 hash sent to client (x3)
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+  client reports: AEAD failures=0, replay drops=1, SHA-256=Yes
+[fin] got FIN_ACK (verified), transfer complete!
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 4 Replay Protection
+Timestamp: 2026-04-17 22:23:32
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102412
+Number of retransmitted packets:         0
+Number of packets received from client:  102475
+Time duration of the file transfer:      00:00:30
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       1
+SHA-256 match:                                        Yes
+Attack test mode:                                     replay
+------------------------------------------------------------
+
+report save to Server_Report.txt
+
+server complete
+
+socket closed
+[ec2-user@ip-172-31-28-20 ~]$

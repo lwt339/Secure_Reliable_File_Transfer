@@ -1,0 +1,507 @@
+[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_500mb_file
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Client
+ Phase 2: Secure Reliable File Transfer
+
+
+requesting file: test_500mb_file
+ AEAD cipher: AES-256-GCM
+
+[socket] creating client socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  client socket created
+
+[request] send file request: test_500mb_file
+ server: 172.31.28.20:12000
+ request sent
+
+ Phase 2: Security Handshake
+
+[handshake] building ClientHello
+[handshake] sending ClientHello to server
+ ClientHello sent (with HMAC proof)
+[handshake] waiting for ServerHello
+ timeout waiting for ServerHello (1/15)
+[handshake] receive ServerHello
+  [security] ServerHello HMAC verified ok
+[handshake] server authenticated ok
+[handshake] session key derived (HKDF-SHA256)
+ session ID: 1bb72a90dbc3aaf8
+ enc_key (first 8 bytes): d7fa628e6afcdbc0...
+
+[handshake] Success and secure session established
+ cipher: AES-256-GCM (AEAD)
+
+
+[wait] waiting for file info from server
+
+[info] got file info from server
+ filename: test_500mb_file
+ size: 524288000 bytes (512000 KB)
+ chunks: 512000
+ server MD5: d8b61b2c0025919d5321461045c8226f
+
+[prepare] output file ready: ./client/test_500mb_file
+  pre allocated 524288000 bytes
+
+[receive] starting to receive data (512000 chunks expected)
+ decryption: AES-256-GCM (AEAD)
+ replay protection: receivedSet + window limit (5000)
+  [security] replay dropped: seq=36
+  [security] replay dropped: seq=37
+  [security] replay dropped: seq=38
+  [security] replay dropped: seq=39
+  [security] replay dropped: seq=40
+  [security] replay dropped: seq=41
+  [security] replay dropped: seq=42
+  [security] replay dropped: seq=43
+  [security] replay dropped: seq=44
+  [security] replay dropped: seq=45
+ progress: 6000/512000 [1%]
+ progress: 7500/512000 [1%]
+ progress: 11500/512000 [2%]
+ progress: 14500/512000 [2%]
+ progress: 20500/512000 [4%]
+ progress: 21500/512000 [4%]
+ progress: 28500/512000 [5%]
+ progress: 31000/512000 [6%]
+ progress: 31500/512000 [6%]
+ progress: 42500/512000 [8%]
+ progress: 47000/512000 [9%]
+ progress: 56000/512000 [10%]
+ progress: 56500/512000 [11%]
+ progress: 60000/512000 [11%]
+ progress: 64500/512000 [12%]
+ progress: 66500/512000 [12%]
+ progress: 68000/512000 [13%]
+ progress: 70500/512000 [13%]
+ progress: 76500/512000 [14%]
+ progress: 78000/512000 [15%]
+ progress: 79500/512000 [15%]
+ progress: 81500/512000 [15%]
+ progress: 83000/512000 [16%]
+ progress: 85000/512000 [16%]
+ progress: 88500/512000 [17%]
+ progress: 97000/512000 [18%]
+ progress: 99500/512000 [19%]
+ progress: 106000/512000 [20%]
+ progress: 107500/512000 [20%]
+ progress: 110000/512000 [21%]
+ progress: 111000/512000 [21%]
+ progress: 120000/512000 [23%]
+ progress: 121500/512000 [23%]
+ progress: 125000/512000 [24%]
+ progress: 129000/512000 [25%]
+ progress: 131000/512000 [25%]
+ progress: 135000/512000 [26%]
+ progress: 145500/512000 [28%]
+ progress: 155000/512000 [30%]
+ progress: 179500/512000 [35%]
+ progress: 180000/512000 [35%]
+ progress: 181500/512000 [35%]
+ progress: 186000/512000 [36%]
+ progress: 187500/512000 [36%]
+ progress: 189500/512000 [37%]
+ progress: 193500/512000 [37%]
+ progress: 195000/512000 [38%]
+ progress: 197500/512000 [38%]
+ progress: 198500/512000 [38%]
+ progress: 203000/512000 [39%]
+ progress: 205500/512000 [40%]
+ progress: 211000/512000 [41%]
+ progress: 213000/512000 [41%]
+ progress: 215000/512000 [41%]
+ progress: 225500/512000 [44%]
+ progress: 238500/512000 [46%]
+ progress: 239000/512000 [46%]
+ progress: 247000/512000 [48%]
+ progress: 252000/512000 [49%]
+ progress: 253000/512000 [49%]
+ progress: 253500/512000 [49%]
+ progress: 255500/512000 [49%]
+ progress: 259000/512000 [50%]
+ progress: 260500/512000 [50%]
+ progress: 270000/512000 [52%]
+ progress: 275000/512000 [53%]
+ progress: 276500/512000 [54%]
+ progress: 279000/512000 [54%]
+ progress: 288500/512000 [56%]
+ progress: 292000/512000 [57%]
+ progress: 294500/512000 [57%]
+ progress: 298500/512000 [58%]
+ progress: 308500/512000 [60%]
+ progress: 309000/512000 [60%]
+ progress: 309500/512000 [60%]
+ progress: 310500/512000 [60%]
+ progress: 314500/512000 [61%]
+ progress: 318000/512000 [62%]
+ progress: 322500/512000 [62%]
+ progress: 326000/512000 [63%]
+ progress: 337500/512000 [65%]
+ progress: 342500/512000 [66%]
+ progress: 346500/512000 [67%]
+ progress: 352000/512000 [68%]
+ progress: 358000/512000 [69%]
+ progress: 362000/512000 [70%]
+ progress: 362500/512000 [70%]
+ progress: 364500/512000 [71%]
+ progress: 367000/512000 [71%]
+ progress: 378000/512000 [73%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 379500/512000 [74%]
+ progress: 383000/512000 [74%]
+ progress: 387000/512000 [75%]
+ progress: 389000/512000 [75%]
+ progress: 390500/512000 [76%]
+ progress: 395500/512000 [77%]
+ progress: 400000/512000 [78%]
+ progress: 401000/512000 [78%]
+ progress: 406500/512000 [79%]
+ progress: 409500/512000 [79%]
+ progress: 411500/512000 [80%]
+ progress: 415000/512000 [81%]
+ progress: 423500/512000 [82%]
+ progress: 424000/512000 [82%]
+ progress: 429500/512000 [83%]
+ progress: 433500/512000 [84%]
+ progress: 439500/512000 [85%]
+ progress: 441500/512000 [86%]
+ progress: 443500/512000 [86%]
+ progress: 446000/512000 [87%]
+ progress: 449000/512000 [87%]
+ progress: 449500/512000 [87%]
+ progress: 451000/512000 [88%]
+ progress: 452500/512000 [88%]
+ progress: 457000/512000 [89%]
+ progress: 463500/512000 [90%]
+ progress: 465000/512000 [90%]
+ progress: 468000/512000 [91%]
+ progress: 468500/512000 [91%]
+ progress: 470500/512000 [91%]
+ progress: 476500/512000 [93%]
+ progress: 480500/512000 [93%]
+ progress: 491500/512000 [95%]
+ progress: 504000/512000 [98%]
+ progress: 506500/512000 [98%]
+ progress: 509500/512000 [99%]
+ progress: 510500/512000 [99%]
+ progress: 512000/512000 [100%]
+
+[done] all 512000 chunks received!
+
+[sha-256] received SHA-256 hash from server
+ server SHA-256: a08a92258f621b55d08ad1e84c90c2ea6286fc6b6c9a4dfa7156afb16c190170
+
+[sha-256] received SHA-256 hash from server
+ server SHA-256: a08a92258f621b55d08ad1e84c90c2ea6286fc6b6c9a4dfa7156afb16c190170
+
+[sha-256] received SHA-256 hash from server
+ server SHA-256: a08a92258f621b55d08ad1e84c90c2ea6286fc6b6c9a4dfa7156afb16c190170
+
+[sha-256] received SHA-256 hash from server
+ server SHA-256: a08a92258f621b55d08ad1e84c90c2ea6286fc6b6c9a4dfa7156afb16c190170
+
+[fin] received finish signal from server
+[sha-256] pre-FIN_ACK verify: MATCH
+[fin] FIN_ACK sent (with security counters)
+
+[stats] valid=512000, duplicate=490786, outOfOrder=445999, acksSent=709339
+  AEAD failures=0, replay drops=490786
+
+[verify] checking received file
+[verify] all 512000 chunks received
+
+[MD5 verify]
+ server MD5:   d8b61b2c0025919d5321461045c8226f
+ received MD5: d8b61b2c0025919d5321461045c8226f
+ result: MD5 MATCH
+
+[SHA-256 verify]
+ server SHA-256:   a08a92258f621b55d08ad1e84c90c2ea6286fc6b6c9a4dfa7156afb16c190170
+ received SHA-256: a08a92258f621b55d08ad1e84c90c2ea6286fc6b6c9a4dfa7156afb16c190170
+ result: SHA-256 match
+
+
+ File Transfer successful
+
+
+
+ Security Report (Client Side)
+
+  Security enabled (PSK + AEAD): Yes
+  Handshake status: Success
+  AEAD authentication failures (invalid packets dropped): 0
+  Replay drops (duplicate/out-of-window packets): 490786
+  SHA-256 match: Yes
+
+
+
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Test 1 / Phase 2 Secure Transfer
+Timestamp: 2026-04-17 23:43:19
+
+Security enabled (PSK + AEAD):            Yes
+Handshake status:                         True
+Size of the transferred file:             524288000 bytes
+Number of packets received from server:   1002793
+Number of duplicate packets:              490786
+Number of out-of-order packets:           445999
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:07:02
+Received file MD5:                        d8b61b2c0025919d5321461045c8226f
+AEAD authentication failures:             0
+SHA-256 match:                            Yes
+------------------------------------------------------------
+
+client report saved to Client_Report.txt
+socket closed
+[ec2-user@ip-172-31-21-57 ~]$

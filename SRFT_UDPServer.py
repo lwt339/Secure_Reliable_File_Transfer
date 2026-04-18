@@ -705,14 +705,14 @@ def writeReport(filename, fSize, md5Hash, sha256Hash, sha256Match):
         reportReplayDrop = 0
 
     # build the banner block
-    barLine = '=' * 60
+    barLine = '-' * 60
     lines = []
     lines.append('')
     lines.append(barLine)
     lines.append('SERVER REPORT')
     lines.append(barLine)
     lines.append('Test: ' + testLabel)
-    lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S'))
+    lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 14400)))
     lines.append('')
     lines.append('Name of the transferred file:            ' + filename)
     lines.append('Size of the transferred file:            ' + str(fSize) + ' bytes')

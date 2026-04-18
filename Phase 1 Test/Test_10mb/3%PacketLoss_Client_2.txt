@@ -1,0 +1,81 @@
+[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Client
+ Phase 1: Reliable File Transfer
+
+
+requesting file: test_10mb_file
+
+[socket] creating client socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  client socket created
+
+[request] send file request: test_10mb_file
+ server: 172.31.28.20:12000
+ request sent
+
+[wait] waiting for file info from server
+
+[info] got file info from server
+ filename: test_10mb_file
+ size: 10485760 bytes (10240 KB)
+ chunks: 10240
+ server MD5: f1c9645dbc14efddc7d8a322685f26eb
+
+[prepare] output file ready: ./client/test_10mb_file
+  pre allocated 10485760 bytes
+
+[receive] starting to receive data (10240 chunks expected)
+ progress: 500/10240 [4%]
+ progress: 3000/10240 [29%]
+ progress: 3500/10240 [34%]
+ progress: 4500/10240 [43%]
+ progress: 5000/10240 [48%]
+ progress: 5500/10240 [53%]
+ progress: 9000/10240 [87%]
+ progress: 9500/10240 [92%]
+ progress: 10240/10240 [100%]
+
+[done] all 10240 chunks received!
+
+[fin] received finish signal from server
+[fin] FIN_ACK sent (with security counters)
+
+[stats] valid=10240, duplicate=6111, outOfOrder=6158, acksSent=12556
+
+[verify] checking received file
+[verify] all 10240 chunks received
+
+[MD5 verify]
+ server MD5:   f1c9645dbc14efddc7d8a322685f26eb
+ received MD5: f1c9645dbc14efddc7d8a322685f26eb
+ result: MD5 MATCH
+
+
+ File Transfer successful
+
+
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 00:41:58
+
+Security enabled (PSK + AEAD):            No
+Handshake status:                         False
+Size of the transferred file:             10485760 bytes
+Number of packets received from server:   16353
+Number of duplicate packets:              6111
+Number of out-of-order packets:           6158
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:00:17
+Received file MD5:                        f1c9645dbc14efddc7d8a322685f26eb
+AEAD authentication failures:             0
+SHA-256 match:                            No
+------------------------------------------------------------
+
+client report saved to Client_Report.txt
+socket closed
+[ec2-user@ip-172-31-21-57 ~]$

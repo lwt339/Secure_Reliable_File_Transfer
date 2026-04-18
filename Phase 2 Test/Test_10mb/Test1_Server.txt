@@ -1,0 +1,132 @@
+[ec2-user@ip-172-31-28-20 ~]$ sudo python3 SRFT_UDPServer.py
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 2: Secure Reliable File Transfer
+
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.28.20:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.21.57:12001
+ file requested: test_10mb_file
+
+[file] test_10mb_file
+  size: 10485760 bytes (10240 KB)
+  MD5:    f1c9645dbc14efddc7d8a322685f26eb
+  SHA256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
+  chunks: 10240 (each up to 1024 bytes)
+
+
+  Phase 2: Security Handshake
+
+[handshake] waiting for ClientHello
+[handshake] received ClientHello
+  [security] ClientHello HMAC verified ok
+[handshake] client authenticated ok, cipher=AES-256-GCM
+[handshake] sending ServerHello
+[handshake] ServerHello sent (x3)
+[handshake] session key derived (HKDF-SHA256)
+  session ID: 5f844db7c7112ea3
+  enc_key (first 8 bytes): 26bb5093af6fb02b...
+
+[handshake] Success secure session established
+  cipher: AES-256-GCM (AEAD)
+
+[send] file info sent to client (x3)
+  [clean] cleared 2 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 32
+  timeout: 0.2s
+  chunk size: 1024 bytes
+  encryption: AES-256-GCM (AEAD)
+  -> send seq=0/10239 [0%] (base=0)
+  -> send seq=500/10239 [4%] (base=488)
+  <- ACK=500: window 499 -> 500/10240
+  -> send seq=1000/10239 [9%] (base=985)
+  <- ACK=1000: window 999 -> 1000/10240
+  -> send seq=1500/10239 [14%] (base=1469)
+  <- ACK=1500: window 1499 -> 1500/10240
+  -> send seq=2000/10239 [19%] (base=1971)
+  <- ACK=2000: window 1999 -> 2000/10240
+  -> send seq=2500/10239 [24%] (base=2469)
+  <- ACK=2500: window 2499 -> 2500/10240
+  -> send seq=3000/10239 [29%] (base=2970)
+  <- ACK=3000: window 2999 -> 3000/10240
+  -> send seq=3500/10239 [34%] (base=3484)
+  <- ACK=3500: window 3499 -> 3500/10240
+  -> send seq=4000/10239 [39%] (base=3969)
+  <- ACK=4000: window 3999 -> 4000/10240
+  -> send seq=4500/10239 [43%] (base=4477)
+  <- ACK=4500: window 4499 -> 4500/10240
+  -> send seq=5000/10239 [48%] (base=4982)
+  <- ACK=5000: window 4999 -> 5000/10240
+  -> send seq=5500/10239 [53%] (base=5471)
+  <- ACK=5500: window 5499 -> 5500/10240
+  -> send seq=6000/10239 [58%] (base=5976)
+  <- ACK=6000: window 5999 -> 6000/10240
+  -> send seq=6500/10239 [63%] (base=6479)
+  <- ACK=6500: window 6499 -> 6500/10240
+  -> send seq=7000/10239 [68%] (base=6988)
+  <- ACK=7000: window 6999 -> 7000/10240
+  -> send seq=7500/10239 [73%] (base=7481)
+  <- ACK=7500: window 7499 -> 7500/10240
+  -> send seq=8000/10239 [78%] (base=7983)
+  <- ACK=8000: window 7999 -> 8000/10240
+  -> send seq=8500/10239 [83%] (base=8483)
+  <- ACK=8500: window 8499 -> 8500/10240
+  -> send seq=9000/10239 [87%] (base=8983)
+  <- ACK=9000: window 8999 -> 9000/10240
+  -> send seq=9500/10239 [92%] (base=9475)
+  <- ACK=9500: window 9499 -> 9500/10240
+  -> send seq=10000/10239 [97%] (base=9976)
+  <- ACK=10000: window 9999 -> 10000/10240
+  -> send seq=10239/10239 [100%] (base=10217)
+  <- ACK=10240: window 10239 -> 10240/10240
+
+[done] all 10240 chunks acknowledged
+
+[fin] sending finish
+[sha-256] encrypted SHA 256 hash sent to client (x3)
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+  client reports: AEAD failures=0, replay drops=0, SHA-256=Yes
+[fin] got FIN_ACK (verified), transfer complete!
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-17 21:49:23
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10251
+Number of retransmitted packets:         0
+Number of packets received from client:  10259
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+report save to Server_Report.txt
+
+server complete
+
+socket closed
+[ec2-user@ip-172-31-28-20 ~]$

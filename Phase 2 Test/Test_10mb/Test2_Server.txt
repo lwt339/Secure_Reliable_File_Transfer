@@ -1,0 +1,61 @@
+[ec2-user@ip-172-31-28-20 ~]$ sudo python3 SRFT_UDPServer.py
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 2: Secure Reliable File Transfer
+
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.28.20:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.21.57:12001
+ file requested: test_10mb_file
+
+[file] test_10mb_file
+  size: 10485760 bytes (10240 KB)
+  MD5:    f1c9645dbc14efddc7d8a322685f26eb
+  SHA256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
+  chunks: 10240 (each up to 1024 bytes)
+
+
+  Phase 2: Security Handshake
+
+[handshake] waiting for ClientHello
+[handshake] received ClientHello
+  [security] ClientHello HMAC FAILED!
+  -> PSK mismatch. connection rejected.
+[handshake] Failed b/c client PSK mismatch!
+
+[error] handshake failed
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 21:59:34
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+report save to Server_Report.txt
+socket closed
+[ec2-user@ip-172-31-28-20 ~]$

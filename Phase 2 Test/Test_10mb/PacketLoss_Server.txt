@@ -1,0 +1,241 @@
+[ec2-user@ip-172-31-28-20 ~]$ sudo tc qdisc add dev ens5 root netem loss 3%
+[ec2-user@ip-172-31-28-20 ~]$ sudo python3 SRFT_UDPServer.py
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 2: Secure Reliable File Transfer
+
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.28.20:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.21.57:12001
+ file requested: test_10mb_file
+
+[file] test_10mb_file
+  size: 10485760 bytes (10240 KB)
+  MD5:    f1c9645dbc14efddc7d8a322685f26eb
+  SHA256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
+  chunks: 10240 (each up to 1024 bytes)
+
+
+  Phase 2: Security Handshake
+
+[handshake] waiting for ClientHello
+[handshake] received ClientHello
+  [security] ClientHello HMAC verified ok
+[handshake] client authenticated ok, cipher=AES-256-GCM
+[handshake] sending ServerHello
+[handshake] ServerHello sent (x3)
+[handshake] session key derived (HKDF-SHA256)
+  session ID: d361e78d60780330
+  enc_key (first 8 bytes): b4c175e828292206...
+
+[handshake] Success secure session established
+  cipher: AES-256-GCM (AEAD)
+
+[send] file info sent to client (x3)
+  [clean] cleared 20 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 256
+  timeout: 0.01s
+  chunk size: 1024 bytes
+  encryption: AES-256-GCM (AEAD)
+  -> send seq=0/10239 [0%] (base=0)
+
+[timeout] windowBase=7 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=500/10239 [4%] (base=257)
+
+[timeout] windowBase=272 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=528 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1000/10239 [9%] (base=778)
+
+[timeout] windowBase=820 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=1109 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=1215 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1500/10239 [14%] (base=1377)
+
+[timeout] windowBase=1472 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=1593 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=2000/10239 [19%] (base=1780)
+
+[timeout] windowBase=1914 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=2210 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=2500/10239 [24%] (base=2306)
+
+[timeout] windowBase=2481 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3000/10239 [29%] (base=2780)
+
+[timeout] windowBase=2780 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=3110 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3500/10239 [34%] (base=3366)
+
+[timeout] windowBase=3384 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=3647 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=4000/10239 [39%] (base=3773)
+
+[timeout] windowBase=3910 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=4500/10239 [43%] (base=4255)
+  [security] ACK AEAD failed, dropped.
+
+[timeout] windowBase=4293 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=4578 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5000/10239 [48%] (base=4795)
+
+[timeout] windowBase=4876 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=5198 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5500/10239 [53%] (base=5285)
+
+[timeout] windowBase=5475 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=5521 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6000/10239 [58%] (base=5777)
+
+[timeout] windowBase=5783 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=6053 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=6056 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6500/10239 [63%] (base=6312)
+
+[timeout] windowBase=6313 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=6662 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7000/10239 [68%] (base=6768)
+  <- ACK=7000: window 6999 -> 7000/10240
+
+[timeout] windowBase=7016 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=7056 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7500/10239 [73%] (base=7308)
+
+[timeout] windowBase=7349 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=7612 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8000/10239 [78%] (base=7772)
+  [security] ACK AEAD failed, dropped.
+
+[timeout] windowBase=7883 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8500/10239 [83%] (base=8261)
+
+[timeout] windowBase=8295 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=8603 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=8695 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9000/10239 [87%] (base=8887)
+
+[timeout] windowBase=8930 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=8981 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=9238 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9500/10239 [92%] (base=9304)
+  <- ACK=9500: window 9499 -> 9500/10240
+
+[timeout] windowBase=9552 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10000/10239 [97%] (base=9808)
+
+[timeout] windowBase=9866 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10239/10239 [100%] (base=9998)
+
+[timeout] windowBase=10124 stuck for 0.05s
+[timeout] retransmitting 116 packets
+  <- ACK=10240: window 10156 -> 10240/10240
+
+[done] all 10240 chunks acknowledged
+
+[fin] sending finish
+[sha-256] encrypted SHA 256 hash sent to client (x3)
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+  client reports: AEAD failures=0, replay drops=9714, SHA-256=Yes
+[fin] got FIN_ACK (verified), transfer complete!
+[note] server-side noise: 2 corrupted ACKs, 0 replay on ACKs
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-17 23:32:52
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  20607
+Number of retransmitted packets:         10356
+Number of packets received from client:  10760
+Time duration of the file transfer:      00:00:09
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       9714
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+report save to Server_Report.txt
+
+server complete
+
+socket closed
+[ec2-user@ip-172-31-28-20 ~]$

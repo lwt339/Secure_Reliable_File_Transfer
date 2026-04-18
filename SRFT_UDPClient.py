@@ -294,18 +294,20 @@ def writeChunkToDisk(seqNum, data):
 def sendCumulativeAck(sock):
     global ackCount
 
+    # snapshot once
+    currentAck = expectedSeq
     if securityEnabled and sessionKey is not None:
         # encrypt the ack number
-        ackData = struct.pack('!I', expectedSeq)
+        ackData = struct.pack('!I', currentAck)
         encAck = encryptData(sessionKey, ackData,
-                             sessionId, typeAck, 0, expectedSeq)
+                             sessionId, typeAck, 0, currentAck)
         sendPacket(sock, serverIP, serverPort, clientIP, clientPort,
-                   typeAck, 0, expectedSeq, encAck)
+                   typeAck, 0, currentAck, encAck)
     else:
         # Phase 1
         # plain ACK (just seq and ack)
         sendPacket(sock, serverIP, serverPort, clientIP, clientPort,
-                   typeAck, 0, expectedSeq)
+                   typeAck, 0, currentAck)
 
     ackCount = ackCount + 1
 
@@ -376,7 +378,7 @@ def decryptReceivedData(parsed):
 # sends periodic ACKs (0.5s) so server knows our progress
 def ackSenderThread(sock):
     while not isDone:
-        time.sleep(0.5)
+        time.sleep(0.05)
         if not isDone and expectedSeq > 0:
             clientLock.acquire()
             try:
@@ -791,14 +793,14 @@ def writeClientReport():
     else:
         testLabel = 'Test 1 / Phase 2 Secure Transfer'
 
-    barLine = '=' * 60
+    barLine = '-' * 60
     lines = []
     lines.append('')
     lines.append(barLine)
     lines.append('CLIENT REPORT')
     lines.append(barLine)
     lines.append('Test: ' + testLabel)
-    lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S'))
+    lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 14400)))
     lines.append('')
 
     lines.append('Security enabled (PSK + AEAD):            ' +
