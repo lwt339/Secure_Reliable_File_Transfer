@@ -1,0 +1,1501 @@
+No Packet Loss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:54:57
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10244
+Number of retransmitted packets:         0
+Number of packets received from client:  10287
+Time duration of the file transfer:      00:00:02
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:56:16
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102404
+Number of retransmitted packets:         0
+Number of packets received from client:  102832
+Time duration of the file transfer:      00:00:21
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:59:08
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  512004
+Number of retransmitted packets:         0
+Number of packets received from client:  514028
+Time duration of the file transfer:      00:01:41
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 00:02:45
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  819204
+Number of retransmitted packets:         0
+Number of packets received from client:  822649
+Time duration of the file transfer:      00:02:53
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 00:07:10
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1048580
+Number of retransmitted packets:         0
+Number of packets received from client:  1052716
+Time duration of the file transfer:      00:03:28
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+2% Packet Loss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 03:31:15
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  16324
+Number of retransmitted packets:         6080
+Number of packets received from client:  12412
+Time duration of the file transfer:      00:00:15
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 00:46:00
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  163913
+Number of retransmitted packets:         61509
+Number of packets received from client:  125220
+Time duration of the file transfer:      00:02:36
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 00:59:50
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  815169
+Number of retransmitted packets:         303165
+Number of packets received from client:  623361
+Time duration of the file transfer:      00:12:49
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 03:29:59
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  1301060
+Number of retransmitted packets:         481856
+Number of packets received from client:  996521
+Time duration of the file transfer:      00:20:25
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 03:08:12
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1667326
+Number of retransmitted packets:         618746
+Number of packets received from client:  1275921
+Time duration of the file transfer:      00:26:13
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+3% Packet Loss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 00:41:58
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  16836
+Number of retransmitted packets:         6592
+Number of packets received from client:  12556
+Time duration of the file transfer:      00:00:16
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:05:54
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  175296
+Number of retransmitted packets:         72892
+Number of packets received from client:  129530
+Time duration of the file transfer:      00:03:03
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:53:00
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  874900
+Number of retransmitted packets:         362896
+Number of packets received from client:  645476
+Time duration of the file transfer:      00:15:15
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:32:37
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  1403250
+Number of retransmitted packets:         584046
+Number of packets received from client:  1035993
+Time duration of the file transfer:      00:24:36
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 00:39:48
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1793284
+Number of retransmitted packets:         744704
+Number of packets received from client:  1324756
+Time duration of the file transfer:      00:31:15
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+4% Packet Loss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 01:10:41
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  18507
+Number of retransmitted packets:         8263
+Number of packets received from client:  13356
+Time duration of the file transfer:      00:00:20
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 01:05:58
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  184078
+Number of retransmitted packets:         81674
+Number of packets received from client:  132611
+Time duration of the file transfer:      00:03:25
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 01:34:02
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  920893
+Number of retransmitted packets:         408889
+Number of packets received from client:  664340
+Time duration of the file transfer:      00:17:06
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 02:04:20
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  1474560
+Number of retransmitted packets:         655356
+Number of packets received from client:  1063476
+Time duration of the file transfer:      00:27:29
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 02:40:21
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1888516
+Number of retransmitted packets:         839936
+Number of packets received from client:  1362414
+Time duration of the file transfer:      00:35:08
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 2 with 3% PacketLoss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 03:33:11
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  17867
+Number of retransmitted packets:         7616
+Number of packets received from client:  13138
+Time duration of the file transfer:      00:00:20
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       7090
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 03:36:57
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  176459
+Number of retransmitted packets:         74048
+Number of packets received from client:  130231
+Time duration of the file transfer:      00:03:12
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       68681
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 03:54:33
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  876666
+Number of retransmitted packets:         364655
+Number of packets received from client:  646694
+Time duration of the file transfer:      00:15:48
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       338297
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 04:20:37
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  1399236
+Number of retransmitted packets:         580024
+Number of packets received from client:  1033758
+Time duration of the file transfer:      00:25:15
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       537561
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 04:54:19
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1791829
+Number of retransmitted packets:         743240
+Number of packets received from client:  1323107
+Time duration of the file transfer:      00:32:16
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       689164
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+Phase2 Test1 Baseline
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-17 21:49:23
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10251
+Number of retransmitted packets:         0
+Number of packets received from client:  10259
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 05:00:28
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10251
+Number of retransmitted packets:         0
+Number of packets received from client:  10323
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-17 21:53:29
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102411
+Number of retransmitted packets:         0
+Number of packets received from client:  102477
+Time duration of the file transfer:      00:00:31
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 05:01:52
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102411
+Number of retransmitted packets:         0
+Number of packets received from client:  103008
+Time duration of the file transfer:      00:00:30
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-17 21:56:50
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  512011
+Number of retransmitted packets:         0
+Number of packets received from client:  512324
+Time duration of the file transfer:      00:02:30
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 05:08:21
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  512011
+Number of retransmitted packets:         0
+Number of packets received from client:  515037
+Time duration of the file transfer:      00:02:32
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-17 21:30:49
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  819212
+Number of retransmitted packets:         0
+Number of packets received from client:  819711
+Time duration of the file transfer:      00:04:04
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 05:13:28
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  819212
+Number of retransmitted packets:         0
+Number of packets received from client:  824033
+Time duration of the file transfer:      00:04:03
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-17 21:36:56
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1048589
+Number of retransmitted packets:         0
+Number of packets received from client:  1049229
+Time duration of the file transfer:      00:05:14
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+Phase2 Test2 Wrong PSK
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 21:59:34
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 22:01:37
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 22:03:12
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 22:04:58
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-17 22:06:40
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+
+Phase2 Test3 Tamper_Detection
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-17 22:08:37
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10252
+Number of retransmitted packets:         0
+Number of packets received from client:  10261
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-17 22:09:36
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102412
+Number of retransmitted packets:         0
+Number of packets received from client:  102472
+Time duration of the file transfer:      00:00:29
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-17 22:13:01
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  512012
+Number of retransmitted packets:         0
+Number of packets received from client:  512318
+Time duration of the file transfer:      00:02:29
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-17 22:21:31
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  819213
+Number of retransmitted packets:         0
+Number of packets received from client:  819709
+Time duration of the file transfer:      00:04:03
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-17 21:48:28
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1048590
+Number of retransmitted packets:         0
+Number of packets received from client:  1049222
+Time duration of the file transfer:      00:05:12
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+Phase2 Test4 Replay_Protection
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 4 Replay Protection
+Timestamp: 2026-04-17 22:22:27
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10252
+Number of retransmitted packets:         0
+Number of packets received from client:  10261
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       1
+SHA-256 match:                                        Yes
+Attack test mode:                                     replay
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 4 Replay Protection
+Timestamp: 2026-04-17 22:23:32
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102412
+Number of retransmitted packets:         0
+Number of packets received from client:  102475
+Time duration of the file transfer:      00:00:30
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       1
+SHA-256 match:                                        Yes
+Attack test mode:                                     replay
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-17 22:13:01
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  512012
+Number of retransmitted packets:         0
+Number of packets received from client:  512318
+Time duration of the file transfer:      00:02:29
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 4 Replay Protection
+Timestamp: 2026-04-17 22:38:24
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  819213
+Number of retransmitted packets:         0
+Number of packets received from client:  824018
+Time duration of the file transfer:      00:04:02
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       1
+SHA-256 match:                                        Yes
+Attack test mode:                                     replay
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 4 Replay Protection
+Timestamp: 2026-04-17 22:44:36
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1048590
+Number of retransmitted packets:         0
+Number of packets received from client:  1054787
+Time duration of the file transfer:      00:05:12
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       1
+SHA-256 match:                                        Yes
+Attack test mode:                                     replay
+------------------------------------------------------------
+
+
+Phase2 Test5 Forged_Injection
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 5 Forged Injection
+Timestamp: 2026-04-17 22:45:40
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10252
+Number of retransmitted packets:         0
+Number of packets received from client:  10321
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     inject
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 5 Forged Injection
+Timestamp: 2026-04-17 22:46:51
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102412
+Number of retransmitted packets:         0
+Number of packets received from client:  103003
+Time duration of the file transfer:      00:00:29
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     inject
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 5 Forged Injection
+Timestamp: 2026-04-17 22:49:48
+
+Name of the transferred file:            test_500mb_file
+Size of the transferred file:            524288000 bytes
+Number of packets sent from the server:  512012
+Number of retransmitted packets:         0
+Number of packets received from client:  514989
+Time duration of the file transfer:      00:02:29
+Original file MD5:                       d8b61b2c0025919d5321461045c8226f
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     inject
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 5 Forged Injection
+Timestamp: 2026-04-17 22:54:36
+
+Name of the transferred file:            test_800mb_file
+Size of the transferred file:            838860800 bytes
+Number of packets sent from the server:  819213
+Number of retransmitted packets:         0
+Number of packets received from client:  824035
+Time duration of the file transfer:      00:04:02
+Original file MD5:                       4067155e98ab9e162baab0b6341f275a
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     inject
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 5 Forged Injection
+Timestamp: 2026-04-17 23:00:58
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1048590
+Number of retransmitted packets:         0
+Number of packets received from client:  1054853
+Time duration of the file transfer:      00:05:16
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     inject
+------------------------------------------------------------
+
+Test 10mb
+
+Phase 1 No packet Loss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:14:02
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10244
+Number of retransmitted packets:         0
+Number of packets received from client:  10298
+Time duration of the file transfer:      00:00:02
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 1 2% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 2% )
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:16:10
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  15944
+Number of retransmitted packets:         5700
+Number of packets received from client:  12322
+Time duration of the file transfer:      00:00:14
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 1 3% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 3% )
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:20:01
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  16708
+Number of retransmitted packets:         6464
+Number of packets received from client:  12742
+Time duration of the file transfer:      00:00:16
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 1 4% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 4% )
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:18:18
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  18436
+Number of retransmitted packets:         8192
+Number of packets received from client:  13350
+Time duration of the file transfer:      00:00:20
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 2 Test 1 Baseline
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-19 00:09:18
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10251
+Number of retransmitted packets:         0
+Number of packets received from client:  10321
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+Phase 2 Test 2 Wrong PSK (Authentication Failure)
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-19 00:11:21
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+
+Phase 2 Test 3 Tamper Detection (Integrity)
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-19 00:05:14
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10252
+Number of retransmitted packets:         0
+Number of packets received from client:  10322
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+Phase 2 Test 4 Replay Protection
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 4 Replay Protection
+Timestamp: 2026-04-19 00:07:10
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10252
+Number of retransmitted packets:         0
+Number of packets received from client:  10322
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       1
+SHA-256 match:                                        Yes
+Attack test mode:                                     replay
+------------------------------------------------------------
+
+
+Phase 2 Test 5 Forged Injection
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 5 Forged Injection
+Timestamp: 2026-04-19 00:07:40
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10252
+Number of retransmitted packets:         0
+Number of packets received from client:  10322
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     inject
+------------------------------------------------------------
+
+
+Phase 2 3% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 3% )
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-19 00:22:00
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  17355
+Number of retransmitted packets:         7104
+Number of packets received from client:  12876
+Time duration of the file transfer:      00:00:18
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       6582
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+Test 100mb
+
+Phase 1 No packet Loss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 22:31:04
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  102404
+Number of retransmitted packets:         0
+Number of packets received from client:  102805
+Time duration of the file transfer:      00:00:20
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 1 3% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 3% )
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 22:49:14
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  173822
+Number of retransmitted packets:         71418
+Number of packets received from client:  128516
+Time duration of the file transfer:      00:02:59
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Test1gb
+
+Phase 1 No packet Loss
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 22:29:51
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1048580
+Number of retransmitted packets:         0
+Number of packets received from client:  1052587
+Time duration of the file transfer:      00:03:20
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 2 Test 1 Baseline
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-19 00:29:51
+
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets sent from the server:  1048589
+Number of retransmitted packets:         0
+Number of packets received from client:  1054628
+Time duration of the file transfer:      00:05:03
+Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
