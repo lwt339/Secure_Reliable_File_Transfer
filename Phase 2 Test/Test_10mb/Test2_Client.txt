@@ -1,4 +1,4 @@
-[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
+[ec2-user@ip-172-31-24-196 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
 
 
  Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
@@ -18,7 +18,7 @@ requesting file: test_10mb_file
   client socket created
 
 [request] send file request: test_10mb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
 
  Phase 2: Security Handshake
@@ -61,21 +61,25 @@ requesting file: test_10mb_file
 CLIENT REPORT
 ------------------------------------------------------------
 Test: Test 2 Wrong PSK (Authentication Failure)
-Timestamp: 2026-04-17 22:00:30
+Timestamp: 2026-04-19 00:12:21
 
-Security enabled (PSK + AEAD):            Yes
-Handshake status:                         False
-Size of the transferred file:             0 bytes
-Number of packets received from server:   0
-Number of duplicate packets:              0
-Number of out-of-order packets:           0
-Number of packets with checksum errors:   0
-Time duration of the file transfer:       00:00:00
-Received file MD5:                        N/A
-AEAD authentication failures:             0
-SHA-256 match:                            No
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            0 bytes
+Number of packets received from server:  0
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:00
+Received file MD5:                       N/A
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
 ------------------------------------------------------------
 
 client report saved to Client_Report.txt
 socket closed
-[ec2-user@ip-172-31-21-57 ~]$
+[ec2-user@ip-172-31-24-196 ~]$

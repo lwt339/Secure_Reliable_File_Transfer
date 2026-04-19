@@ -1,4 +1,4 @@
-[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_100mb_file
+[ec2-user@ip-172-31-24-196 ~]$ sudo python3 SRFT_UDPClient.py test_100mb_file
 
 
  Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
@@ -13,7 +13,7 @@ requesting file: test_100mb_file
   client socket created
 
 [request] send file request: test_100mb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
 
 [wait] waiting for file info from server
@@ -239,7 +239,7 @@ requesting file: test_100mb_file
 [fin] received finish signal from server
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=102400, duplicate=0, outOfOrder=0, acksSent=102832
+[stats] valid=102400, duplicate=0, outOfOrder=0, acksSent=102805
 
 [verify] checking received file
 [verify] all 102400 chunks received
@@ -257,16 +257,17 @@ requesting file: test_100mb_file
 CLIENT REPORT
 ------------------------------------------------------------
 Test: Phase 1 Reliable Transfer (no security)
-Timestamp: 2026-04-17 23:56:16
+Timestamp: 2026-04-18 22:31:04
 
 Security enabled (PSK + AEAD):            No
 Handshake status:                         False
+Name of the transferred file:             test_100mb_file
 Size of the transferred file:             104857600 bytes
 Number of packets received from server:   102403
 Number of duplicate packets:              0
 Number of out-of-order packets:           0
 Number of packets with checksum errors:   0
-Time duration of the file transfer:       00:00:22
+Time duration of the file transfer:       00:00:20
 Received file MD5:                        2f282b84e7e608d5852449ed940bfc51
 AEAD authentication failures:             0
 SHA-256 match:                            No
@@ -274,4 +275,4 @@ SHA-256 match:                            No
 
 client report saved to Client_Report.txt
 socket closed
-[ec2-user@ip-172-31-21-57 ~]$
+[ec2-user@ip-172-31-24-196 ~]$

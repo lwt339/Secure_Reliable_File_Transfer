@@ -1,4 +1,4 @@
-[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_100mb_file
+[ec2-user@ip-172-31-24-196 ~]$ sudo python3 SRFT_UDPClient.py test_100mb_file
 
 
  Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
@@ -14,7 +14,7 @@ requesting file: test_100mb_file
   client socket created
 
 [request] send file request: test_100mb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
 
  Phase 2: Security Handshake
@@ -27,8 +27,8 @@ requesting file: test_100mb_file
   [security] ServerHello HMAC verified ok
 [handshake] server authenticated ok
 [handshake] session key derived (HKDF-SHA256)
- session ID: 4705c58a02587b68
- enc_key (first 8 bytes): 904586b2eba4e190...
+ session ID: 3d2f8aa1e6746948
+ enc_key (first 8 bytes): 728df49ffca9a1e3...
 
 [handshake] Success and secure session established
  cipher: AES-256-GCM (AEAD)
@@ -272,7 +272,7 @@ requesting file: test_100mb_file
 [sha-256] pre-FIN_ACK verify: MATCH
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=102400, duplicate=0, outOfOrder=0, acksSent=102472
+[stats] valid=102400, duplicate=0, outOfOrder=0, acksSent=102994
   AEAD failures=0, replay drops=0
 
 [verify] checking received file
@@ -306,22 +306,25 @@ requesting file: test_100mb_file
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
-Test: Test 1 / Phase 2 Secure Transfer
-Timestamp: 2026-04-17 21:53:30
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-18 23:43:59
 
-Security enabled (PSK + AEAD):            Yes
-Handshake status:                         True
-Size of the transferred file:             104857600 bytes
-Number of packets received from server:   102407
-Number of duplicate packets:              0
-Number of out-of-order packets:           0
-Number of packets with checksum errors:   0
-Time duration of the file transfer:       00:00:32
-Received file MD5:                        2f282b84e7e608d5852449ed940bfc51
-AEAD authentication failures:             0
-SHA-256 match:                            Yes
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets received from server:  102407
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:30
+Received file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
 client report saved to Client_Report.txt
 socket closed
-[ec2-user@ip-172-31-21-57 ~]$

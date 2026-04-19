@@ -356,6 +356,7 @@ Timestamp: 2026-04-17 23:05:55
 
 Security enabled (PSK + AEAD):            No
 Handshake status:                         False
+Name of the transferred file:             test_100mb_file
 Size of the transferred file:             104857600 bytes
 Number of packets received from server:   170045
 Number of duplicate packets:              67642
