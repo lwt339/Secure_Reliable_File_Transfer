@@ -786,12 +786,22 @@ def writeClientReport():
     checksumErrors = packet_helper.checksumErrorCount
 
     # test label (helpful when appending many test runs)
-    if not securityEnabled:
+    # same mapping as server so both reports agree
+    if config.attackMode == 'wrongpsk':
+        testLabel = 'Test 2 Wrong PSK (Authentication Failure)'
+    elif not securityEnabled:
         testLabel = 'Phase 1 Reliable Transfer (no security)'
     elif not handshakeOk:
+        # handshake died = almost always wrong PSK
         testLabel = 'Test 2 Wrong PSK (Authentication Failure)'
+    elif config.attackMode == 'tamper':
+        testLabel = 'Test 3 Tamper Detection (Integrity)'
+    elif config.attackMode == 'replay':
+        testLabel = 'Test 4 Replay Protection'
+    elif config.attackMode == 'inject':
+        testLabel = 'Test 5 Forged Injection'
     else:
-        testLabel = 'Test 1 / Phase 2 Secure Transfer'
+        testLabel = 'Phase 2 Test'
 
     barLine = '-' * 60
     lines = []
@@ -800,31 +810,52 @@ def writeClientReport():
     lines.append('CLIENT REPORT')
     lines.append(barLine)
     lines.append('Test: ' + testLabel)
+    # EDT = UTC-4, quick hack avoid pytz
     lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 14400)))
     lines.append('')
 
-    lines.append('Security enabled (PSK + AEAD):            ' +
-                 ('Yes' if securityEnabled else 'No'))
-    lines.append('Handshake status:                         ' +
-                 ('True' if handshakeOk else 'False'))
-    lines.append('Size of the transferred file:             ' +
+    # transfer metadata
+    lines.append('Name of the transferred file:            ' +
+                 (fileName if fileName != '' else 'N/A'))
+    lines.append('Size of the transferred file:            ' +
                  str(fileSize) + ' bytes')
-    lines.append('Number of packets received from server:   ' +
+    lines.append('Number of packets received from server:  ' +
                  str(totalRecvCount))
-    lines.append('Number of duplicate packets:              ' +
+    lines.append('Number of duplicate packets:             ' +
                  str(duplicateCount))
-    lines.append('Number of out-of-order packets:           ' +
+    lines.append('Number of out-of-order packets:          ' +
                  str(outOfOrderCount))
-    lines.append('Number of packets with checksum errors:   ' +
+    lines.append('Number of packets with checksum errors:  ' +
                  str(checksumErrors))
-    lines.append('Time duration of the file transfer:       ' +
+    lines.append('Time duration of the file transfer:      ' +
                  formatTime(duration))
-    lines.append('Received file MD5:                        ' +
+    lines.append('Received file MD5:                       ' +
                  (receivedMD5 if receivedMD5 != '' else 'N/A'))
-    lines.append('AEAD authentication failures:             ' +
-                 str(aeadFailCount))
-    lines.append('SHA-256 match:                            ' +
-                 ('Yes' if sha256Match else 'No'))
+
+    # phase 1 vs phase 2 security block
+    # phase 1 = no security = skip AEAD/SHA-256 lines, just like server
+    if securityEnabled:
+        lines.append('')
+        lines.append('Phase 2 security fields')
+        lines.append('Security enabled (PSK + AEAD):                        Yes')
+        lines.append('Handshake status:                                     ' +
+                     ('Success' if handshakeOk else 'Fail'))
+        lines.append('AEAD authentication failures (invalid packets drop):  ' +
+                     str(aeadFailCount))
+        lines.append('Replay drops (duplicate/out-of-window packets):       ' +
+                     str(replayDropCount))
+        lines.append('SHA-256 match:                                        ' +
+                     ('Yes' if sha256Match else 'No'))
+        # only print if an attack flag was set (Test 3/4/5)
+        if config.attackMode != 'none':
+            lines.append('Attack test mode:                                     ' +
+                         config.attackMode)
+    else:
+        # phase 1 only: one line, no AEAD / no SHA-256
+        lines.append('')
+        lines.append('Phase 1 (security off)')
+        lines.append('Security enabled (PSK + AEAD):                        No')
+
     lines.append(barLine)
     lines.append('')
 
