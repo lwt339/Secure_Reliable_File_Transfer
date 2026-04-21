@@ -1462,14 +1462,14 @@ Phase 1 No packet Loss
 SERVER REPORT
 ------------------------------------------------------------
 Test: Phase 1 Reliable Transfer (no security)
-Timestamp: 2026-04-18 22:29:51
+Timestamp: 2026-04-19 00:35:35
 
 Name of the transferred file:            test_1gb_file
 Size of the transferred file:            1073741824 bytes
 Number of packets sent from the server:  1048580
 Number of retransmitted packets:         0
-Number of packets received from client:  1052587
-Time duration of the file transfer:      00:03:20
+Number of packets received from client:  1052570
+Time duration of the file transfer:      00:03:19
 Original file MD5:                       cd573cfaace07e7949bc0c46028904ff
 
 Phase 1 (security off)

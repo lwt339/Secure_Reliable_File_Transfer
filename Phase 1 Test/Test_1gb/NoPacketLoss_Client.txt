@@ -1,4 +1,4 @@
-[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_1gb_file
+[ec2-user@ip-172-31-24-196 ~]$ sudo python3 SRFT_UDPClient.py test_1gb_file
 
 
  Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
@@ -13,34 +13,34 @@ requesting file: test_1gb_file
   client socket created
 
 [request] send file request: test_1gb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
 
 [wait] waiting for file info from server
  timeout, resending file request (1/15)
 
 [request] send file request: test_1gb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
  timeout, resending file request (2/15)
 
 [request] send file request: test_1gb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
  timeout, resending file request (3/15)
 
 [request] send file request: test_1gb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
  timeout, resending file request (4/15)
 
 [request] send file request: test_1gb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
  timeout, resending file request (5/15)
 
 [request] send file request: test_1gb_file
- server: 172.31.28.20:12000
+ server: 172.31.22.141:12000
  request sent
 
 [info] got file info from server
@@ -2157,7 +2157,7 @@ requesting file: test_1gb_file
 [fin] received finish signal from server
 [fin] FIN_ACK sent (with security counters)
 
-[stats] valid=1048576, duplicate=0, outOfOrder=0, acksSent=1052731
+[stats] valid=1048576, duplicate=0, outOfOrder=0, acksSent=1052570
 
 [verify] checking received file
 [verify] all 1048576 chunks received
@@ -2175,22 +2175,21 @@ requesting file: test_1gb_file
 CLIENT REPORT
 ------------------------------------------------------------
 Test: Phase 1 Reliable Transfer (no security)
-Timestamp: 2026-04-18 00:07:17
+Timestamp: 2026-04-19 00:35:42
 
-Security enabled (PSK + AEAD):            No
-Handshake status:                         False
-Name of the transferred file:             test_1gb_file
-Size of the transferred file:             1073741824 bytes
-Number of packets received from server:   1048579
-Number of duplicate packets:              0
-Number of out-of-order packets:           0
-Number of packets with checksum errors:   0
-Time duration of the file transfer:       00:03:29
-Received file MD5:                        cd573cfaace07e7949bc0c46028904ff
-AEAD authentication failures:             0
-SHA-256 match:                            No
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets received from server:  1048579
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:03:20
+Received file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
 client report saved to Client_Report.txt
 socket closed
-[ec2-user@ip-172-31-21-57 ~]$
+[ec2-user@ip-172-31-24-196 ~]$

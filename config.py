@@ -5,12 +5,12 @@
 # server IP
 # local test : '127.0.0.1'
 # AWS: 'server EC2 private IP'
-serverIP = '127.0.0.1'
+serverIP = '172.31.22.141'
 
 # client IP
 # local test : '127.0.0.1'
 # AWS: client EC2 private IP
-clientIP = '127.0.0.1'
+clientIP = '172.31.24.196'
 
 # port numbers
 serverPort = 12000
@@ -114,11 +114,6 @@ maxTimeouts = 30
 # seqNum > expectedSeq + 5000
 # get dropped
 recvWindowLimit = 5000
-
-# packet loss
-# 0 means no tc command active
-# 2, 3, 4 match the three loss rate tests
-packetLoss = 0
 
 
 # file paths

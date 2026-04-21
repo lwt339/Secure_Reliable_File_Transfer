@@ -1398,8 +1398,9 @@ Number of out-of-order packets:           0
 Number of packets with checksum errors:   0
 Time duration of the file transfer:       00:00:20
 Received file MD5:                        2f282b84e7e608d5852449ed940bfc51
-AEAD authentication failures:             0
-SHA-256 match:                            No
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
 
@@ -1420,8 +1421,9 @@ Number of out-of-order packets:           64846
 Number of packets with checksum errors:   0
 Time duration of the file transfer:       00:03:00
 Received file MD5:                        2f282b84e7e608d5852449ed940bfc51
-AEAD authentication failures:             0
-SHA-256 match:                            No
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
 
@@ -1432,20 +1434,19 @@ Phase 1 No packet Loss
 CLIENT REPORT
 ------------------------------------------------------------
 Test: Phase 1 Reliable Transfer (no security)
-Timestamp: 2026-04-18 22:29:58
+Timestamp: 2026-04-19 00:35:42
 
-Security enabled (PSK + AEAD):            No
-Handshake status:                         False
-Name of the transferred file:             test_1gb_file
-Size of the transferred file:             1073741824 bytes
-Number of packets received from server:   1048579
-Number of duplicate packets:              0
-Number of out-of-order packets:           0
-Number of packets with checksum errors:   0
-Time duration of the file transfer:       00:03:21
-Received file MD5:                        cd573cfaace07e7949bc0c46028904ff
-AEAD authentication failures:             0
-SHA-256 match:                            No
+Name of the transferred file:            test_1gb_file
+Size of the transferred file:            1073741824 bytes
+Number of packets received from server:  1048579
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:03:20
+Received file MD5:                       cd573cfaace07e7949bc0c46028904ff
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
 
