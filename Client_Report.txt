@@ -18,6 +18,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -36,6 +37,7 @@ Received file MD5:                       2f282b84e7e608d5852449ed940bfc51
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -56,6 +58,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -75,6 +78,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -93,6 +97,7 @@ Received file MD5:                       cd573cfaace07e7949bc0c46028904ff
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 2% Packet Loss
 ------------------------------------------------------------
@@ -114,6 +119,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -132,6 +138,7 @@ Received file MD5:                       2f282b84e7e608d5852449ed940bfc51
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -152,24 +159,26 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
 Test: Phase 1 Reliable Transfer (no security)
-Timestamp: 2026-04-17 23:32:42
+Timestamp: 2026-04-18 03:30:06
 
-Name of the transferred file:            test_800mb_file
-Size of the transferred file:            838860800 bytes
-Number of packets received from server:  1360779
-Number of duplicate packets:             541576
-Number of out-of-order packets:          526308
-Number of packets with checksum errors:  0
-Time duration of the file transfer:      00:24:37
-Received file MD5:                       4067155e98ab9e162baab0b6341f275a
+Name of the transferred file:             test_800mb_file
+Size of the transferred file:             838860800 bytes
+Number of packets received from server:   1274880
+Number of duplicate packets:              455677
+Number of out-of-order packets:           450355
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:20:26
+Received file MD5:                        4067155e98ab9e162baab0b6341f275a
 
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -189,6 +198,7 @@ Received file MD5:                       cd573cfaace07e7949bc0c46028904ff
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 3% Packet Loss
 ------------------------------------------------------------
@@ -210,6 +220,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -228,6 +239,7 @@ Received file MD5:                       2f282b84e7e608d5852449ed940bfc51
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -248,6 +260,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -267,6 +280,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -285,6 +299,7 @@ Received file MD5:                       cd573cfaace07e7949bc0c46028904ff
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 4% Packet Loss
 ------------------------------------------------------------
@@ -306,6 +321,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -324,6 +340,7 @@ Received file MD5:                       2f282b84e7e608d5852449ed940bfc51
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -344,24 +361,27 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
 Test: Phase 1 Reliable Transfer (no security)
 Timestamp: 2026-04-18 02:04:25
 
-Name of the transferred file:            test_800mb_file
-Size of the transferred file:            838860800 bytes
-Number of packets received from server:  1415616
-Number of duplicate packets:             596413
-Number of out-of-order packets:          571677
-Number of packets with checksum errors:  0
-Time duration of the file transfer:      00:27:29
-Received file MD5:                       4067155e98ab9e162baab0b6341f275a
+Name of the transferred file:             test_800mb_file
+Size of the transferred file:             838860800 bytes
+Number of packets received from server:   1415616
+Number of duplicate packets:              596413
+Number of out-of-order packets:           571677
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:27:29
+Received file MD5:                        4067155e98ab9e162baab0b6341f275a
 
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -381,6 +401,7 @@ Received file MD5:                       cd573cfaace07e7949bc0c46028904ff
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 Phase 2 with 3% PacketLoss
 ------------------------------------------------------------
@@ -406,6 +427,7 @@ Replay drops (duplicate/out-of-window packets):       7090
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -428,6 +450,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       68681
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -452,6 +475,7 @@ Replay drops (duplicate/out-of-window packets):       338297
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -475,6 +499,7 @@ Replay drops (duplicate/out-of-window packets):       537561
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -497,6 +522,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       689164
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
+
 
 Phase2 Test1 Baseline
 ------------------------------------------------------------
@@ -522,6 +548,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -544,6 +571,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -568,6 +596,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -590,6 +619,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -614,6 +644,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -636,6 +667,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -660,6 +692,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -683,6 +716,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -705,6 +739,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
+
 
 Phase2 Test2 Wrong PSK
 ------------------------------------------------------------
@@ -730,6 +765,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -752,6 +788,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        No
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -776,6 +813,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -799,6 +837,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        No
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -821,6 +860,7 @@ AEAD authentication failures (invalid packets drop):  0
 Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        No
 ------------------------------------------------------------
+
 
 Phase2 Test3 Tamper_Detection
 ------------------------------------------------------------
@@ -847,6 +887,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     tamper
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -870,6 +911,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 Attack test mode:                                     tamper
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -895,6 +937,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     tamper
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -919,6 +962,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     tamper
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -942,6 +986,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 Attack test mode:                                     tamper
 ------------------------------------------------------------
+
 
 Phase2 Test4 Replay_Protection
 ------------------------------------------------------------
@@ -968,6 +1013,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     replay
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -991,6 +1037,7 @@ Replay drops (duplicate/out-of-window packets):       1
 SHA-256 match:                                        Yes
 Attack test mode:                                     replay
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -1016,6 +1063,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     replay
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -1040,6 +1088,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     replay
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -1063,6 +1112,7 @@ Replay drops (duplicate/out-of-window packets):       1
 SHA-256 match:                                        Yes
 Attack test mode:                                     replay
 ------------------------------------------------------------
+
 
 Phase2 Test5 Forged_Injection
 ------------------------------------------------------------
@@ -1089,6 +1139,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     inject
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -1112,6 +1163,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 Attack test mode:                                     inject
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -1137,6 +1189,7 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     inject
 ------------------------------------------------------------
 
+
 ------------------------------------------------------------
 CLIENT REPORT
 ------------------------------------------------------------
@@ -1160,6 +1213,7 @@ Replay drops (duplicate/out-of-window packets):       0
 SHA-256 match:                                        Yes
 Attack test mode:                                     inject
 ------------------------------------------------------------
+
 
 ------------------------------------------------------------
 CLIENT REPORT
@@ -1185,6 +1239,221 @@ SHA-256 match:                                        Yes
 Attack test mode:                                     inject
 ------------------------------------------------------------
 
+
+Test 10mb
+
+Phase 1 No packet Loss
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:14:02
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  10243
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:02
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 1 2% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 2% )
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:16:11
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  15609
+Number of duplicate packets:             5366
+Number of out-of-order packets:          5331
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:15
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 1 3% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 3% )
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:20:01
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  16238
+Number of duplicate packets:             5995
+Number of out-of-order packets:          5683
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:16
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 1 4% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 4% )
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-19 00:18:18
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  17638
+Number of duplicate packets:             7396
+Number of out-of-order packets:          6978
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:21
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+
+Phase 2 Test 1 Baseline
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Test 1 Secure Transfer (Baseline)
+Timestamp: 2026-04-19 00:09:18
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  10247
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:04
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+------------------------------------------------------------
+
+
+Phase 2 Test 2 Wrong PSK (Authentication Failure)
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-19 00:12:21
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            0 bytes
+Number of packets received from server:  0
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:00
+Received file MD5:                       N/A
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------
+
+
+Phase 2 Test 3 Tamper Detection (Integrity)
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-19 00:05:14
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  10248
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:04
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+
+Phase 2 Test 4 Replay Protection
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Test 4 Replay Protection
+Timestamp: 2026-04-19 00:07:10
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  10248
+Number of duplicate packets:             1
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:04
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       1
+SHA-256 match:                                        Yes
+Attack test mode:                                     replay
+------------------------------------------------------------
+
+
+Phase 2 Test 5 Forged Injection
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Test 5 Forged Injection
+Timestamp: 2026-04-19 00:07:40
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets received from server:  10248
+Number of duplicate packets:             0
+Number of out-of-order packets:          0
+Number of packets with checksum errors:  0
+Time duration of the file transfer:      00:00:04
+Received file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     inject
+------------------------------------------------------------
+
+
 Phase 2 3% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 3% )
 ------------------------------------------------------------
 CLIENT REPORT
@@ -1209,6 +1478,7 @@ Replay drops (duplicate/out-of-window packets):       6582
 SHA-256 match:                                        Yes
 ------------------------------------------------------------
 
+
 Test 100mb
 
 Phase 1 No packet Loss
@@ -1231,6 +1501,7 @@ Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
 
+
 Phase 1 3% Packet Loss ( sudo tc qdisc add dev ens5 root netem loss 3% )
 ------------------------------------------------------------
 CLIENT REPORT
@@ -1250,6 +1521,7 @@ Received file MD5:                       2f282b84e7e608d5852449ed940bfc51
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 Test1gb
 
@@ -1272,6 +1544,7 @@ Received file MD5:                       cd573cfaace07e7949bc0c46028904ff
 Phase 1 (security off)
 Security enabled (PSK + AEAD):                        No
 ------------------------------------------------------------
+
 
 Phase 2 Test 1 Baseline
 ------------------------------------------------------------
