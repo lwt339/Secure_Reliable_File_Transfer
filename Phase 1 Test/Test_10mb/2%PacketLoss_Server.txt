@@ -1,0 +1,197 @@
+[ec2-user@ip-172-31-28-20 ~]$ sudo tc qdisc del dev ens5 root
+[ec2-user@ip-172-31-28-20 ~]$ sudo tc qdisc add dev ens5 root netem loss 2%
+[ec2-user@ip-172-31-28-20 ~]$ sudo python3 SRFT_UDPServer.py
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 1: Reliable File Transfer
+
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.28.20:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.21.57:12001
+ file requested: test_10mb_file
+
+[file] test_10mb_file
+  size: 10485760 bytes (10240 KB)
+  MD5:    f1c9645dbc14efddc7d8a322685f26eb
+  SHA256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
+  chunks: 10240 (each up to 1024 bytes)
+[send] file info sent to client (x3)
+  [clean] cleared 20 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 256
+  timeout: 0.01s
+  chunk size: 1024 bytes
+  -> send seq=0/10239 [0%] (base=0)
+
+[timeout] windowBase=15 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=500/10239 [4%] (base=278)
+
+[timeout] windowBase=346 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=668 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1000/10239 [9%] (base=843)
+
+[timeout] windowBase=983 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1500/10239 [14%] (base=1283)
+
+[timeout] windowBase=1283 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=1452 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=1726 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=2000/10239 [19%] (base=1843)
+  <- ACK=2000: window 1999 -> 2000/10240
+
+[timeout] windowBase=2088 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=2500/10239 [24%] (base=2372)
+
+[timeout] windowBase=2372 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=2710 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3000/10239 [29%] (base=2864)
+  <- ACK=3000: window 2999 -> 3000/10240
+
+[timeout] windowBase=3117 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3500/10239 [34%] (base=3332)
+
+[timeout] windowBase=3518 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=4000/10239 [39%] (base=3774)
+
+[timeout] windowBase=3799 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=4191 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=4500/10239 [43%] (base=4365)
+
+[timeout] windowBase=4447 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5000/10239 [48%] (base=4823)
+
+[timeout] windowBase=4906 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=5241 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5500/10239 [53%] (base=5250)
+  <- ACK=5500: window 5499 -> 5500/10240
+
+[timeout] windowBase=5510 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6000/10239 [58%] (base=5784)
+
+[timeout] windowBase=5784 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=6051 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6500/10239 [63%] (base=6307)
+
+[timeout] windowBase=6370 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=6662 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7000/10239 [68%] (base=6815)
+
+[timeout] windowBase=6950 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=7237 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7500/10239 [73%] (base=7493)
+  <- ACK=7500: window 7499 -> 7500/10240
+
+[timeout] windowBase=7594 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8000/10239 [78%] (base=7863)
+
+[timeout] windowBase=7894 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=8159 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8500/10239 [83%] (base=8415)
+
+[timeout] windowBase=8449 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=8517 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9000/10239 [87%] (base=8783)
+
+[timeout] windowBase=8783 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=9081 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9500/10239 [92%] (base=9317)
+
+[timeout] windowBase=9317 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=9602 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10000/10239 [97%] (base=9865)
+
+[timeout] windowBase=9899 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10239/10239 [100%] (base=10016)
+
+[timeout] windowBase=10236 stuck for 0.05s
+[timeout] retransmitting 4 packets
+  <- ACK=10240: window 10236 -> 10240/10240
+
+[done] all 10240 chunks acknowledged
+
+[fin] sending finish
+[fin] got FIN_ACK (verified), transfer complete!
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:57:28
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  18952
+Number of retransmitted packets:         8708
+Number of packets received from client:  10114
+Time duration of the file transfer:      00:00:05
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+report save to Server_Report.txt
+
+server complete
+
+socket closed
+[ec2-user@ip-172-31-28-20 ~]$ md5sum server/test_10mb_file
+f1c9645dbc14efddc7d8a322685f26eb  server/test_10mb_file
+[ec2-user@ip-172-31-28-20 ~]$

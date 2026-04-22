@@ -1,0 +1,233 @@
+[ec2-user@ip-172-31-21-57 ~]$ ping 172.31.28.20 -c 20
+PING 172.31.28.20 (172.31.28.20) 56(84) bytes of data.
+64 bytes from 172.31.28.20: icmp_seq=1 ttl=127 time=0.472 ms
+64 bytes from 172.31.28.20: icmp_seq=2 ttl=127 time=0.225 ms
+64 bytes from 172.31.28.20: icmp_seq=3 ttl=127 time=0.256 ms
+64 bytes from 172.31.28.20: icmp_seq=4 ttl=127 time=0.228 ms
+64 bytes from 172.31.28.20: icmp_seq=6 ttl=127 time=0.213 ms
+64 bytes from 172.31.28.20: icmp_seq=7 ttl=127 time=0.218 ms
+64 bytes from 172.31.28.20: icmp_seq=8 ttl=127 time=0.246 ms
+64 bytes from 172.31.28.20: icmp_seq=9 ttl=127 time=0.225 ms
+64 bytes from 172.31.28.20: icmp_seq=10 ttl=127 time=0.216 ms
+64 bytes from 172.31.28.20: icmp_seq=11 ttl=127 time=0.222 ms
+64 bytes from 172.31.28.20: icmp_seq=12 ttl=127 time=0.416 ms
+64 bytes from 172.31.28.20: icmp_seq=13 ttl=127 time=0.246 ms
+64 bytes from 172.31.28.20: icmp_seq=14 ttl=127 time=0.252 ms
+64 bytes from 172.31.28.20: icmp_seq=15 ttl=127 time=0.264 ms
+64 bytes from 172.31.28.20: icmp_seq=16 ttl=127 time=0.216 ms
+64 bytes from 172.31.28.20: icmp_seq=17 ttl=127 time=0.282 ms
+64 bytes from 172.31.28.20: icmp_seq=18 ttl=127 time=0.250 ms
+64 bytes from 172.31.28.20: icmp_seq=19 ttl=127 time=0.233 ms
+64 bytes from 172.31.28.20: icmp_seq=20 ttl=127 time=0.222 ms
+
+--- 172.31.28.20 ping statistics ---
+20 packets transmitted, 19 received, 5% packet loss, time 19725ms
+rtt min/avg/max/mdev = 0.213/0.258/0.472/0.066 ms
+[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Client
+ Phase 1: Reliable File Transfer
+
+
+requesting file: test_10mb_file
+
+[socket] creating client socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  client socket created
+
+[request] send file request: test_10mb_file
+ server: 172.31.28.20:12000
+ request sent
+
+[wait] waiting for file info from server
+
+[info] got file info from server
+ filename: test_10mb_file
+ size: 10485760 bytes (10240 KB)
+ chunks: 10240
+ server MD5: f1c9645dbc14efddc7d8a322685f26eb
+
+[prepare] output file ready: ./client/test_10mb_file
+  pre allocated 10485760 bytes
+
+[receive] starting to receive data (10240 chunks expected)
+ progress: 900/10240 [8%]
+ progress: 2900/10240 [28%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4400/10240 [42%]
+ progress: 4700/10240 [45%]
+ progress: 7600/10240 [74%]
+ progress: 7900/10240 [77%]
+ progress: 8900/10240 [86%]
+ progress: 9200/10240 [89%]
+ progress: 10240/10240 [100%]
+
+[done] all 10240 chunks received!
+
+[fin] received finish signal from server
+[fin] FIN_ACK sent (with security counters)
+
+[stats] valid=10240, duplicate=11997, outOfOrder=9260, acksSent=16023
+
+[verify] checking received file
+[verify] all 10240 chunks received
+
+[MD5 verify]
+ server MD5:   f1c9645dbc14efddc7d8a322685f26eb
+ received MD5: f1c9645dbc14efddc7d8a322685f26eb
+ result: MD5 MATCH
+
+
+ File Transfer successful
+
+
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 21:53:07
+
+Security enabled (PSK + AEAD):            No
+Handshake status:                         False
+Size of the transferred file:             10485760 bytes
+Number of packets received from server:   22240
+Number of duplicate packets:              11997
+Number of out-of-order packets:           9260
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:00:08
+Received file MD5:                        f1c9645dbc14efddc7d8a322685f26eb
+AEAD authentication failures:             0
+SHA-256 match:                            No
+------------------------------------------------------------
+
+client report saved to Client_Report.txt
+socket closed
+[ec2-user@ip-172-31-21-57 ~]$ md5sum client/test_10mb_file
+f1c9645dbc14efddc7d8a322685f26eb  client/test_10mb_file
+[ec2-user@ip-172-31-21-57 ~]$

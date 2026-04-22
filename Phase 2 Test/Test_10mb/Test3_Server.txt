@@ -1,0 +1,140 @@
+[ec2-user@ip-172-31-22-141 ~]$ sudo python3 SRFT_UDPServer.py --attack tamper
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 2: Secure Reliable File Transfer
+
+
+[ATTACK MODE] attack test: tamper
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.22.141:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.24.196:12001
+ file requested: test_10mb_file
+
+[file] test_10mb_file
+  size: 10485760 bytes (10240 KB)
+  MD5:    f1c9645dbc14efddc7d8a322685f26eb
+  SHA256: e5b844cc57f57094ea4585e235f36c78c1cd222262bb89d53c94dcb4d6b3e55d
+  chunks: 10240 (each up to 1024 bytes)
+
+
+  Phase 2: Security Handshake
+
+[handshake] waiting for ClientHello
+[handshake] received ClientHello
+  [security] ClientHello HMAC verified ok
+[handshake] client authenticated ok, cipher=AES-256-GCM
+[handshake] sending ServerHello
+[handshake] ServerHello sent (x3)
+[handshake] session key derived (HKDF-SHA256)
+  session ID: 4135dc341e64f10f
+  enc_key (first 8 bytes): ce30f179671c16d1...
+
+[handshake] Success secure session established
+  cipher: AES-256-GCM (AEAD)
+
+[send] file info sent to client (x3)
+  [clean] cleared 3 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 64
+  timeout: 0.1s
+  chunk size: 1024 bytes
+  encryption: AES-256-GCM (AEAD)
+  -> send seq=0/10239 [0%] (base=0)
+
+[ATTACK] tamper attack on seq=5
+  flipping 2 bits in encrypted payload
+ bits flipped at byte 15 and byte 20
+ tampered packet sent. client should drop it (AEAD fail)
+  -> send seq=500/10239 [4%] (base=449)
+  <- ACK=500: window 499 -> 500/10240
+  -> send seq=1000/10239 [9%] (base=951)
+  <- ACK=1000: window 999 -> 1000/10240
+  -> send seq=1500/10239 [14%] (base=1452)
+  <- ACK=1500: window 1499 -> 1500/10240
+  -> send seq=2000/10239 [19%] (base=1939)
+  <- ACK=2000: window 1999 -> 2000/10240
+  -> send seq=2500/10239 [24%] (base=2446)
+  <- ACK=2500: window 2499 -> 2500/10240
+  -> send seq=3000/10239 [29%] (base=2957)
+  <- ACK=3000: window 2999 -> 3000/10240
+  -> send seq=3500/10239 [34%] (base=3446)
+  <- ACK=3500: window 3499 -> 3500/10240
+  -> send seq=4000/10239 [39%] (base=3947)
+  <- ACK=4000: window 3999 -> 4000/10240
+  -> send seq=4500/10239 [43%] (base=4439)
+  <- ACK=4500: window 4499 -> 4500/10240
+  -> send seq=5000/10239 [48%] (base=4942)
+  <- ACK=5000: window 4999 -> 5000/10240
+  -> send seq=5500/10239 [53%] (base=5442)
+  <- ACK=5500: window 5499 -> 5500/10240
+  -> send seq=6000/10239 [58%] (base=5941)
+  <- ACK=6000: window 5999 -> 6000/10240
+  -> send seq=6500/10239 [63%] (base=6450)
+  <- ACK=6500: window 6499 -> 6500/10240
+  -> send seq=7000/10239 [68%] (base=6952)
+  <- ACK=7000: window 6999 -> 7000/10240
+  -> send seq=7500/10239 [73%] (base=7438)
+  <- ACK=7500: window 7499 -> 7500/10240
+  -> send seq=8000/10239 [78%] (base=7942)
+  <- ACK=8000: window 7999 -> 8000/10240
+  -> send seq=8500/10239 [83%] (base=8443)
+  <- ACK=8500: window 8499 -> 8500/10240
+  -> send seq=9000/10239 [87%] (base=8937)
+  <- ACK=9000: window 8999 -> 9000/10240
+  -> send seq=9500/10239 [92%] (base=9438)
+  <- ACK=9500: window 9499 -> 9500/10240
+  -> send seq=10000/10239 [97%] (base=9946)
+  <- ACK=10000: window 9999 -> 10000/10240
+  -> send seq=10239/10239 [100%] (base=10187)
+  <- ACK=10240: window 10239 -> 10240/10240
+
+[done] all 10240 chunks acknowledged
+
+[fin] sending finish
+[sha-256] encrypted SHA 256 hash sent to client (x3)
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+[sha-256] got SHA-256 confirm from client
+  client reports: AEAD failures=1, replay drops=0, SHA-256=Yes
+[fin] got FIN_ACK (verified), transfer complete!
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 3 Tamper Detection (Integrity)
+Timestamp: 2026-04-19 00:38:01
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  10252
+Number of retransmitted packets:         0
+Number of packets received from client:  10324
+Time duration of the file transfer:      00:00:03
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Success
+AEAD authentication failures (invalid packets drop):  1
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        Yes
+Attack test mode:                                     tamper
+------------------------------------------------------------
+
+report save to Server_Report.txt
+
+server complete
+
+socket closed
+[ec2-user@ip-172-31-22-141 ~]$

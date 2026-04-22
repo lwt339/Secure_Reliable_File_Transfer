@@ -1,0 +1,16 @@
+PS C:\Users\vicky\Desktop\CS 5700\SRFT> scp -i ~/Desktop/srft-key.pem -r server ec2-user@54.165.20.106:~/
+test_100mb_file                                                                                                                100%  100MB  92.5MB/s   00:01
+test_10mb_file                                                                                                                 100%   10MB  73.0MB/s   00:00
+test_1gb_file                                                                                                                  100% 1024MB  83.6MB/s   00:12
+test_500mb_file                                                                                                                100%  500MB 101.4MB/s   00:04
+test_800mb_file                                                                                                                100%  800MB  90.8MB/s   00:08
+PS C:\Users\vicky\Desktop\CS 5700\SRFT> scp -i ~/Desktop/srft-key.pem *.py ec2-user@13.218.78.124:~/
+SRFT_UDPClient.py                                                                                                              100%   33KB 761.2KB/s   00:00
+SRFT_UDPServer.py                                                                                                              100%   32KB   1.1MB/s   00:00
+config.py                                                                                                                      100% 4073   248.6KB/s   00:00
+packet_helper.py                                                                                                               100%   26KB   1.4MB/s   00:00
+PS C:\Users\vicky\Desktop\CS 5700\SRFT> scp -i ~/Desktop/srft-key.pem *.py ec2-user@54.165.20.106:~/
+SRFT_UDPClient.py                                                                                                              100%   33KB 779.3KB/s   00:00
+SRFT_UDPServer.py                                                                                                              100%   32KB   1.1MB/s   00:00
+config.py                                                                                                                      100% 4073   284.1KB/s   00:00
+packet_helper.py

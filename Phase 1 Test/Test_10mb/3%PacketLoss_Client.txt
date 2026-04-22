@@ -1,0 +1,76 @@
+[ec2-user@ip-172-31-21-57 ~]$ sudo python3 SRFT_UDPClient.py test_10mb_file
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Client
+ Phase 1: Reliable File Transfer
+
+
+requesting file: test_10mb_file
+
+[socket] creating client socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  client socket created
+
+[request] send file request: test_10mb_file
+ server: 172.31.28.20:12000
+ request sent
+
+[wait] waiting for file info from server
+
+[info] got file info from server
+ filename: test_10mb_file
+ size: 10485760 bytes (10240 KB)
+ chunks: 10240
+ server MD5: f1c9645dbc14efddc7d8a322685f26eb
+
+[prepare] output file ready: ./client/test_10mb_file
+  pre allocated 10485760 bytes
+
+[receive] starting to receive data (10240 chunks expected)
+ progress: 1500/10240 [14%]
+ progress: 10240/10240 [100%]
+
+[done] all 10240 chunks received!
+
+[fin] received finish signal from server
+[fin] FIN_ACK sent (with security counters)
+
+[stats] valid=10240, duplicate=9474, outOfOrder=9082, acksSent=13728
+
+[verify] checking received file
+[verify] all 10240 chunks received
+
+[MD5 verify]
+ server MD5:   f1c9645dbc14efddc7d8a322685f26eb
+ received MD5: f1c9645dbc14efddc7d8a322685f26eb
+ result: MD5 MATCH
+
+
+ File Transfer successful
+
+
+------------------------------------------------------------
+CLIENT REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 23:58:46
+
+Security enabled (PSK + AEAD):            No
+Handshake status:                         False
+Size of the transferred file:             10485760 bytes
+Number of packets received from server:   19717
+Number of duplicate packets:              9474
+Number of out-of-order packets:           9082
+Number of packets with checksum errors:   0
+Time duration of the file transfer:       00:00:06
+Received file MD5:                        f1c9645dbc14efddc7d8a322685f26eb
+AEAD authentication failures:             0
+SHA-256 match:                            No
+------------------------------------------------------------
+
+client report saved to Client_Report.txt
+socket closed
+[ec2-user@ip-172-31-21-57 ~]$ md5sum client/test_10mb_file
+f1c9645dbc14efddc7d8a322685f26eb  client/test_10mb_file
+[ec2-user@ip-172-31-21-57 ~]$

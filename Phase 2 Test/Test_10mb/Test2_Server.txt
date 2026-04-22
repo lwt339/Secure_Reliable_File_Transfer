@@ -1,0 +1,21 @@
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Test 2 Wrong PSK (Authentication Failure)
+Timestamp: 2026-04-19 00:11:21
+
+Name of the transferred file:            test_10mb_file
+Size of the transferred file:            10485760 bytes
+Number of packets sent from the server:  0
+Number of retransmitted packets:         0
+Number of packets received from client:  2
+Time duration of the file transfer:      00:00:00
+Original file MD5:                       f1c9645dbc14efddc7d8a322685f26eb
+
+Phase 2 security fields
+Security enabled (PSK + AEAD):                        Yes
+Handshake status:                                     Fail
+AEAD authentication failures (invalid packets drop):  0
+Replay drops (duplicate/out-of-window packets):       0
+SHA-256 match:                                        No
+------------------------------------------------------------

@@ -1,0 +1,4170 @@
+[ec2-user@ip-172-31-28-20 ~]$ sudo tc qdisc del dev ens5 root
+[ec2-user@ip-172-31-28-20 ~]$ sudo tc qdisc add dev ens5 root netem loss 4%
+[ec2-user@ip-172-31-28-20 ~]$ sudo python3 SRFT_UDPServer.py
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 1: Reliable File Transfer
+
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.28.20:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.21.57:12001
+ file requested: test_100mb_file
+
+[file] test_100mb_file
+  size: 104857600 bytes (102400 KB)
+  MD5:    2f282b84e7e608d5852449ed940bfc51
+  SHA256: 20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+  chunks: 102400 (each up to 1024 bytes)
+[send] file info sent to client (x3)
+  [clean] cleared 1 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 64
+  timeout: 0.1s
+  chunk size: 1024 bytes
+  -> send seq=0/102399 [0%] (base=0)
+
+[timeout] windowBase=13 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=110 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=178 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=294 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=377 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=377 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=500/102399 [0%] (base=441)
+
+[timeout] windowBase=494 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=572 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=637 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=720 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=818 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=887 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=1000/102399 [0%] (base=951)
+  <- ACK=1000: window 999 -> 1000/102400
+
+[timeout] windowBase=1013 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1095 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1193 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1289 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1416 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=1500/102399 [1%] (base=1480)
+  <- ACK=1500: window 1499 -> 1500/102400
+
+[timeout] windowBase=1509 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1588 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1662 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1685 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1800 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=1916 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=2000/102399 [1%] (base=1980)
+  <- ACK=2000: window 1999 -> 2000/102400
+
+[timeout] windowBase=2012 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2086 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2179 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2267 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2344 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=2500/102399 [2%] (base=2468)
+
+[timeout] windowBase=2470 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2552 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2640 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2706 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2774 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2849 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=2910 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=3000/102399 [2%] (base=2974)
+
+[timeout] windowBase=2975 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3156 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3215 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3223 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3317 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3383 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=3500/102399 [3%] (base=3447)
+
+[timeout] windowBase=3459 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3528 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3604 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3693 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3761 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3852 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=3911 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=4000/102399 [3%] (base=3975)
+  <- ACK=4000: window 3999 -> 4000/102400
+
+[timeout] windowBase=4084 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4101 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4184 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4259 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4330 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4412 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=4500/102399 [4%] (base=4466)
+
+[timeout] windowBase=4466 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4542 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4608 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4676 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4676 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4778 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=4868 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=5000/102399 [4%] (base=4949)
+
+[timeout] windowBase=4990 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5056 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5138 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5214 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5289 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=5500/102399 [5%] (base=5438)
+
+[timeout] windowBase=5438 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5459 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5545 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5646 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5718 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5802 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5822 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=5894 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=6000/102399 [5%] (base=5958)
+
+[timeout] windowBase=5987 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=6000: window 5987 -> 6000/102400
+
+[timeout] windowBase=6052 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6121 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6312 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6376 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=6500/102399 [6%] (base=6440)
+
+[timeout] windowBase=6481 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6508 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6572 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6650 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6716 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=6816 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=7000/102399 [6%] (base=6938)
+
+[timeout] windowBase=6954 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7030 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7130 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7171 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7241 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7409 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=7500/102399 [7%] (base=7473)
+
+[timeout] windowBase=7495 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7575 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7648 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7722 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7795 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=7919 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=8000/102399 [7%] (base=7983)
+
+[timeout] windowBase=7998 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8102 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8310 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8390 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=8500/102399 [8%] (base=8454)
+
+[timeout] windowBase=8464 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8535 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8613 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8755 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8836 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=8907 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=9000/102399 [8%] (base=8971)
+  <- ACK=9000: window 8999 -> 9000/102400
+
+[timeout] windowBase=9017 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9026 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9115 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9187 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9309 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9390 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=9500/102399 [9%] (base=9445)
+
+[timeout] windowBase=9456 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=9500: window 9473 -> 9500/102400
+
+[timeout] windowBase=9555 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9646 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9738 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9803 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=9882 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=10000/102399 [9%] (base=9946)
+
+[timeout] windowBase=9959 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10045 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10119 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10154 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10224 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10414 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=10500/102399 [10%] (base=10478)
+
+[timeout] windowBase=10493 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10615 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10697 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10785 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=10862 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=11000/102399 [10%] (base=10957)
+
+[timeout] windowBase=10957 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11025 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11182 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11278 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11341 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11436 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=11500/102399 [11%] (base=11439)
+  <- ACK=11500: window 11498 -> 11500/102400
+
+[timeout] windowBase=11501 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11567 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11603 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11627 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11755 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11826 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=11894 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=12000/102399 [11%] (base=11958)
+
+[timeout] windowBase=11959 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12024 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12110 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12190 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12285 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12350 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=12500/102399 [12%] (base=12458)
+
+[timeout] windowBase=12458 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12539 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12611 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12738 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12811 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12891 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=13000/102399 [12%] (base=12955)
+
+[timeout] windowBase=12964 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=12967 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13052 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13148 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13227 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13304 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13386 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=13500/102399 [13%] (base=13450)
+
+[timeout] windowBase=13482 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13561 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13650 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13726 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13801 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=13876 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=14000/102399 [13%] (base=13943)
+
+[timeout] windowBase=13943 stuck for 0.11s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14007 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14110 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14183 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14251 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14351 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=14500/102399 [14%] (base=14471)
+
+[timeout] windowBase=14499 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14563 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14650 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14781 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=14897 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=15000/102399 [14%] (base=14961)
+
+[timeout] windowBase=14980 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15071 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15146 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15213 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15311 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15355 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15434 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=15500/102399 [15%] (base=15473)
+
+[timeout] windowBase=15473 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15555 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15644 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15710 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15773 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15837 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=15907 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=16000/102399 [15%] (base=15971)
+
+[timeout] windowBase=15987 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16062 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16144 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16312 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=16500/102399 [16%] (base=16451)
+
+[timeout] windowBase=16475 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16548 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16621 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16694 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16769 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=16865 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=17000/102399 [16%] (base=16965)
+
+[timeout] windowBase=16965 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17077 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17224 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17288 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17353 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17430 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=17500/102399 [17%] (base=17490)
+  <- ACK=17500: window 17499 -> 17500/102400
+
+[timeout] windowBase=17506 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17512 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17589 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17654 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17768 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17851 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=17916 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=18000/102399 [17%] (base=17980)
+
+[timeout] windowBase=17986 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18089 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18152 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18217 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18307 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18386 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=18500/102399 [18%] (base=18450)
+
+[timeout] windowBase=18451 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18451 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18530 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18603 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18679 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18800 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=18870 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=19000/102399 [18%] (base=18986)
+
+[timeout] windowBase=18986 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19059 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19136 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19248 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19289 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19338 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19408 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=19500/102399 [19%] (base=19439)
+
+[timeout] windowBase=19439 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19513 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19695 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19777 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=19845 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=20000/102399 [19%] (base=19965)
+
+[timeout] windowBase=19965 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20057 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20158 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20262 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20330 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20406 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=20500/102399 [20%] (base=20470)
+  <- ACK=20500: window 20499 -> 20500/102400
+
+[timeout] windowBase=20517 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20586 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20720 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20798 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=20867 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=21000/102399 [20%] (base=20948)
+
+[timeout] windowBase=20948 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21014 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21092 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21159 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21228 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21303 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21397 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=21500/102399 [20%] (base=21459)
+
+[timeout] windowBase=21494 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21608 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21610 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21784 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21854 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=21926 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=22000/102399 [21%] (base=21990)
+
+[timeout] windowBase=21999 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22087 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22151 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22238 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22313 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22323 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22410 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=22500/102399 [21%] (base=22474)
+
+[timeout] windowBase=22474 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22631 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22716 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22796 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=22890 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=23000/102399 [22%] (base=22954)
+
+[timeout] windowBase=22957 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=23000: window 22986 -> 23000/102400
+
+[timeout] windowBase=23045 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23123 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23205 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23286 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23364 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=23500/102399 [22%] (base=23447)
+
+[timeout] windowBase=23447 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23543 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23619 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23733 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23845 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=23917 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=24000/102399 [23%] (base=23981)
+  <- ACK=24000: window 23999 -> 24000/102400
+
+[timeout] windowBase=24017 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24089 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24102 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24263 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24372 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24388 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=24500/102399 [23%] (base=24452)
+
+[timeout] windowBase=24455 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24538 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24624 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24699 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24765 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=24883 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=25000/102399 [24%] (base=24947)
+
+[timeout] windowBase=24976 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25079 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25160 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25241 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25348 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25414 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=25500/102399 [24%] (base=25491)
+  <- ACK=25500: window 25499 -> 25500/102400
+
+[timeout] windowBase=25578 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25643 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25730 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25802 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25891 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=25916 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=26000/102399 [25%] (base=25980)
+
+[timeout] windowBase=25986 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26042 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26217 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26298 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26404 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=26500/102399 [25%] (base=26481)
+
+[timeout] windowBase=26481 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26573 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26648 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26725 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26813 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=26860 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=27000/102399 [26%] (base=26982)
+  <- ACK=27000: window 26999 -> 27000/102400
+
+[timeout] windowBase=27003 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=27088 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=27171 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=27244 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=27434 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=27500/102399 [26%] (base=27498)
+  <- ACK=27500: window 27499 -> 27500/102400
+
+[timeout] windowBase=27500 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=27636 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=27706 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=27828 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=28000/102399 [27%] (base=27948)
+
+[timeout] windowBase=27948 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28019 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28094 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28172 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28267 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28341 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28410 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=28500/102399 [27%] (base=28474)
+  <- ACK=28500: window 28499 -> 28500/102400
+
+[timeout] windowBase=28508 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28590 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28654 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28691 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28765 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=28838 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=29000/102399 [28%] (base=28961)
+
+[timeout] windowBase=28997 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29063 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29092 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29198 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29301 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29407 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=29500/102399 [28%] (base=29447)
+  <- ACK=29500: window 29499 -> 29500/102400
+
+[timeout] windowBase=29500 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29599 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29704 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29772 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29819 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=29889 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=30000/102399 [29%] (base=29937)
+
+[timeout] windowBase=29937 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30071 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30145 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30224 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30313 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30408 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=30500/102399 [29%] (base=30472)
+  <- ACK=30500: window 30499 -> 30500/102400
+
+[timeout] windowBase=30536 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30605 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30773 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=30843 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=31000/102399 [30%] (base=30949)
+
+[timeout] windowBase=30949 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31027 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31117 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31206 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31206 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31274 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31394 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=31500/102399 [30%] (base=31458)
+
+[timeout] windowBase=31460 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31526 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31590 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31680 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31749 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31837 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=31886 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=32000/102399 [31%] (base=31950)
+
+[timeout] windowBase=31969 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32056 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32168 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32240 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32316 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32417 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=32500/102399 [31%] (base=32481)
+  <- ACK=32500: window 32499 -> 32500/102400
+
+[timeout] windowBase=32512 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32589 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32656 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32721 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32805 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=32875 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=33000/102399 [32%] (base=32939)
+
+[timeout] windowBase=32940 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33069 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33184 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33269 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33345 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33345 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=33500/102399 [32%] (base=33452)
+
+[timeout] windowBase=33452 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33525 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33614 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33697 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33795 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=33861 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=34000/102399 [33%] (base=33960)
+
+[timeout] windowBase=33960 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34031 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34122 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34186 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34340 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34430 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=34500/102399 [33%] (base=34494)
+  <- ACK=34500: window 34499 -> 34500/102400
+
+[timeout] windowBase=34503 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34567 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34694 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34777 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34853 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=34923 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=35000/102399 [34%] (base=34955)
+
+[timeout] windowBase=34955 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35055 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35133 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35257 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35330 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35403 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=35500/102399 [34%] (base=35467)
+  <- ACK=35500: window 35499 -> 35500/102400
+
+[timeout] windowBase=35506 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35647 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35647 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35719 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35719 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35790 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35858 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=35929 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=36000/102399 [35%] (base=35993)
+  <- ACK=36000: window 35999 -> 36000/102400
+
+[timeout] windowBase=36015 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36118 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36185 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36298 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36391 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=36500/102399 [35%] (base=36439)
+
+[timeout] windowBase=36439 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36509 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36617 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36681 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36746 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=36827 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=37000/102399 [36%] (base=36950)
+
+[timeout] windowBase=36955 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37028 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37113 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37139 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37217 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37309 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=37500/102399 [36%] (base=37448)
+
+[timeout] windowBase=37448 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37556 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37676 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37743 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37815 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=37888 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=38000/102399 [37%] (base=37952)
+  <- ACK=38000: window 37999 -> 38000/102400
+
+[timeout] windowBase=38026 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38076 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38145 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38247 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38318 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38412 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=38500/102399 [37%] (base=38476)
+
+[timeout] windowBase=38489 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38587 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38656 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38750 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38832 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=38899 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=39000/102399 [38%] (base=38982)
+
+[timeout] windowBase=38982 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=39000: window 38982 -> 39000/102400
+
+[timeout] windowBase=39047 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39111 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39123 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39123 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39228 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39298 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39362 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39436 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=39500/102399 [38%] (base=39486)
+
+[timeout] windowBase=39486 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39572 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39637 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39707 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39789 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39857 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=39923 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=40000/102399 [39%] (base=39947)
+
+[timeout] windowBase=39947 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40027 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40094 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40217 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40286 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40354 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40420 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=40500/102399 [39%] (base=40443)
+
+[timeout] windowBase=40495 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40577 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40664 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40804 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=40868 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=41000/102399 [40%] (base=40958)
+
+[timeout] windowBase=40958 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41043 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41163 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41241 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41313 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41400 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=41500/102399 [40%] (base=41462)
+  <- ACK=41500: window 41499 -> 41500/102400
+
+[timeout] windowBase=41505 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41572 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41650 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41724 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41808 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41883 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=41920 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=42000/102399 [41%] (base=41984)
+  <- ACK=42000: window 41999 -> 42000/102400
+
+[timeout] windowBase=42001 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42042 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42170 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42234 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42306 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42396 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=42500/102399 [41%] (base=42460)
+  <- ACK=42500: window 42499 -> 42500/102400
+
+[timeout] windowBase=42507 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42592 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42592 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42682 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42763 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42854 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=42918 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=43000/102399 [41%] (base=42982)
+
+[timeout] windowBase=42987 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43062 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43155 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43227 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43318 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43403 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=43500/102399 [42%] (base=43466)
+  <- ACK=43500: window 43499 -> 43500/102400
+
+[timeout] windowBase=43522 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43646 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43713 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43762 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43827 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43827 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=43932 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=44000/102399 [42%] (base=43996)
+  <- ACK=44000: window 43999 -> 44000/102400
+
+[timeout] windowBase=44034 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44107 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44188 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44189 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44265 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44348 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44415 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=44500/102399 [43%] (base=44479)
+  <- ACK=44500: window 44499 -> 44500/102400
+
+[timeout] windowBase=44524 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44595 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44670 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44740 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44804 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=44928 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=45000/102399 [43%] (base=44992)
+
+[timeout] windowBase=44995 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45063 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45133 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45216 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45276 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45345 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=45500/102399 [44%] (base=45438)
+
+[timeout] windowBase=45496 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45578 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45648 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45713 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45800 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45817 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=45913 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=46000/102399 [44%] (base=45974)
+
+[timeout] windowBase=45995 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=46000: window 45995 -> 46000/102400
+
+[timeout] windowBase=46070 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46151 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46228 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46304 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46404 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=46500/102399 [45%] (base=46468)
+
+[timeout] windowBase=46470 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46535 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46654 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46661 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46765 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=46831 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=47000/102399 [45%] (base=46953)
+
+[timeout] windowBase=46975 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47045 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47120 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47120 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47189 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47265 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47365 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47434 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=47500/102399 [46%] (base=47498)
+  <- ACK=47500: window 47499 -> 47500/102400
+
+[timeout] windowBase=47519 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47592 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47686 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47760 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=47861 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=48000/102399 [46%] (base=47945)
+
+[timeout] windowBase=47955 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48025 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48104 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48184 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48267 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48267 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48351 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48431 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48431 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=48500/102399 [47%] (base=48495)
+  <- ACK=48500: window 48499 -> 48500/102400
+
+[timeout] windowBase=48509 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48579 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48675 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48770 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48842 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=48908 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=49000/102399 [47%] (base=48972)
+  <- ACK=49000: window 48999 -> 49000/102400
+
+[timeout] windowBase=49038 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49103 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49193 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49279 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49435 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=49500/102399 [48%] (base=49499)
+  <- ACK=49500: window 49499 -> 49500/102400
+
+[timeout] windowBase=49532 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49602 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49602 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49690 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49754 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49829 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=49903 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=50000/102399 [48%] (base=49967)
+  <- ACK=50000: window 49999 -> 50000/102400
+
+[timeout] windowBase=50006 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50090 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50166 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50248 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50368 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=50500/102399 [49%] (base=50458)
+
+[timeout] windowBase=50487 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50589 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50653 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50717 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50789 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=50882 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=51000/102399 [49%] (base=50945)
+
+[timeout] windowBase=50948 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51024 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51121 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51229 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51318 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51318 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51388 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=51500/102399 [50%] (base=51452)
+
+[timeout] windowBase=51481 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51558 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51624 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51696 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51766 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51867 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=51934 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=52000/102399 [50%] (base=51998)
+  <- ACK=52000: window 51999 -> 52000/102400
+
+[timeout] windowBase=52014 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52079 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52174 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52249 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52333 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52414 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=52500/102399 [51%] (base=52478)
+
+[timeout] windowBase=52491 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52577 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52699 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52768 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52835 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=52925 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=53000/102399 [51%] (base=52989)
+  <- ACK=53000: window 52999 -> 53000/102400
+
+[timeout] windowBase=53014 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53115 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53241 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53241 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53306 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53374 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53429 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=53500/102399 [52%] (base=53493)
+  <- ACK=53500: window 53499 -> 53500/102400
+
+[timeout] windowBase=53573 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53670 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53740 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53812 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=53876 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=54000/102399 [52%] (base=53946)
+  <- ACK=54000: window 53999 -> 54000/102400
+
+[timeout] windowBase=54007 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54105 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54217 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54299 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54398 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=54500/102399 [53%] (base=54462)
+
+[timeout] windowBase=54497 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54609 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54720 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54791 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=54874 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=55000/102399 [53%] (base=54938)
+
+[timeout] windowBase=54985 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55058 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55061 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55136 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55228 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55302 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55375 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=55500/102399 [54%] (base=55439)
+
+[timeout] windowBase=55439 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55553 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55656 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55757 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55828 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=55906 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=56000/102399 [54%] (base=55973)
+
+[timeout] windowBase=55973 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56064 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56142 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56224 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56319 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56385 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=56500/102399 [55%] (base=56449)
+
+[timeout] windowBase=56463 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56527 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56655 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56660 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56767 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56796 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=56885 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=57000/102399 [55%] (base=56949)
+
+[timeout] windowBase=56949 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57044 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57124 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57243 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57362 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57430 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=57500/102399 [56%] (base=57494)
+
+[timeout] windowBase=57498 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57659 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57750 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57820 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=57925 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=58000/102399 [56%] (base=57989)
+  <- ACK=58000: window 57999 -> 58000/102400
+
+[timeout] windowBase=58051 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58120 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58138 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58214 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58297 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58372 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=58500/102399 [57%] (base=58441)
+
+[timeout] windowBase=58444 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58513 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58582 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58660 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58766 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58836 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58912 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=58916 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=59000/102399 [57%] (base=58980)
+
+[timeout] windowBase=58984 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59049 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59114 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59193 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59257 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59374 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=59500/102399 [58%] (base=59438)
+
+[timeout] windowBase=59438 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59442 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59550 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59631 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59663 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59740 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=59884 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=60000/102399 [58%] (base=59948)
+
+[timeout] windowBase=59966 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60001 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60077 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60146 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60218 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60285 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60356 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60422 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=60500/102399 [59%] (base=60486)
+
+[timeout] windowBase=60486 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60570 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60661 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60775 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=60890 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=61000/102399 [59%] (base=60975)
+
+[timeout] windowBase=60978 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61020 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61089 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61147 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61214 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61288 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61384 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=61500/102399 [60%] (base=61448)
+
+[timeout] windowBase=61485 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61594 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61674 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61765 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61859 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=61924 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=62000/102399 [60%] (base=61988)
+  <- ACK=62000: window 61999 -> 62000/102400
+
+[timeout] windowBase=62011 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62119 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62183 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62288 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62358 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62430 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=62500/102399 [61%] (base=62494)
+  <- ACK=62500: window 62499 -> 62500/102400
+
+[timeout] windowBase=62560 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62684 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62820 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=62901 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=63000/102399 [61%] (base=62965)
+  <- ACK=63000: window 62999 -> 63000/102400
+
+[timeout] windowBase=63033 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63132 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63219 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63285 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63354 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=63500/102399 [62%] (base=63440)
+
+[timeout] windowBase=63440 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63521 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63607 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63705 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63776 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63846 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=63911 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=64000/102399 [62%] (base=63975)
+  <- ACK=64000: window 63999 -> 64000/102400
+
+[timeout] windowBase=64021 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64129 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64206 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64247 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64283 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64283 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64360 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=64500/102399 [62%] (base=64452)
+
+[timeout] windowBase=64452 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64594 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64596 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64710 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64780 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64852 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=64931 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=65000/102399 [63%] (base=64969)
+  <- ACK=65000: window 64999 -> 65000/102400
+
+[timeout] windowBase=65039 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65130 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65198 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65277 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65358 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=65500/102399 [63%] (base=65480)
+
+[timeout] windowBase=65488 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65596 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65688 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65760 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65835 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65901 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=65901 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=66000/102399 [64%] (base=65965)
+
+[timeout] windowBase=65970 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66079 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66079 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66147 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66215 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66279 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66354 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66419 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=66500/102399 [64%] (base=66491)
+  <- ACK=66500: window 66499 -> 66500/102400
+
+[timeout] windowBase=66561 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66618 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66705 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=66775 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=67000/102399 [65%] (base=66956)
+  <- ACK=67000: window 66999 -> 67000/102400
+
+[timeout] windowBase=67022 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67129 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67199 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67269 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67349 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67417 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=67500/102399 [65%] (base=67481)
+
+[timeout] windowBase=67482 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67548 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67626 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67701 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67765 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=67874 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=68000/102399 [66%] (base=67938)
+
+[timeout] windowBase=67957 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68021 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68090 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68127 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68269 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68361 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68429 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=68500/102399 [66%] (base=68493)
+
+[timeout] windowBase=68494 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=68500: window 68494 -> 68500/102400
+
+[timeout] windowBase=68533 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68617 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68707 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68788 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=68919 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=69000/102399 [67%] (base=68983)
+  <- ACK=69000: window 68999 -> 69000/102400
+
+[timeout] windowBase=69023 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69120 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69194 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69295 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69377 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=69500/102399 [67%] (base=69441)
+
+[timeout] windowBase=69459 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69543 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69608 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69647 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69729 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69804 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69808 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=69893 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=70000/102399 [68%] (base=69957)
+
+[timeout] windowBase=69976 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70052 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70065 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70143 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70263 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70279 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70327 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70397 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=70500/102399 [68%] (base=70461)
+
+[timeout] windowBase=70482 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70558 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70663 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70728 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70795 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=70888 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=71000/102399 [69%] (base=70952)
+
+[timeout] windowBase=70987 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71052 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71119 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71193 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71235 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71337 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71406 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=71500/102399 [69%] (base=71465)
+
+[timeout] windowBase=71465 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71465 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71549 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71635 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71660 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71745 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71810 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=71894 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=72000/102399 [70%] (base=71958)
+
+[timeout] windowBase=71960 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72042 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72127 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72223 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72288 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72331 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72397 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=72500/102399 [70%] (base=72461)
+
+[timeout] windowBase=72464 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72581 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72609 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72687 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72741 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72805 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=72870 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=73000/102399 [71%] (base=72940)
+
+[timeout] windowBase=72940 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73015 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73087 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73154 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73274 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73356 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=73500/102399 [71%] (base=73480)
+  <- ACK=73500: window 73499 -> 73500/102400
+
+[timeout] windowBase=73525 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73583 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73583 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73674 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73769 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73836 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73849 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=73922 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=74000/102399 [72%] (base=73942)
+
+[timeout] windowBase=73996 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74104 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74218 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74387 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=74500/102399 [72%] (base=74451)
+
+[timeout] windowBase=74473 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=74500: window 74494 -> 74500/102400
+
+[timeout] windowBase=74542 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74542 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74699 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74732 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74798 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=74871 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=75000/102399 [73%] (base=74952)
+
+[timeout] windowBase=74952 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75068 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75135 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75208 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75273 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75301 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75373 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=75500/102399 [73%] (base=75447)
+
+[timeout] windowBase=75460 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75528 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75609 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75685 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75793 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=75858 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=76000/102399 [74%] (base=75938)
+
+[timeout] windowBase=75938 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76005 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76100 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76179 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76269 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76339 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76411 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=76500/102399 [74%] (base=76475)
+
+[timeout] windowBase=76481 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76559 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76627 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76703 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76795 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=76894 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=77000/102399 [75%] (base=76958)
+
+[timeout] windowBase=76959 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77037 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77107 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77174 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77279 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77366 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77435 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=77500/102399 [75%] (base=77499)
+  <- ACK=77500: window 77499 -> 77500/102400
+
+[timeout] windowBase=77507 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77552 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77640 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77754 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77829 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=77901 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=78000/102399 [76%] (base=77965)
+  <- ACK=78000: window 77999 -> 78000/102400
+
+[timeout] windowBase=78033 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=78112 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=78178 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=78247 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=78381 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=78500/102399 [76%] (base=78445)
+
+[timeout] windowBase=78453 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=78618 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=78766 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=78866 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=79000/102399 [77%] (base=78977)
+
+[timeout] windowBase=78977 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79035 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79125 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79143 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79246 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79310 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79382 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=79500/102399 [77%] (base=79446)
+
+[timeout] windowBase=79464 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79533 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79624 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79710 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79783 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79863 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79928 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=79928 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=80000/102399 [78%] (base=79992)
+  <- ACK=80000: window 79999 -> 80000/102400
+
+[timeout] windowBase=80006 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80099 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80175 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80244 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80319 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80348 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80419 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=80500/102399 [78%] (base=80483)
+
+[timeout] windowBase=80495 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80495 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80665 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80753 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=80905 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=81000/102399 [79%] (base=80969)
+
+[timeout] windowBase=80978 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81043 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81156 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81156 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81246 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81325 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81325 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81399 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=81500/102399 [79%] (base=81463)
+
+[timeout] windowBase=81480 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81554 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81622 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81733 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81830 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=81876 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=82000/102399 [80%] (base=81940)
+
+[timeout] windowBase=81951 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82048 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82100 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82203 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82323 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82342 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=82500/102399 [80%] (base=82465)
+
+[timeout] windowBase=82488 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82562 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82626 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82692 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82764 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82839 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=82936 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=83000: window 82936 -> 83000/102400
+  -> send seq=83000/102399 [81%] (base=83000)
+
+[timeout] windowBase=83025 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83123 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83195 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83217 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83298 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83298 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83364 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=83500/102399 [81%] (base=83463)
+
+[timeout] windowBase=83463 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83598 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83678 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83772 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83851 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=83933 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=84000/102399 [82%] (base=83937)
+
+[timeout] windowBase=83937 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84029 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84116 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84199 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84313 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84407 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=84500/102399 [82%] (base=84471)
+  <- ACK=84500: window 84499 -> 84500/102400
+
+[timeout] windowBase=84507 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84606 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84684 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84748 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84836 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=84906 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=85000/102399 [83%] (base=84970)
+
+[timeout] windowBase=84988 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85054 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85192 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85256 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85328 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85411 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=85500/102399 [83%] (base=85475)
+  <- ACK=85500: window 85499 -> 85500/102400
+
+[timeout] windowBase=85514 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85578 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85693 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85701 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85765 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=85843 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=86000/102399 [83%] (base=85967)
+
+[timeout] windowBase=85967 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=86000: window 85967 -> 86000/102400
+
+[timeout] windowBase=86009 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86153 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86181 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86181 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86260 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86351 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=86500/102399 [84%] (base=86472)
+
+[timeout] windowBase=86476 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86589 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86674 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86754 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86823 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86854 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=86929 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=87000/102399 [84%] (base=86947)
+
+[timeout] windowBase=86998 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87074 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87108 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87173 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87260 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87274 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87358 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87431 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87431 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=87500/102399 [85%] (base=87495)
+  <- ACK=87500: window 87499 -> 87500/102400
+
+[timeout] windowBase=87517 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87589 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87663 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87727 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=87865 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=88000/102399 [85%] (base=87989)
+  <- ACK=88000: window 87999 -> 88000/102400
+
+[timeout] windowBase=88007 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88122 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88122 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88233 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88313 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88377 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=88500/102399 [86%] (base=88441)
+
+[timeout] windowBase=88444 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88522 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88592 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88703 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88776 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88833 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=88929 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=89000/102399 [86%] (base=88993)
+  <- ACK=89000: window 88999 -> 89000/102400
+
+[timeout] windowBase=89039 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89077 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89077 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89201 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89282 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89350 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89390 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=89500/102399 [87%] (base=89454)
+
+[timeout] windowBase=89476 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89565 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89638 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89734 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89746 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89826 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=89869 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=90000/102399 [87%] (base=89966)
+
+[timeout] windowBase=89966 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90032 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90098 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90163 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90230 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90303 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90412 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=90500/102399 [88%] (base=90476)
+
+[timeout] windowBase=90483 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90629 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90699 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90777 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90843 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=91000/102399 [88%] (base=90942)
+
+[timeout] windowBase=90942 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=90942 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91023 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91120 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91219 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91303 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91393 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=91500/102399 [89%] (base=91453)
+
+[timeout] windowBase=91489 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91598 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91697 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91808 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=91880 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=92000/102399 [89%] (base=91944)
+
+[timeout] windowBase=91949 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92031 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92069 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92143 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92151 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92222 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92252 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92317 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92385 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=92500/102399 [90%] (base=92449)
+
+[timeout] windowBase=92463 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=92500: window 92485 -> 92500/102400
+
+[timeout] windowBase=92545 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92620 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92687 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92753 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92818 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92915 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=92915 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=93000/102399 [90%] (base=92979)
+  <- ACK=93000: window 92999 -> 93000/102400
+
+[timeout] windowBase=93003 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93014 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93110 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93180 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93249 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93328 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=93500/102399 [91%] (base=93438)
+
+[timeout] windowBase=93438 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93572 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93674 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93754 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93837 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=93916 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=94000/102399 [91%] (base=93980)
+
+[timeout] windowBase=93996 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94080 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94146 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94212 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94236 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94341 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=94500/102399 [92%] (base=94450)
+
+[timeout] windowBase=94450 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94559 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94629 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94709 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94810 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=94935 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=95000/102399 [92%] (base=94999)
+  <- ACK=95000: window 94999 -> 95000/102400
+
+[timeout] windowBase=95017 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95026 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95096 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95164 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95269 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95352 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=95500/102399 [93%] (base=95475)
+  <- ACK=95500: window 95499 -> 95500/102400
+
+[timeout] windowBase=95533 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95602 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95680 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95750 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95845 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=95936 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=96000/102399 [93%] (base=95976)
+  <- ACK=96000: window 95985 -> 96000/102400
+
+[timeout] windowBase=96020 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96107 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96194 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96342 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96408 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96428 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=96500/102399 [94%] (base=96456)
+
+[timeout] windowBase=96456 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96579 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96597 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96707 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96814 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=96890 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=97000/102399 [94%] (base=96963)
+
+[timeout] windowBase=96975 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97065 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97152 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97262 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97309 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97384 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=97500/102399 [95%] (base=97448)
+  <- ACK=97500: window 97499 -> 97500/102400
+
+[timeout] windowBase=97515 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97518 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97585 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97674 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97800 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=97875 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=98000/102399 [95%] (base=97944)
+
+[timeout] windowBase=97944 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98074 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98174 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98242 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98385 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=98500/102399 [96%] (base=98449)
+
+[timeout] windowBase=98492 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98564 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98687 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98860 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=98904 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=99000/102399 [96%] (base=98968)
+
+[timeout] windowBase=98980 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99044 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99144 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99144 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99212 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99212 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99285 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99373 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=99500/102399 [97%] (base=99437)
+
+[timeout] windowBase=99463 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99535 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99604 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99674 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99771 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99835 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=99912 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=100000/102399 [97%] (base=99974)
+
+[timeout] windowBase=99993 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100061 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100167 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100337 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=100500/102399 [98%] (base=100460)
+
+[timeout] windowBase=100494 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100613 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100706 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100822 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100890 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=100926 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=101000/102399 [98%] (base=100960)
+
+[timeout] windowBase=100960 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101042 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101107 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101183 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101248 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101316 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101378 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=101500/102399 [99%] (base=101442)
+
+[timeout] windowBase=101454 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  <- ACK=101500: window 101465 -> 101500/102400
+
+[timeout] windowBase=101548 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101629 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101688 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101845 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101916 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=102000/102399 [99%] (base=101947)
+
+[timeout] windowBase=101947 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=101947 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=102018 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=102082 stuck for 0.1s
+[timeout] retransmitting 64 packets
+
+[timeout] windowBase=102198 stuck for 0.1s
+[timeout] retransmitting 64 packets
+  -> send seq=102399/102399 [100%] (base=102339)
+
+[timeout] windowBase=102339 stuck for 0.1s
+[timeout] retransmitting 61 packets
+
+[timeout] windowBase=102387 stuck for 0.1s
+[timeout] retransmitting 13 packets
+  <- ACK=102400: window 102387 -> 102400/102400
+
+[done] all 102400 chunks acknowledged
+
+[fin] sending finish
+[fin] got FIN_ACK (verified), transfer complete!
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-18 01:05:58
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  184078
+Number of retransmitted packets:         81674
+Number of packets received from client:  132611
+Time duration of the file transfer:      00:03:25
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+report save to Server_Report.txt
+
+server complete
+
+socket closed
+[ec2-user@ip-172-31-28-20 ~]$

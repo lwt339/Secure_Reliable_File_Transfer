@@ -1,0 +1,2345 @@
+[ec2-user@ip-172-31-28-20 ~]$ sudo tc qdisc del dev ens5 root
+[ec2-user@ip-172-31-28-20 ~]$ sudo tc qdisc add dev ens5 root netem loss 2%
+[ec2-user@ip-172-31-28-20 ~]$ sudo python3 SRFT_UDPServer.py
+
+
+ Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+ CS5700 SRFT Server
+ Phase 1: Reliable File Transfer
+
+
+[socket] creating server socket
+    (Linux) SOCK_RAW + IP_HDRINCL
+  server socket created
+
+[wait] server listening on 172.31.28.20:12000
+ waiting for client to connect
+
+[got] received file request
+ client: 172.31.21.57:12001
+ file requested: test_100mb_file
+
+[file] test_100mb_file
+  size: 104857600 bytes (102400 KB)
+  MD5:    2f282b84e7e608d5852449ed940bfc51
+  SHA256: 20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e
+  chunks: 102400 (each up to 1024 bytes)
+[send] file info sent to client (x3)
+  [clean] cleared 3 stale packets from buffer
+
+[transfer] starting file transfer
+  window size: 256
+  timeout: 0.05s
+  chunk size: 1024 bytes
+  -> send seq=0/102399 [0%] (base=0)
+  -> send seq=100/102399 [0%] (base=0)
+  -> send seq=200/102399 [0%] (base=0)
+
+[timeout] windowBase=33 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=300/102399 [0%] (base=81)
+  <- ACK=100: window 81 -> 100/102400
+
+[timeout] windowBase=143 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=400/102399 [0%] (base=332)
+  -> send seq=500/102399 [0%] (base=332)
+  -> send seq=600/102399 [0%] (base=399)
+  <- ACK=400: window 399 -> 400/102400
+  -> send seq=700/102399 [0%] (base=458)
+
+[timeout] windowBase=470 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=800/102399 [0%] (base=564)
+  -> send seq=900/102399 [0%] (base=726)
+  -> send seq=1000/102399 [0%] (base=781)
+
+[timeout] windowBase=781 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1100/102399 [1%] (base=974)
+  -> send seq=1200/102399 [1%] (base=974)
+
+[timeout] windowBase=1038 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1300/102399 [1%] (base=1099)
+  -> send seq=1400/102399 [1%] (base=1197)
+  <- ACK=1300: window 1299 -> 1300/102400
+  -> send seq=1500/102399 [1%] (base=1316)
+
+[timeout] windowBase=1316 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1600/102399 [1%] (base=1418)
+  -> send seq=1700/102399 [1%] (base=1591)
+  -> send seq=1800/102399 [1%] (base=1591)
+
+[timeout] windowBase=1591 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=1900/102399 [1%] (base=1683)
+  -> send seq=2000/102399 [1%] (base=1884)
+  -> send seq=2100/102399 [2%] (base=1884)
+
+[timeout] windowBase=1884 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=2200/102399 [2%] (base=2007)
+  -> send seq=2300/102399 [2%] (base=2150)
+  -> send seq=2400/102399 [2%] (base=2150)
+
+[timeout] windowBase=2150 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=2500/102399 [2%] (base=2254)
+  -> send seq=2600/102399 [2%] (base=2406)
+  -> send seq=2700/102399 [2%] (base=2492)
+  <- ACK=2500: window 2499 -> 2500/102400
+
+[timeout] windowBase=2503 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=2800/102399 [2%] (base=2662)
+  -> send seq=2900/102399 [2%] (base=2662)
+  -> send seq=3000/102399 [2%] (base=2774)
+
+[timeout] windowBase=2774 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3100/102399 [3%] (base=2937)
+  -> send seq=3200/102399 [3%] (base=3059)
+  -> send seq=3300/102399 [3%] (base=3059)
+
+[timeout] windowBase=3059 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3400/102399 [3%] (base=3174)
+  -> send seq=3500/102399 [3%] (base=3319)
+  -> send seq=3600/102399 [3%] (base=3361)
+
+[timeout] windowBase=3361 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3700/102399 [3%] (base=3483)
+  -> send seq=3800/102399 [3%] (base=3617)
+
+[timeout] windowBase=3637 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=3900/102399 [3%] (base=3717)
+  -> send seq=4000/102399 [3%] (base=3868)
+  -> send seq=4100/102399 [4%] (base=3868)
+
+[timeout] windowBase=3918 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=4200/102399 [4%] (base=4002)
+  -> send seq=4300/102399 [4%] (base=4123)
+  -> send seq=4400/102399 [4%] (base=4183)
+
+[timeout] windowBase=4183 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=4500/102399 [4%] (base=4290)
+  -> send seq=4600/102399 [4%] (base=4439)
+  <- ACK=4500: window 4499 -> 4500/102400
+  -> send seq=4700/102399 [4%] (base=4504)
+
+[timeout] windowBase=4504 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=4800/102399 [4%] (base=4564)
+  -> send seq=4900/102399 [4%] (base=4762)
+  -> send seq=5000/102399 [4%] (base=4762)
+
+[timeout] windowBase=4762 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5100/102399 [4%] (base=4928)
+  -> send seq=5200/102399 [5%] (base=4967)
+
+[timeout] windowBase=4967 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5300/102399 [5%] (base=5079)
+
+[timeout] windowBase=5079 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5400/102399 [5%] (base=5308)
+  -> send seq=5500/102399 [5%] (base=5308)
+  -> send seq=5600/102399 [5%] (base=5361)
+
+[timeout] windowBase=5398 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=5700/102399 [5%] (base=5654)
+  -> send seq=5800/102399 [5%] (base=5654)
+  -> send seq=5900/102399 [5%] (base=5654)
+
+[timeout] windowBase=5699 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6000/102399 [5%] (base=5773)
+  -> send seq=6100/102399 [5%] (base=5955)
+  -> send seq=6200/102399 [6%] (base=5955)
+
+[timeout] windowBase=6037 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6300/102399 [6%] (base=6142)
+
+[timeout] windowBase=6142 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6400/102399 [6%] (base=6325)
+  -> send seq=6500/102399 [6%] (base=6325)
+  -> send seq=6600/102399 [6%] (base=6415)
+
+[timeout] windowBase=6415 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=6700/102399 [6%] (base=6453)
+  -> send seq=6800/102399 [6%] (base=6695)
+  -> send seq=6900/102399 [6%] (base=6695)
+
+[timeout] windowBase=6695 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7000/102399 [6%] (base=6878)
+  -> send seq=7100/102399 [6%] (base=6878)
+  -> send seq=7200/102399 [7%] (base=6953)
+
+[timeout] windowBase=6953 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7300/102399 [7%] (base=7059)
+  -> send seq=7400/102399 [7%] (base=7214)
+
+[timeout] windowBase=7214 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7500/102399 [7%] (base=7331)
+  -> send seq=7600/102399 [7%] (base=7470)
+  -> send seq=7700/102399 [7%] (base=7470)
+
+[timeout] windowBase=7488 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=7800/102399 [7%] (base=7563)
+  -> send seq=7900/102399 [7%] (base=7696)
+  -> send seq=8000/102399 [7%] (base=7785)
+
+[timeout] windowBase=7785 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8100/102399 [7%] (base=7846)
+  -> send seq=8200/102399 [8%] (base=8076)
+  -> send seq=8300/102399 [8%] (base=8076)
+
+[timeout] windowBase=8076 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8400/102399 [8%] (base=8267)
+  -> send seq=8500/102399 [8%] (base=8267)
+  -> send seq=8600/102399 [8%] (base=8361)
+
+[timeout] windowBase=8361 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8700/102399 [8%] (base=8542)
+
+[timeout] windowBase=8542 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=8800/102399 [8%] (base=8649)
+  -> send seq=8900/102399 [8%] (base=8649)
+  <- ACK=8800: window 8799 -> 8800/102400
+  -> send seq=9000/102399 [8%] (base=8804)
+
+[timeout] windowBase=8837 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9100/102399 [8%] (base=8880)
+
+[timeout] windowBase=8880 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9200/102399 [8%] (base=9136)
+  -> send seq=9300/102399 [9%] (base=9136)
+  -> send seq=9400/102399 [9%] (base=9168)
+
+[timeout] windowBase=9168 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9500/102399 [9%] (base=9313)
+  -> send seq=9600/102399 [9%] (base=9415)
+  -> send seq=9700/102399 [9%] (base=9496)
+
+[timeout] windowBase=9496 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=9800/102399 [9%] (base=9693)
+  -> send seq=9900/102399 [9%] (base=9693)
+  -> send seq=10000/102399 [9%] (base=9752)
+
+[timeout] windowBase=9772 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10100/102399 [9%] (base=9873)
+  -> send seq=10200/102399 [9%] (base=10030)
+
+[timeout] windowBase=10030 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10300/102399 [10%] (base=10126)
+  <- ACK=10300: window 10299 -> 10300/102400
+  -> send seq=10400/102399 [10%] (base=10305)
+  -> send seq=10500/102399 [10%] (base=10305)
+
+[timeout] windowBase=10321 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10600/102399 [10%] (base=10403)
+
+[timeout] windowBase=10403 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=10700/102399 [10%] (base=10659)
+  -> send seq=10800/102399 [10%] (base=10659)
+  -> send seq=10900/102399 [10%] (base=10659)
+  <- ACK=10700: window 10699 -> 10700/102400
+
+[timeout] windowBase=10729 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=11000/102399 [10%] (base=10827)
+  -> send seq=11100/102399 [10%] (base=11034)
+  -> send seq=11200/102399 [10%] (base=11034)
+
+[timeout] windowBase=11034 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=11300/102399 [11%] (base=11103)
+  -> send seq=11400/102399 [11%] (base=11303)
+  -> send seq=11500/102399 [11%] (base=11303)
+
+[timeout] windowBase=11303 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=11600/102399 [11%] (base=11395)
+  -> send seq=11700/102399 [11%] (base=11559)
+  -> send seq=11800/102399 [11%] (base=11559)
+
+[timeout] windowBase=11566 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=11900/102399 [11%] (base=11678)
+  -> send seq=12000/102399 [11%] (base=11880)
+  -> send seq=12100/102399 [11%] (base=11880)
+
+[timeout] windowBase=11880 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=12200/102399 [11%] (base=11988)
+  -> send seq=12300/102399 [12%] (base=12139)
+
+[timeout] windowBase=12139 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=12400/102399 [12%] (base=12283)
+  -> send seq=12500/102399 [12%] (base=12283)
+  -> send seq=12600/102399 [12%] (base=12395)
+  <- ACK=12400: window 12399 -> 12400/102400
+  -> send seq=12700/102399 [12%] (base=12475)
+
+[timeout] windowBase=12475 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=12800/102399 [12%] (base=12639)
+  -> send seq=12900/102399 [12%] (base=12733)
+  <- ACK=12800: window 12799 -> 12800/102400
+  -> send seq=13000/102399 [12%] (base=12894)
+  -> send seq=13100/102399 [12%] (base=12894)
+
+[timeout] windowBase=12894 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=13200/102399 [12%] (base=12994)
+  -> send seq=13300/102399 [12%] (base=13166)
+  -> send seq=13400/102399 [13%] (base=13166)
+
+[timeout] windowBase=13166 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=13500/102399 [13%] (base=13270)
+  -> send seq=13600/102399 [13%] (base=13422)
+  -> send seq=13700/102399 [13%] (base=13452)
+
+[timeout] windowBase=13452 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=13800/102399 [13%] (base=13744)
+  -> send seq=13900/102399 [13%] (base=13744)
+  -> send seq=14000/102399 [13%] (base=13781)
+
+[timeout] windowBase=13781 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=14100/102399 [13%] (base=13903)
+  -> send seq=14200/102399 [13%] (base=14042)
+  <- ACK=14100: window 14099 -> 14100/102400
+  -> send seq=14300/102399 [13%] (base=14151)
+  -> send seq=14400/102399 [14%] (base=14151)
+
+[timeout] windowBase=14151 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=14500/102399 [14%] (base=14253)
+  -> send seq=14600/102399 [14%] (base=14407)
+  <- ACK=14500: window 14499 -> 14500/102400
+  -> send seq=14700/102399 [14%] (base=14504)
+  -> send seq=14800/102399 [14%] (base=14581)
+
+[timeout] windowBase=14581 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=14900/102399 [14%] (base=14666)
+  -> send seq=15000/102399 [14%] (base=14845)
+  -> send seq=15100/102399 [14%] (base=14845)
+
+[timeout] windowBase=14845 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=15200/102399 [14%] (base=14965)
+  -> send seq=15300/102399 [14%] (base=15101)
+
+[timeout] windowBase=15127 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=15400/102399 [15%] (base=15228)
+  -> send seq=15500/102399 [15%] (base=15395)
+  -> send seq=15600/102399 [15%] (base=15395)
+
+[timeout] windowBase=15395 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=15700/102399 [15%] (base=15548)
+  -> send seq=15800/102399 [15%] (base=15548)
+  -> send seq=15900/102399 [15%] (base=15664)
+  <- ACK=15700: window 15699 -> 15700/102400
+
+[timeout] windowBase=15741 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=16000/102399 [15%] (base=15778)
+  -> send seq=16100/102399 [15%] (base=15922)
+  -> send seq=16200/102399 [15%] (base=16002)
+
+[timeout] windowBase=16002 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=16300/102399 [15%] (base=16151)
+  -> send seq=16400/102399 [16%] (base=16151)
+  -> send seq=16500/102399 [16%] (base=16281)
+
+[timeout] windowBase=16281 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=16600/102399 [16%] (base=16423)
+  -> send seq=16700/102399 [16%] (base=16597)
+  -> send seq=16800/102399 [16%] (base=16597)
+
+[timeout] windowBase=16597 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=16597 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=16900/102399 [16%] (base=16853)
+  -> send seq=17000/102399 [16%] (base=16853)
+  -> send seq=17100/102399 [16%] (base=16853)
+
+[timeout] windowBase=16868 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=17200/102399 [16%] (base=16983)
+  -> send seq=17300/102399 [16%] (base=17139)
+
+[timeout] windowBase=17139 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=17139 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=17400/102399 [16%] (base=17395)
+  -> send seq=17500/102399 [17%] (base=17395)
+  -> send seq=17600/102399 [17%] (base=17395)
+  <- ACK=17400: window 17399 -> 17400/102400
+  -> send seq=17700/102399 [17%] (base=17527)
+
+[timeout] windowBase=17527 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=17800/102399 [17%] (base=17622)
+  <- ACK=17700: window 17656 -> 17700/102400
+  -> send seq=17900/102399 [17%] (base=17783)
+  -> send seq=18000/102399 [17%] (base=17783)
+  <- ACK=17800: window 17799 -> 17800/102400
+  -> send seq=18100/102399 [17%] (base=17850)
+
+[timeout] windowBase=17850 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=18200/102399 [17%] (base=18004)
+  -> send seq=18300/102399 [17%] (base=18179)
+  -> send seq=18400/102399 [17%] (base=18179)
+
+[timeout] windowBase=18179 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=18500/102399 [18%] (base=18341)
+  -> send seq=18600/102399 [18%] (base=18439)
+
+[timeout] windowBase=18439 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=18700/102399 [18%] (base=18549)
+  -> send seq=18800/102399 [18%] (base=18549)
+  -> send seq=18900/102399 [18%] (base=18695)
+  <- ACK=18700: window 18699 -> 18700/102400
+
+[timeout] windowBase=18724 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=19000/102399 [18%] (base=18980)
+  -> send seq=19100/102399 [18%] (base=18980)
+  -> send seq=19200/102399 [18%] (base=18980)
+  <- ACK=19000: window 18999 -> 19000/102400
+  -> send seq=19300/102399 [18%] (base=19058)
+  <- ACK=19100: window 19099 -> 19100/102400
+
+[timeout] windowBase=19112 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=19400/102399 [18%] (base=19245)
+  -> send seq=19500/102399 [19%] (base=19245)
+  <- ACK=19400: window 19399 -> 19400/102400
+  -> send seq=19600/102399 [19%] (base=19402)
+
+[timeout] windowBase=19402 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=19700/102399 [19%] (base=19603)
+  -> send seq=19800/102399 [19%] (base=19603)
+  -> send seq=19900/102399 [19%] (base=19681)
+
+[timeout] windowBase=19681 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=20000/102399 [19%] (base=19844)
+  -> send seq=20100/102399 [19%] (base=19951)
+  -> send seq=20200/102399 [19%] (base=19951)
+
+[timeout] windowBase=19951 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=20300/102399 [19%] (base=20136)
+  -> send seq=20400/102399 [19%] (base=20247)
+  -> send seq=20500/102399 [20%] (base=20247)
+
+[timeout] windowBase=20247 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=20600/102399 [20%] (base=20360)
+  -> send seq=20700/102399 [20%] (base=20503)
+
+[timeout] windowBase=20507 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=20800/102399 [20%] (base=20656)
+  -> send seq=20900/102399 [20%] (base=20656)
+  -> send seq=21000/102399 [20%] (base=20766)
+  <- ACK=20800: window 20799 -> 20800/102400
+  -> send seq=21100/102399 [20%] (base=20863)
+
+[timeout] windowBase=20863 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=20938 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=21200/102399 [20%] (base=21126)
+  -> send seq=21300/102399 [20%] (base=21126)
+  <- ACK=21200: window 21199 -> 21200/102400
+  -> send seq=21400/102399 [20%] (base=21201)
+
+[timeout] windowBase=21240 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=21500/102399 [20%] (base=21352)
+  -> send seq=21600/102399 [21%] (base=21352)
+  <- ACK=21500: window 21499 -> 21500/102400
+  -> send seq=21700/102399 [21%] (base=21504)
+
+[timeout] windowBase=21514 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=21800/102399 [21%] (base=21676)
+  -> send seq=21900/102399 [21%] (base=21676)
+  -> send seq=22000/102399 [21%] (base=21777)
+
+[timeout] windowBase=21777 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=22100/102399 [21%] (base=21873)
+  -> send seq=22200/102399 [21%] (base=22059)
+  -> send seq=22300/102399 [21%] (base=22059)
+
+[timeout] windowBase=22059 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=22085 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=22400/102399 [21%] (base=22189)
+  -> send seq=22500/102399 [21%] (base=22341)
+  -> send seq=22600/102399 [22%] (base=22372)
+
+[timeout] windowBase=22372 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=22700/102399 [22%] (base=22531)
+  -> send seq=22800/102399 [22%] (base=22647)
+  -> send seq=22900/102399 [22%] (base=22647)
+
+[timeout] windowBase=22653 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=23000/102399 [22%] (base=22872)
+  -> send seq=23100/102399 [22%] (base=22872)
+  <- ACK=23000: window 22999 -> 23000/102400
+  -> send seq=23200/102399 [22%] (base=23001)
+  -> send seq=23300/102399 [22%] (base=23123)
+
+[timeout] windowBase=23123 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=23400/102399 [22%] (base=23196)
+
+[timeout] windowBase=23196 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=23196 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=23500/102399 [22%] (base=23452)
+  -> send seq=23600/102399 [23%] (base=23452)
+  -> send seq=23700/102399 [23%] (base=23452)
+
+[timeout] windowBase=23481 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=23800/102399 [23%] (base=23618)
+  -> send seq=23900/102399 [23%] (base=23765)
+  -> send seq=24000/102399 [23%] (base=23765)
+  <- ACK=23800: window 23799 -> 23800/102400
+
+[timeout] windowBase=23805 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=24100/102399 [23%] (base=23915)
+  <- ACK=24100: window 24099 -> 24100/102400
+  -> send seq=24200/102399 [23%] (base=24104)
+  -> send seq=24300/102399 [23%] (base=24104)
+
+[timeout] windowBase=24108 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=24400/102399 [23%] (base=24332)
+  -> send seq=24500/102399 [23%] (base=24332)
+  -> send seq=24600/102399 [24%] (base=24383)
+  <- ACK=24400: window 24399 -> 24400/102400
+  -> send seq=24700/102399 [24%] (base=24460)
+
+[timeout] windowBase=24460 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=24800/102399 [24%] (base=24618)
+
+[timeout] windowBase=24618 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=24900/102399 [24%] (base=24741)
+  -> send seq=25000/102399 [24%] (base=24756)
+
+[timeout] windowBase=24756 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=25100/102399 [24%] (base=24911)
+  -> send seq=25200/102399 [24%] (base=25032)
+
+[timeout] windowBase=25032 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=25300/102399 [24%] (base=25218)
+  -> send seq=25400/102399 [24%] (base=25218)
+  <- ACK=25300: window 25299 -> 25300/102400
+  -> send seq=25500/102399 [24%] (base=25383)
+  -> send seq=25600/102399 [25%] (base=25383)
+
+[timeout] windowBase=25383 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=25700/102399 [25%] (base=25486)
+  <- ACK=25700: window 25699 -> 25700/102400
+  -> send seq=25800/102399 [25%] (base=25701)
+  -> send seq=25900/102399 [25%] (base=25701)
+
+[timeout] windowBase=25742 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=26000/102399 [25%] (base=25895)
+  -> send seq=26100/102399 [25%] (base=25895)
+  <- ACK=26000: window 25999 -> 26000/102400
+  -> send seq=26200/102399 [25%] (base=26001)
+
+[timeout] windowBase=26041 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=26300/102399 [25%] (base=26152)
+  -> send seq=26400/102399 [25%] (base=26152)
+  -> send seq=26500/102399 [25%] (base=26297)
+  <- ACK=26300: window 26299 -> 26300/102400
+
+[timeout] windowBase=26306 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=26600/102399 [25%] (base=26464)
+  -> send seq=26700/102399 [26%] (base=26464)
+  -> send seq=26800/102399 [26%] (base=26598)
+  <- ACK=26600: window 26599 -> 26600/102400
+
+[timeout] windowBase=26607 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=26900/102399 [26%] (base=26745)
+  -> send seq=27000/102399 [26%] (base=26745)
+  -> send seq=27100/102399 [26%] (base=26899)
+  <- ACK=26900: window 26899 -> 26900/102400
+
+[timeout] windowBase=26915 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=27200/102399 [26%] (base=27010)
+  -> send seq=27300/102399 [26%] (base=27171)
+  -> send seq=27400/102399 [26%] (base=27171)
+
+[timeout] windowBase=27197 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=27500/102399 [26%] (base=27335)
+  <- ACK=27500: window 27499 -> 27500/102400
+  -> send seq=27600/102399 [26%] (base=27501)
+  -> send seq=27700/102399 [27%] (base=27501)
+
+[timeout] windowBase=27502 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=27800/102399 [27%] (base=27682)
+  -> send seq=27900/102399 [27%] (base=27682)
+  -> send seq=28000/102399 [27%] (base=27762)
+
+[timeout] windowBase=27787 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  <- ACK=27800: window 27787 -> 27800/102400
+  -> send seq=28100/102399 [27%] (base=27899)
+  <- ACK=27900: window 27899 -> 27900/102400
+  -> send seq=28200/102399 [27%] (base=28069)
+  -> send seq=28300/102399 [27%] (base=28069)
+  <- ACK=28100: window 28099 -> 28100/102400
+  -> send seq=28400/102399 [27%] (base=28154)
+  <- ACK=28200: window 28199 -> 28200/102400
+
+[timeout] windowBase=28201 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=28500/102399 [27%] (base=28360)
+  -> send seq=28600/102399 [27%] (base=28360)
+  -> send seq=28700/102399 [28%] (base=28458)
+  <- ACK=28500: window 28499 -> 28500/102400
+
+[timeout] windowBase=28514 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=28800/102399 [28%] (base=28557)
+
+[timeout] windowBase=28557 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=28900/102399 [28%] (base=28813)
+  -> send seq=29000/102399 [28%] (base=28813)
+  -> send seq=29100/102399 [28%] (base=28936)
+
+[timeout] windowBase=28936 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=29200/102399 [28%] (base=29050)
+  -> send seq=29300/102399 [28%] (base=29050)
+  <- ACK=29200: window 29199 -> 29200/102400
+  -> send seq=29400/102399 [28%] (base=29203)
+
+[timeout] windowBase=29205 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=29500/102399 [28%] (base=29353)
+  -> send seq=29600/102399 [28%] (base=29353)
+  -> send seq=29700/102399 [29%] (base=29470)
+
+[timeout] windowBase=29482 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=29489 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=29800/102399 [29%] (base=29745)
+  -> send seq=29900/102399 [29%] (base=29745)
+  -> send seq=30000/102399 [29%] (base=29745)
+  <- ACK=29800: window 29799 -> 29800/102400
+
+[timeout] windowBase=29809 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=29826 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=30100/102399 [29%] (base=30066)
+  -> send seq=30200/102399 [29%] (base=30066)
+  -> send seq=30300/102399 [29%] (base=30066)
+
+[timeout] windowBase=30084 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=30400/102399 [29%] (base=30243)
+  -> send seq=30500/102399 [29%] (base=30393)
+  -> send seq=30600/102399 [29%] (base=30393)
+  <- ACK=30400: window 30399 -> 30400/102400
+  -> send seq=30700/102399 [29%] (base=30474)
+
+[timeout] windowBase=30474 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=30800/102399 [30%] (base=30678)
+  -> send seq=30900/102399 [30%] (base=30678)
+  -> send seq=31000/102399 [30%] (base=30775)
+  <- ACK=30800: window 30799 -> 30800/102400
+
+[timeout] windowBase=30801 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=31100/102399 [30%] (base=30968)
+  -> send seq=31200/102399 [30%] (base=30968)
+  -> send seq=31300/102399 [30%] (base=31055)
+
+[timeout] windowBase=31061 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=31400/102399 [30%] (base=31180)
+  -> send seq=31500/102399 [30%] (base=31320)
+  -> send seq=31600/102399 [30%] (base=31372)
+
+[timeout] windowBase=31372 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=31700/102399 [30%] (base=31470)
+
+[timeout] windowBase=31514 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=31800/102399 [31%] (base=31629)
+  -> send seq=31900/102399 [31%] (base=31770)
+  -> send seq=32000/102399 [31%] (base=31770)
+  <- ACK=31800: window 31799 -> 31800/102400
+  -> send seq=32100/102399 [31%] (base=31868)
+
+[timeout] windowBase=31894 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=32200/102399 [31%] (base=32011)
+  -> send seq=32300/102399 [31%] (base=32175)
+  -> send seq=32400/102399 [31%] (base=32175)
+  <- ACK=32200: window 32199 -> 32200/102400
+
+[timeout] windowBase=32203 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=32500/102399 [31%] (base=32362)
+  -> send seq=32600/102399 [31%] (base=32362)
+  -> send seq=32700/102399 [31%] (base=32476)
+
+[timeout] windowBase=32476 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=32800/102399 [32%] (base=32591)
+  -> send seq=32900/102399 [32%] (base=32732)
+  -> send seq=33000/102399 [32%] (base=32746)
+
+[timeout] windowBase=32746 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=33100/102399 [32%] (base=33002)
+  -> send seq=33200/102399 [32%] (base=33002)
+
+[timeout] windowBase=33004 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=33300/102399 [32%] (base=33114)
+  -> send seq=33400/102399 [32%] (base=33285)
+  -> send seq=33500/102399 [32%] (base=33285)
+
+[timeout] windowBase=33285 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=33600/102399 [32%] (base=33404)
+  -> send seq=33700/102399 [32%] (base=33551)
+  -> send seq=33800/102399 [33%] (base=33551)
+  <- ACK=33600: window 33599 -> 33600/102400
+
+[timeout] windowBase=33613 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=33900/102399 [33%] (base=33869)
+  -> send seq=34000/102399 [33%] (base=33869)
+  -> send seq=34100/102399 [33%] (base=33869)
+
+[timeout] windowBase=33886 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=34200/102399 [33%] (base=33990)
+  -> send seq=34300/102399 [33%] (base=34179)
+  -> send seq=34400/102399 [33%] (base=34179)
+  <- ACK=34200: window 34199 -> 34200/102400
+  <- ACK=34300: window 34299 -> 34300/102400
+  -> send seq=34500/102399 [33%] (base=34324)
+
+[timeout] windowBase=34324 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=34324 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=34600/102399 [33%] (base=34580)
+  -> send seq=34700/102399 [33%] (base=34580)
+  -> send seq=34800/102399 [33%] (base=34580)
+
+[timeout] windowBase=34582 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=34900/102399 [34%] (base=34746)
+  -> send seq=35000/102399 [34%] (base=34746)
+  -> send seq=35100/102399 [34%] (base=34875)
+
+[timeout] windowBase=34875 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=35200/102399 [34%] (base=35083)
+  -> send seq=35300/102399 [34%] (base=35083)
+  <- ACK=35200: window 35199 -> 35200/102400
+  -> send seq=35400/102399 [34%] (base=35299)
+  -> send seq=35500/102399 [34%] (base=35299)
+
+[timeout] windowBase=35299 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  <- ACK=35300: window 35299 -> 35300/102400
+  -> send seq=35600/102399 [34%] (base=35384)
+  -> send seq=35700/102399 [34%] (base=35555)
+  -> send seq=35800/102399 [34%] (base=35555)
+
+[timeout] windowBase=35570 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=35900/102399 [35%] (base=35675)
+  -> send seq=36000/102399 [35%] (base=35826)
+  -> send seq=36100/102399 [35%] (base=35890)
+  <- ACK=35900: window 35899 -> 35900/102400
+  -> send seq=36200/102399 [35%] (base=35975)
+  -> send seq=36300/102399 [35%] (base=36090)
+
+[timeout] windowBase=36090 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=36110 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=36400/102399 [35%] (base=36354)
+  -> send seq=36500/102399 [35%] (base=36354)
+  -> send seq=36600/102399 [35%] (base=36354)
+
+[timeout] windowBase=36392 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=36700/102399 [35%] (base=36502)
+  -> send seq=36800/102399 [35%] (base=36652)
+  -> send seq=36900/102399 [36%] (base=36652)
+
+[timeout] windowBase=36686 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=37000/102399 [36%] (base=36803)
+  -> send seq=37100/102399 [36%] (base=36964)
+  -> send seq=37200/102399 [36%] (base=36964)
+  <- ACK=37000: window 36999 -> 37000/102400
+  <- ACK=37100: window 37099 -> 37100/102400
+  -> send seq=37300/102399 [36%] (base=37118)
+
+[timeout] windowBase=37143 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=37400/102399 [36%] (base=37212)
+  -> send seq=37500/102399 [36%] (base=37279)
+  -> send seq=37600/102399 [36%] (base=37404)
+
+[timeout] windowBase=37404 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=37700/102399 [36%] (base=37506)
+  -> send seq=37800/102399 [36%] (base=37660)
+  -> send seq=37900/102399 [37%] (base=37660)
+  <- ACK=37700: window 37699 -> 37700/102400
+
+[timeout] windowBase=37729 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=38000/102399 [37%] (base=37861)
+  -> send seq=38100/102399 [37%] (base=37861)
+  -> send seq=38200/102399 [37%] (base=37988)
+
+[timeout] windowBase=37990 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=38300/102399 [37%] (base=38125)
+  -> send seq=38400/102399 [37%] (base=38252)
+  -> send seq=38500/102399 [37%] (base=38252)
+
+[timeout] windowBase=38268 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=38600/102399 [37%] (base=38436)
+  -> send seq=38700/102399 [37%] (base=38542)
+
+[timeout] windowBase=38542 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=38800/102399 [37%] (base=38696)
+  -> send seq=38900/102399 [37%] (base=38696)
+  <- ACK=38800: window 38799 -> 38800/102400
+  -> send seq=39000/102399 [38%] (base=38806)
+
+[timeout] windowBase=38806 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=39100/102399 [38%] (base=38899)
+  <- ACK=39100: window 39099 -> 39100/102400
+  -> send seq=39200/102399 [38%] (base=39152)
+  -> send seq=39300/102399 [38%] (base=39152)
+  -> send seq=39400/102399 [38%] (base=39152)
+
+[timeout] windowBase=39159 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=39500/102399 [38%] (base=39301)
+  -> send seq=39600/102399 [38%] (base=39429)
+
+[timeout] windowBase=39444 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=39700/102399 [38%] (base=39489)
+  -> send seq=39800/102399 [38%] (base=39613)
+  <- ACK=39700: window 39652 -> 39700/102400
+  -> send seq=39900/102399 [38%] (base=39723)
+
+[timeout] windowBase=39723 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=40000/102399 [39%] (base=39927)
+  -> send seq=40100/102399 [39%] (base=39927)
+  -> send seq=40200/102399 [39%] (base=39992)
+
+[timeout] windowBase=39992 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=40300/102399 [39%] (base=40194)
+  -> send seq=40400/102399 [39%] (base=40194)
+  -> send seq=40500/102399 [39%] (base=40255)
+  <- ACK=40300: window 40299 -> 40300/102400
+
+[timeout] windowBase=40312 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=40600/102399 [39%] (base=40428)
+  -> send seq=40700/102399 [39%] (base=40592)
+  -> send seq=40800/102399 [39%] (base=40592)
+
+[timeout] windowBase=40592 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=40900/102399 [39%] (base=40754)
+  -> send seq=41000/102399 [40%] (base=40754)
+  -> send seq=41100/102399 [40%] (base=40848)
+
+[timeout] windowBase=40860 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=41200/102399 [40%] (base=40964)
+  -> send seq=41300/102399 [40%] (base=41097)
+
+[timeout] windowBase=41097 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=41400/102399 [40%] (base=41296)
+  -> send seq=41500/102399 [40%] (base=41296)
+  <- ACK=41400: window 41399 -> 41400/102400
+  -> send seq=41600/102399 [40%] (base=41405)
+
+[timeout] windowBase=41424 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=41700/102399 [40%] (base=41456)
+  -> send seq=41800/102399 [40%] (base=41601)
+  -> send seq=41900/102399 [40%] (base=41691)
+
+[timeout] windowBase=41691 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=42000/102399 [41%] (base=41863)
+  -> send seq=42100/102399 [41%] (base=41863)
+  -> send seq=42200/102399 [41%] (base=41947)
+
+[timeout] windowBase=41970 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=42300/102399 [41%] (base=42064)
+  -> send seq=42400/102399 [41%] (base=42227)
+
+[timeout] windowBase=42227 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=42500/102399 [41%] (base=42475)
+  -> send seq=42600/102399 [41%] (base=42475)
+  -> send seq=42700/102399 [41%] (base=42475)
+  <- ACK=42500: window 42499 -> 42500/102400
+
+[timeout] windowBase=42500 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=42800/102399 [41%] (base=42621)
+  -> send seq=42900/102399 [41%] (base=42666)
+  -> send seq=43000/102399 [41%] (base=42756)
+
+[timeout] windowBase=42756 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=43100/102399 [42%] (base=42904)
+  -> send seq=43200/102399 [42%] (base=43034)
+
+[timeout] windowBase=43034 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=43300/102399 [42%] (base=43290)
+  -> send seq=43400/102399 [42%] (base=43290)
+  -> send seq=43500/102399 [42%] (base=43290)
+  <- ACK=43300: window 43299 -> 43300/102400
+
+[timeout] windowBase=43306 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=43600/102399 [42%] (base=43348)
+  -> send seq=43700/102399 [42%] (base=43489)
+  <- ACK=43600: window 43599 -> 43600/102400
+  -> send seq=43800/102399 [42%] (base=43614)
+  -> send seq=43900/102399 [42%] (base=43692)
+
+[timeout] windowBase=43692 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  <- ACK=43700: window 43692 -> 43700/102400
+
+[timeout] windowBase=43700 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=44000/102399 [42%] (base=43956)
+  -> send seq=44100/102399 [43%] (base=43956)
+  -> send seq=44200/102399 [43%] (base=43956)
+
+[timeout] windowBase=43998 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=44300/102399 [43%] (base=44169)
+  -> send seq=44400/102399 [43%] (base=44169)
+  -> send seq=44500/102399 [43%] (base=44254)
+
+[timeout] windowBase=44259 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  <- ACK=44300: window 44259 -> 44300/102400
+  -> send seq=44600/102399 [43%] (base=44412)
+  -> send seq=44700/102399 [43%] (base=44522)
+
+[timeout] windowBase=44522 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=44537 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=44800/102399 [43%] (base=44793)
+  -> send seq=44900/102399 [43%] (base=44793)
+  -> send seq=45000/102399 [43%] (base=44793)
+  <- ACK=44800: window 44799 -> 44800/102400
+
+[timeout] windowBase=44816 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=45100/102399 [44%] (base=44975)
+  -> send seq=45200/102399 [44%] (base=44975)
+  -> send seq=45300/102399 [44%] (base=45072)
+  <- ACK=45100: window 45099 -> 45100/102400
+
+[timeout] windowBase=45120 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=45400/102399 [44%] (base=45291)
+  -> send seq=45500/102399 [44%] (base=45291)
+  <- ACK=45400: window 45399 -> 45400/102400
+  -> send seq=45600/102399 [44%] (base=45416)
+  -> send seq=45700/102399 [44%] (base=45478)
+
+[timeout] windowBase=45478 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=45478 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=45800/102399 [44%] (base=45734)
+  -> send seq=45900/102399 [44%] (base=45734)
+  <- ACK=45800: window 45799 -> 45800/102400
+  -> send seq=46000/102399 [44%] (base=45804)
+
+[timeout] windowBase=45804 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=45804 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=46100/102399 [45%] (base=45988)
+  -> send seq=46200/102399 [45%] (base=45988)
+  -> send seq=46300/102399 [45%] (base=46070)
+
+[timeout] windowBase=46070 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=46400/102399 [45%] (base=46161)
+  -> send seq=46500/102399 [45%] (base=46326)
+
+[timeout] windowBase=46339 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=46600/102399 [45%] (base=46595)
+  -> send seq=46700/102399 [45%] (base=46595)
+  -> send seq=46800/102399 [45%] (base=46595)
+  <- ACK=46600: window 46599 -> 46600/102400
+
+[timeout] windowBase=46623 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=46900/102399 [45%] (base=46710)
+  -> send seq=47000/102399 [45%] (base=46879)
+  -> send seq=47100/102399 [45%] (base=46879)
+  -> send seq=47200/102399 [46%] (base=46971)
+
+[timeout] windowBase=46971 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=47300/102399 [46%] (base=47124)
+  -> send seq=47400/102399 [46%] (base=47239)
+
+[timeout] windowBase=47239 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=47500/102399 [46%] (base=47495)
+  -> send seq=47600/102399 [46%] (base=47495)
+  -> send seq=47700/102399 [46%] (base=47495)
+  <- ACK=47500: window 47499 -> 47500/102400
+
+[timeout] windowBase=47535 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=47535 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=47800/102399 [46%] (base=47791)
+  -> send seq=47900/102399 [46%] (base=47791)
+  -> send seq=48000/102399 [46%] (base=47791)
+  <- ACK=47800: window 47799 -> 47800/102400
+
+[timeout] windowBase=47816 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=48100/102399 [46%] (base=48036)
+  -> send seq=48200/102399 [47%] (base=48036)
+
+[timeout] windowBase=48036 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=48300/102399 [47%] (base=48169)
+  -> send seq=48400/102399 [47%] (base=48169)
+  <- ACK=48300: window 48299 -> 48300/102400
+  -> send seq=48500/102399 [47%] (base=48310)
+  -> send seq=48600/102399 [47%] (base=48384)
+
+[timeout] windowBase=48393 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=48700/102399 [47%] (base=48519)
+  -> send seq=48800/102399 [47%] (base=48651)
+  -> send seq=48900/102399 [47%] (base=48651)
+
+[timeout] windowBase=48669 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=49000/102399 [47%] (base=48776)
+
+[timeout] windowBase=48796 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=49100/102399 [47%] (base=48982)
+  -> send seq=49200/102399 [48%] (base=48982)
+  -> send seq=49300/102399 [48%] (base=49061)
+
+[timeout] windowBase=49061 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=49400/102399 [48%] (base=49350)
+  -> send seq=49500/102399 [48%] (base=49350)
+  -> send seq=49600/102399 [48%] (base=49350)
+
+[timeout] windowBase=49372 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=49700/102399 [48%] (base=49599)
+  -> send seq=49800/102399 [48%] (base=49599)
+  -> send seq=49900/102399 [48%] (base=49653)
+
+[timeout] windowBase=49653 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=50000/102399 [48%] (base=49812)
+  -> send seq=50100/102399 [48%] (base=49902)
+  -> send seq=50200/102399 [49%] (base=50033)
+
+[timeout] windowBase=50033 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=50300/102399 [49%] (base=50122)
+  -> send seq=50400/102399 [49%] (base=50175)
+  -> send seq=50500/102399 [49%] (base=50299)
+
+[timeout] windowBase=50299 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=50600/102399 [49%] (base=50390)
+  <- ACK=50400: window 50399 -> 50400/102400
+  -> send seq=50700/102399 [49%] (base=50528)
+  -> send seq=50800/102399 [49%] (base=50558)
+
+[timeout] windowBase=50564 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=50900/102399 [49%] (base=50715)
+  -> send seq=51000/102399 [49%] (base=50765)
+
+[timeout] windowBase=50765 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=51100/102399 [49%] (base=50846)
+
+[timeout] windowBase=50858 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=50861 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=51200/102399 [50%] (base=51053)
+  -> send seq=51300/102399 [50%] (base=51053)
+
+[timeout] windowBase=51053 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=51129 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=51400/102399 [50%] (base=51357)
+  -> send seq=51500/102399 [50%] (base=51357)
+  -> send seq=51600/102399 [50%] (base=51357)
+
+[timeout] windowBase=51397 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=51700/102399 [50%] (base=51499)
+
+[timeout] windowBase=51499 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=51800/102399 [50%] (base=51692)
+  -> send seq=51900/102399 [50%] (base=51692)
+  -> send seq=52000/102399 [50%] (base=51773)
+
+[timeout] windowBase=51773 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=52100/102399 [50%] (base=52031)
+  -> send seq=52200/102399 [50%] (base=52031)
+
+[timeout] windowBase=52031 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=52300/102399 [51%] (base=52193)
+  -> send seq=52400/102399 [51%] (base=52193)
+  <- ACK=52300: window 52299 -> 52300/102400
+  -> send seq=52500/102399 [51%] (base=52351)
+  -> send seq=52600/102399 [51%] (base=52351)
+
+[timeout] windowBase=52385 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=52700/102399 [51%] (base=52539)
+
+[timeout] windowBase=52539 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=52800/102399 [51%] (base=52672)
+  -> send seq=52900/102399 [51%] (base=52672)
+  -> send seq=53000/102399 [51%] (base=52795)
+  <- ACK=52800: window 52799 -> 52800/102400
+
+[timeout] windowBase=52843 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=53100/102399 [51%] (base=52860)
+  -> send seq=53200/102399 [51%] (base=53099)
+  -> send seq=53300/102399 [52%] (base=53099)
+
+[timeout] windowBase=53130 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=53400/102399 [52%] (base=53236)
+  -> send seq=53500/102399 [52%] (base=53388)
+  -> send seq=53600/102399 [52%] (base=53388)
+
+[timeout] windowBase=53394 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=53700/102399 [52%] (base=53537)
+  -> send seq=53800/102399 [52%] (base=53653)
+  -> send seq=53900/102399 [52%] (base=53653)
+
+[timeout] windowBase=53677 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=53732 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=54000/102399 [52%] (base=53988)
+  -> send seq=54100/102399 [52%] (base=53988)
+  -> send seq=54200/102399 [52%] (base=53988)
+
+[timeout] windowBase=53995 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=54300/102399 [53%] (base=54251)
+  -> send seq=54400/102399 [53%] (base=54251)
+  -> send seq=54500/102399 [53%] (base=54251)
+
+[timeout] windowBase=54268 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=54600/102399 [53%] (base=54387)
+  -> send seq=54700/102399 [53%] (base=54530)
+  -> send seq=54800/102399 [53%] (base=54545)
+
+[timeout] windowBase=54545 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=54900/102399 [53%] (base=54764)
+  -> send seq=55000/102399 [53%] (base=54764)
+
+[timeout] windowBase=54812 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=55100/102399 [53%] (base=54978)
+  -> send seq=55200/102399 [53%] (base=54978)
+  -> send seq=55300/102399 [54%] (base=55084)
+  <- ACK=55100: window 55099 -> 55100/102400
+  -> send seq=55400/102399 [54%] (base=55158)
+
+[timeout] windowBase=55222 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=55500/102399 [54%] (base=55478)
+  -> send seq=55600/102399 [54%] (base=55478)
+  -> send seq=55700/102399 [54%] (base=55478)
+  <- ACK=55500: window 55499 -> 55500/102400
+
+[timeout] windowBase=55523 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=55800/102399 [54%] (base=55722)
+  -> send seq=55900/102399 [54%] (base=55722)
+  <- ACK=55800: window 55799 -> 55800/102400
+  -> send seq=56000/102399 [54%] (base=55828)
+
+[timeout] windowBase=55828 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=56100/102399 [54%] (base=55931)
+  -> send seq=56200/102399 [54%] (base=56084)
+  -> send seq=56300/102399 [54%] (base=56084)
+  <- ACK=56100: window 56099 -> 56100/102400
+
+[timeout] windowBase=56102 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=56400/102399 [55%] (base=56210)
+  -> send seq=56500/102399 [55%] (base=56357)
+  -> send seq=56600/102399 [55%] (base=56357)
+  <- ACK=56400: window 56399 -> 56400/102400
+
+[timeout] windowBase=56428 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=56700/102399 [55%] (base=56610)
+  -> send seq=56800/102399 [55%] (base=56610)
+  -> send seq=56900/102399 [55%] (base=56693)
+
+[timeout] windowBase=56693 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=57000/102399 [55%] (base=56824)
+  -> send seq=57100/102399 [55%] (base=56961)
+  -> send seq=57200/102399 [55%] (base=56961)
+
+[timeout] windowBase=56961 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=57300/102399 [55%] (base=57062)
+  -> send seq=57400/102399 [56%] (base=57256)
+  -> send seq=57500/102399 [56%] (base=57256)
+
+[timeout] windowBase=57256 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=57600/102399 [56%] (base=57377)
+  <- ACK=57400: window 57386 -> 57400/102400
+  -> send seq=57700/102399 [56%] (base=57520)
+
+[timeout] windowBase=57520 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=57800/102399 [56%] (base=57648)
+  -> send seq=57900/102399 [56%] (base=57648)
+  <- ACK=57800: window 57799 -> 57800/102400
+  -> send seq=58000/102399 [56%] (base=57804)
+  -> send seq=58100/102399 [56%] (base=57850)
+
+[timeout] windowBase=57850 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=58200/102399 [56%] (base=58061)
+  -> send seq=58300/102399 [56%] (base=58061)
+  -> send seq=58400/102399 [57%] (base=58215)
+
+[timeout] windowBase=58215 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=58500/102399 [57%] (base=58334)
+  -> send seq=58600/102399 [57%] (base=58471)
+  -> send seq=58700/102399 [57%] (base=58471)
+  <- ACK=58500: window 58499 -> 58500/102400
+  -> send seq=58800/102399 [57%] (base=58563)
+
+[timeout] windowBase=58563 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=58900/102399 [57%] (base=58681)
+  -> send seq=59000/102399 [57%] (base=58898)
+  -> send seq=59100/102399 [57%] (base=58898)
+
+[timeout] windowBase=58898 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=59200/102399 [57%] (base=58990)
+  <- ACK=59000: window 58990 -> 59000/102400
+  -> send seq=59300/102399 [57%] (base=59147)
+  -> send seq=59400/102399 [58%] (base=59147)
+
+[timeout] windowBase=59163 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=59500/102399 [58%] (base=59276)
+  -> send seq=59600/102399 [58%] (base=59466)
+  -> send seq=59700/102399 [58%] (base=59466)
+
+[timeout] windowBase=59466 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=59800/102399 [58%] (base=59611)
+  -> send seq=59900/102399 [58%] (base=59722)
+  -> send seq=60000/102399 [58%] (base=59849)
+  -> send seq=60100/102399 [58%] (base=59849)
+
+[timeout] windowBase=59849 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=60200/102399 [58%] (base=59961)
+  -> send seq=60300/102399 [58%] (base=60150)
+  -> send seq=60400/102399 [58%] (base=60150)
+
+[timeout] windowBase=60150 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=60500/102399 [59%] (base=60290)
+  -> send seq=60600/102399 [59%] (base=60426)
+  -> send seq=60700/102399 [59%] (base=60457)
+
+[timeout] windowBase=60457 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=60457 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=60800/102399 [59%] (base=60713)
+  -> send seq=60900/102399 [59%] (base=60713)
+
+[timeout] windowBase=60721 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=61000/102399 [59%] (base=60923)
+  -> send seq=61100/102399 [59%] (base=60923)
+  -> send seq=61200/102399 [59%] (base=60977)
+  <- ACK=61000: window 60999 -> 61000/102400
+
+[timeout] windowBase=61016 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=61300/102399 [59%] (base=61282)
+  -> send seq=61400/102399 [59%] (base=61282)
+  -> send seq=61500/102399 [60%] (base=61282)
+
+[timeout] windowBase=61282 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=61600/102399 [60%] (base=61448)
+  -> send seq=61700/102399 [60%] (base=61448)
+  -> send seq=61800/102399 [60%] (base=61549)
+  <- ACK=61600: window 61599 -> 61600/102400
+
+[timeout] windowBase=61602 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=61900/102399 [60%] (base=61743)
+  -> send seq=62000/102399 [60%] (base=61860)
+  -> send seq=62100/102399 [60%] (base=61860)
+
+[timeout] windowBase=61860 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=62200/102399 [60%] (base=62002)
+  -> send seq=62300/102399 [60%] (base=62125)
+  -> send seq=62400/102399 [60%] (base=62166)
+
+[timeout] windowBase=62166 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=62500/102399 [61%] (base=62245)
+  -> send seq=62600/102399 [61%] (base=62458)
+  -> send seq=62700/102399 [61%] (base=62458)
+
+[timeout] windowBase=62458 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=62800/102399 [61%] (base=62602)
+  -> send seq=62900/102399 [61%] (base=62719)
+
+[timeout] windowBase=62719 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=63000/102399 [61%] (base=62821)
+  -> send seq=63100/102399 [61%] (base=62967)
+  -> send seq=63200/102399 [61%] (base=62967)
+
+[timeout] windowBase=62979 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=63300/102399 [61%] (base=63134)
+
+[timeout] windowBase=63135 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=63400/102399 [61%] (base=63356)
+  -> send seq=63500/102399 [62%] (base=63356)
+  -> send seq=63600/102399 [62%] (base=63356)
+  <- ACK=63400: window 63399 -> 63400/102400
+
+[timeout] windowBase=63424 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=63700/102399 [62%] (base=63484)
+  -> send seq=63800/102399 [62%] (base=63717)
+  -> send seq=63900/102399 [62%] (base=63717)
+
+[timeout] windowBase=63717 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=64000/102399 [62%] (base=63973)
+  -> send seq=64100/102399 [62%] (base=63973)
+  -> send seq=64200/102399 [62%] (base=63973)
+  <- ACK=64000: window 63999 -> 64000/102400
+
+[timeout] windowBase=64026 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=64300/102399 [62%] (base=64080)
+  -> send seq=64400/102399 [62%] (base=64154)
+  -> send seq=64500/102399 [62%] (base=64338)
+
+[timeout] windowBase=64338 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=64600/102399 [63%] (base=64442)
+  <- ACK=64600: window 64599 -> 64600/102400
+  -> send seq=64700/102399 [63%] (base=64600)
+  -> send seq=64800/102399 [63%] (base=64600)
+  -> send seq=64900/102399 [63%] (base=64691)
+
+[timeout] windowBase=64691 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=65000/102399 [63%] (base=64817)
+  -> send seq=65100/102399 [63%] (base=65037)
+  -> send seq=65200/102399 [63%] (base=65037)
+
+[timeout] windowBase=65037 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=65300/102399 [63%] (base=65199)
+  -> send seq=65400/102399 [63%] (base=65199)
+  -> send seq=65500/102399 [63%] (base=65375)
+  -> send seq=65600/102399 [64%] (base=65375)
+
+[timeout] windowBase=65375 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=65700/102399 [64%] (base=65452)
+  -> send seq=65800/102399 [64%] (base=65678)
+  -> send seq=65900/102399 [64%] (base=65678)
+
+[timeout] windowBase=65678 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=66000/102399 [64%] (base=65835)
+  -> send seq=66100/102399 [64%] (base=65940)
+  <- ACK=66000: window 65999 -> 66000/102400
+  -> send seq=66200/102399 [64%] (base=66031)
+
+[timeout] windowBase=66031 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=66300/102399 [64%] (base=66112)
+  -> send seq=66400/102399 [64%] (base=66149)
+  -> send seq=66500/102399 [64%] (base=66331)
+
+[timeout] windowBase=66331 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=66600/102399 [65%] (base=66497)
+  -> send seq=66700/102399 [65%] (base=66497)
+  <- ACK=66600: window 66599 -> 66600/102400
+  -> send seq=66800/102399 [65%] (base=66604)
+
+[timeout] windowBase=66604 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=66900/102399 [65%] (base=66735)
+  -> send seq=67000/102399 [65%] (base=66878)
+  -> send seq=67100/102399 [65%] (base=66878)
+
+[timeout] windowBase=66878 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=67200/102399 [65%] (base=67027)
+  -> send seq=67300/102399 [65%] (base=67135)
+  <- ACK=67200: window 67199 -> 67200/102400
+  -> send seq=67400/102399 [65%] (base=67210)
+
+[timeout] windowBase=67210 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=67500/102399 [65%] (base=67309)
+  -> send seq=67600/102399 [66%] (base=67466)
+  -> send seq=67700/102399 [66%] (base=67466)
+
+[timeout] windowBase=67474 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  <- ACK=67500: window 67474 -> 67500/102400
+  -> send seq=67800/102399 [66%] (base=67634)
+  -> send seq=67900/102399 [66%] (base=67748)
+  -> send seq=68000/102399 [66%] (base=67748)
+
+[timeout] windowBase=67748 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=68100/102399 [66%] (base=67886)
+
+[timeout] windowBase=67886 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=68200/102399 [66%] (base=68023)
+
+[timeout] windowBase=68023 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=68300/102399 [66%] (base=68151)
+  -> send seq=68400/102399 [66%] (base=68151)
+  <- ACK=68300: window 68299 -> 68300/102400
+  <- ACK=68400: window 68399 -> 68400/102400
+  -> send seq=68500/102399 [66%] (base=68401)
+  -> send seq=68600/102399 [66%] (base=68401)
+
+[timeout] windowBase=68415 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=68700/102399 [67%] (base=68565)
+  -> send seq=68800/102399 [67%] (base=68565)
+  -> send seq=68900/102399 [67%] (base=68671)
+
+[timeout] windowBase=68671 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=69000/102399 [67%] (base=68809)
+  -> send seq=69100/102399 [67%] (base=68898)
+
+[timeout] windowBase=68898 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=69200/102399 [67%] (base=69077)
+  -> send seq=69300/102399 [67%] (base=69077)
+  <- ACK=69200: window 69199 -> 69200/102400
+  -> send seq=69400/102399 [67%] (base=69200)
+  -> send seq=69500/102399 [67%] (base=69283)
+
+[timeout] windowBase=69283 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=69600/102399 [67%] (base=69439)
+  -> send seq=69700/102399 [68%] (base=69553)
+  -> send seq=69800/102399 [68%] (base=69553)
+
+[timeout] windowBase=69553 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=69900/102399 [68%] (base=69705)
+  -> send seq=70000/102399 [68%] (base=69809)
+  -> send seq=70100/102399 [68%] (base=69954)
+  -> send seq=70200/102399 [68%] (base=69954)
+  <- ACK=70000: window 69999 -> 70000/102400
+
+[timeout] windowBase=70012 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=70300/102399 [68%] (base=70154)
+  -> send seq=70400/102399 [68%] (base=70154)
+  -> send seq=70500/102399 [68%] (base=70268)
+  <- ACK=70300: window 70299 -> 70300/102400
+
+[timeout] windowBase=70304 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=70600/102399 [68%] (base=70560)
+  -> send seq=70700/102399 [69%] (base=70560)
+  -> send seq=70800/102399 [69%] (base=70560)
+  <- ACK=70600: window 70599 -> 70600/102400
+  -> send seq=70900/102399 [69%] (base=70649)
+
+[timeout] windowBase=70698 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=71000/102399 [69%] (base=70832)
+  -> send seq=71100/102399 [69%] (base=70954)
+  -> send seq=71200/102399 [69%] (base=70954)
+  <- ACK=71000: window 70999 -> 71000/102400
+  -> send seq=71300/102399 [69%] (base=71061)
+
+[timeout] windowBase=71061 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=71400/102399 [69%] (base=71271)
+  -> send seq=71500/102399 [69%] (base=71271)
+
+[timeout] windowBase=71322 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=71600/102399 [69%] (base=71560)
+  -> send seq=71700/102399 [70%] (base=71560)
+  -> send seq=71800/102399 [70%] (base=71560)
+  <- ACK=71600: window 71599 -> 71600/102400
+
+[timeout] windowBase=71624 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=71900/102399 [70%] (base=71815)
+  -> send seq=72000/102399 [70%] (base=71815)
+  -> send seq=72100/102399 [70%] (base=71880)
+
+[timeout] windowBase=71880 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=72200/102399 [70%] (base=72034)
+  -> send seq=72300/102399 [70%] (base=72183)
+  -> send seq=72400/102399 [70%] (base=72183)
+  <- ACK=72200: window 72199 -> 72200/102400
+  -> send seq=72500/102399 [70%] (base=72265)
+
+[timeout] windowBase=72265 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=72600/102399 [70%] (base=72446)
+  -> send seq=72700/102399 [70%] (base=72446)
+  -> send seq=72800/102399 [71%] (base=72555)
+  <- ACK=72600: window 72599 -> 72600/102400
+
+[timeout] windowBase=72606 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=72900/102399 [71%] (base=72768)
+  -> send seq=73000/102399 [71%] (base=72768)
+  -> send seq=73100/102399 [71%] (base=72865)
+  <- ACK=72900: window 72899 -> 72900/102400
+
+[timeout] windowBase=72901 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=73200/102399 [71%] (base=73157)
+  -> send seq=73300/102399 [71%] (base=73157)
+  -> send seq=73400/102399 [71%] (base=73157)
+
+[timeout] windowBase=73179 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=73500/102399 [71%] (base=73371)
+  -> send seq=73600/102399 [71%] (base=73371)
+  <- ACK=73500: window 73499 -> 73500/102400
+  -> send seq=73700/102399 [71%] (base=73501)
+  -> send seq=73800/102399 [72%] (base=73589)
+
+[timeout] windowBase=73589 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=73900/102399 [72%] (base=73845)
+  -> send seq=74000/102399 [72%] (base=73845)
+  -> send seq=74100/102399 [72%] (base=73845)
+
+[timeout] windowBase=73851 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=74200/102399 [72%] (base=73970)
+
+[timeout] windowBase=73970 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=74300/102399 [72%] (base=74226)
+  -> send seq=74400/102399 [72%] (base=74226)
+  -> send seq=74500/102399 [72%] (base=74293)
+
+[timeout] windowBase=74293 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=74600/102399 [72%] (base=74448)
+  -> send seq=74700/102399 [72%] (base=74448)
+  -> send seq=74800/102399 [73%] (base=74549)
+  <- ACK=74600: window 74599 -> 74600/102400
+
+[timeout] windowBase=74611 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=74900/102399 [73%] (base=74711)
+  -> send seq=75000/102399 [73%] (base=74879)
+  -> send seq=75100/102399 [73%] (base=74879)
+
+[timeout] windowBase=74879 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=75200/102399 [73%] (base=75062)
+  -> send seq=75300/102399 [73%] (base=75062)
+  -> send seq=75400/102399 [73%] (base=75167)
+
+[timeout] windowBase=75167 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=75500/102399 [73%] (base=75321)
+  -> send seq=75600/102399 [73%] (base=75426)
+
+[timeout] windowBase=75426 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=75700/102399 [73%] (base=75596)
+  -> send seq=75800/102399 [74%] (base=75596)
+  -> send seq=75900/102399 [74%] (base=75690)
+  <- ACK=75700: window 75699 -> 75700/102400
+
+[timeout] windowBase=75726 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=76000/102399 [74%] (base=75836)
+  -> send seq=76100/102399 [74%] (base=75986)
+  -> send seq=76200/102399 [74%] (base=75986)
+  <- ACK=76000: window 75999 -> 76000/102400
+  -> send seq=76300/102399 [74%] (base=76071)
+
+[timeout] windowBase=76071 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=76400/102399 [74%] (base=76308)
+  -> send seq=76500/102399 [74%] (base=76308)
+  -> send seq=76600/102399 [74%] (base=76365)
+
+[timeout] windowBase=76365 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=76700/102399 [74%] (base=76543)
+  -> send seq=76800/102399 [75%] (base=76631)
+  -> send seq=76900/102399 [75%] (base=76664)
+
+[timeout] windowBase=76664 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=77000/102399 [75%] (base=76908)
+  -> send seq=77100/102399 [75%] (base=76908)
+  -> send seq=77200/102399 [75%] (base=76954)
+
+[timeout] windowBase=76954 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=77300/102399 [75%] (base=77128)
+  -> send seq=77400/102399 [75%] (base=77227)
+  <- ACK=77300: window 77299 -> 77300/102400
+  -> send seq=77500/102399 [75%] (base=77325)
+
+[timeout] windowBase=77325 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  <- ACK=77400: window 77393 -> 77400/102400
+  -> send seq=77600/102399 [75%] (base=77422)
+  <- ACK=77600: window 77599 -> 77600/102400
+  -> send seq=77700/102399 [75%] (base=77605)
+  -> send seq=77800/102399 [75%] (base=77605)
+
+[timeout] windowBase=77605 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=77900/102399 [76%] (base=77835)
+  -> send seq=78000/102399 [76%] (base=77835)
+  <- ACK=77900: window 77899 -> 77900/102400
+  -> send seq=78100/102399 [76%] (base=77976)
+  -> send seq=78200/102399 [76%] (base=77976)
+
+[timeout] windowBase=77976 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=78300/102399 [76%] (base=78119)
+  -> send seq=78400/102399 [76%] (base=78286)
+  -> send seq=78500/102399 [76%] (base=78286)
+
+[timeout] windowBase=78286 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=78600/102399 [76%] (base=78444)
+  -> send seq=78700/102399 [76%] (base=78532)
+
+[timeout] windowBase=78532 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=78800/102399 [76%] (base=78604)
+
+[timeout] windowBase=78604 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=78900/102399 [77%] (base=78860)
+  -> send seq=79000/102399 [77%] (base=78860)
+  -> send seq=79100/102399 [77%] (base=78860)
+
+[timeout] windowBase=78880 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=79200/102399 [77%] (base=79042)
+  -> send seq=79300/102399 [77%] (base=79161)
+  -> send seq=79400/102399 [77%] (base=79161)
+
+[timeout] windowBase=79161 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=79500/102399 [77%] (base=79280)
+  -> send seq=79600/102399 [77%] (base=79528)
+  -> send seq=79700/102399 [77%] (base=79528)
+
+[timeout] windowBase=79537 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=79800/102399 [77%] (base=79673)
+  -> send seq=79900/102399 [78%] (base=79673)
+  <- ACK=79800: window 79799 -> 79800/102400
+  -> send seq=80000/102399 [78%] (base=79805)
+
+[timeout] windowBase=79821 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=80100/102399 [78%] (base=79975)
+  -> send seq=80200/102399 [78%] (base=79975)
+  -> send seq=80300/102399 [78%] (base=80069)
+  <- ACK=80100: window 80099 -> 80100/102400
+  -> send seq=80400/102399 [78%] (base=80189)
+
+[timeout] windowBase=80189 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=80500/102399 [78%] (base=80332)
+  -> send seq=80600/102399 [78%] (base=80446)
+  -> send seq=80700/102399 [78%] (base=80446)
+
+[timeout] windowBase=80452 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=80800/102399 [78%] (base=80585)
+  -> send seq=80900/102399 [79%] (base=80717)
+  -> send seq=81000/102399 [79%] (base=80793)
+
+[timeout] windowBase=80793 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=81100/102399 [79%] (base=80950)
+  -> send seq=81200/102399 [79%] (base=80950)
+  -> send seq=81300/102399 [79%] (base=81051)
+
+[timeout] windowBase=81060 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=81400/102399 [79%] (base=81215)
+  -> send seq=81500/102399 [79%] (base=81323)
+  -> send seq=81600/102399 [79%] (base=81356)
+
+[timeout] windowBase=81356 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=81700/102399 [79%] (base=81449)
+  -> send seq=81800/102399 [79%] (base=81692)
+  -> send seq=81900/102399 [79%] (base=81692)
+  <- ACK=81700: window 81699 -> 81700/102400
+
+[timeout] windowBase=81701 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=82000/102399 [80%] (base=81957)
+  -> send seq=82100/102399 [80%] (base=81957)
+  -> send seq=82200/102399 [80%] (base=81957)
+  <- ACK=82000: window 81999 -> 82000/102400
+  -> send seq=82300/102399 [80%] (base=82075)
+
+[timeout] windowBase=82075 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=82400/102399 [80%] (base=82331)
+  -> send seq=82500/102399 [80%] (base=82331)
+  <- ACK=82400: window 82399 -> 82400/102400
+  -> send seq=82600/102399 [80%] (base=82411)
+  -> send seq=82700/102399 [80%] (base=82516)
+
+[timeout] windowBase=82516 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=82800/102399 [80%] (base=82555)
+  -> send seq=82900/102399 [80%] (base=82774)
+  -> send seq=83000/102399 [81%] (base=82774)
+
+[timeout] windowBase=82774 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=83100/102399 [81%] (base=82868)
+  -> send seq=83200/102399 [81%] (base=83075)
+  -> send seq=83300/102399 [81%] (base=83075)
+  <- ACK=83100: window 83099 -> 83100/102400
+  <- ACK=83200: window 83199 -> 83200/102400
+  -> send seq=83400/102399 [81%] (base=83290)
+  -> send seq=83500/102399 [81%] (base=83290)
+
+[timeout] windowBase=83290 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=83600/102399 [81%] (base=83460)
+  -> send seq=83700/102399 [81%] (base=83460)
+  -> send seq=83800/102399 [81%] (base=83686)
+  -> send seq=83900/102399 [81%] (base=83686)
+
+[timeout] windowBase=83696 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=83696 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=84000/102399 [82%] (base=83952)
+  -> send seq=84100/102399 [82%] (base=83952)
+  -> send seq=84200/102399 [82%] (base=83952)
+
+[timeout] windowBase=83986 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=84300/102399 [82%] (base=84049)
+  -> send seq=84400/102399 [82%] (base=84271)
+  -> send seq=84500/102399 [82%] (base=84271)
+
+[timeout] windowBase=84271 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=84600/102399 [82%] (base=84360)
+
+[timeout] windowBase=84360 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=84700/102399 [82%] (base=84567)
+  -> send seq=84800/102399 [82%] (base=84567)
+  -> send seq=84900/102399 [82%] (base=84675)
+  <- ACK=84700: window 84699 -> 84700/102400
+  -> send seq=85000/102399 [83%] (base=84754)
+
+[timeout] windowBase=84754 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=85100/102399 [83%] (base=84875)
+  -> send seq=85200/102399 [83%] (base=85014)
+
+[timeout] windowBase=85014 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=85300/102399 [83%] (base=85138)
+  -> send seq=85400/102399 [83%] (base=85287)
+  -> send seq=85500/102399 [83%] (base=85287)
+
+[timeout] windowBase=85287 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=85600/102399 [83%] (base=85357)
+  <- ACK=85600: window 85599 -> 85600/102400
+  -> send seq=85700/102399 [83%] (base=85613)
+  -> send seq=85800/102399 [83%] (base=85613)
+
+[timeout] windowBase=85619 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=85900/102399 [83%] (base=85694)
+  -> send seq=86000/102399 [83%] (base=85792)
+  -> send seq=86100/102399 [84%] (base=85933)
+
+[timeout] windowBase=85933 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=86200/102399 [84%] (base=86090)
+  -> send seq=86300/102399 [84%] (base=86090)
+  <- ACK=86200: window 86199 -> 86200/102400
+  -> send seq=86400/102399 [84%] (base=86211)
+
+[timeout] windowBase=86236 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=86500/102399 [84%] (base=86346)
+  -> send seq=86600/102399 [84%] (base=86346)
+  -> send seq=86700/102399 [84%] (base=86492)
+  <- ACK=86500: window 86499 -> 86500/102400
+
+[timeout] windowBase=86528 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=86800/102399 [84%] (base=86784)
+  -> send seq=86900/102399 [84%] (base=86784)
+  -> send seq=87000/102399 [84%] (base=86784)
+  <- ACK=86800: window 86799 -> 86800/102400
+  <- ACK=86900: window 86899 -> 86900/102400
+  -> send seq=87100/102399 [85%] (base=86904)
+
+[timeout] windowBase=86913 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=87200/102399 [85%] (base=86981)
+  -> send seq=87300/102399 [85%] (base=87099)
+  -> send seq=87400/102399 [85%] (base=87242)
+  -> send seq=87500/102399 [85%] (base=87290)
+
+[timeout] windowBase=87290 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=87600/102399 [85%] (base=87416)
+  -> send seq=87700/102399 [85%] (base=87598)
+  -> send seq=87800/102399 [85%] (base=87598)
+  <- ACK=87600: window 87599 -> 87600/102400
+
+[timeout] windowBase=87602 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=87900/102399 [85%] (base=87766)
+  -> send seq=88000/102399 [85%] (base=87766)
+  -> send seq=88100/102399 [86%] (base=87860)
+
+[timeout] windowBase=87874 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=88200/102399 [86%] (base=88130)
+  -> send seq=88300/102399 [86%] (base=88130)
+  -> send seq=88400/102399 [86%] (base=88187)
+
+[timeout] windowBase=88187 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=88500/102399 [86%] (base=88390)
+  -> send seq=88600/102399 [86%] (base=88390)
+  <- ACK=88500: window 88499 -> 88500/102400
+  -> send seq=88700/102399 [86%] (base=88554)
+  -> send seq=88800/102399 [86%] (base=88554)
+
+[timeout] windowBase=88554 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=88900/102399 [86%] (base=88704)
+  -> send seq=89000/102399 [86%] (base=88822)
+
+[timeout] windowBase=88822 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=89100/102399 [87%] (base=89076)
+  -> send seq=89200/102399 [87%] (base=89076)
+  -> send seq=89300/102399 [87%] (base=89076)
+  <- ACK=89100: window 89099 -> 89100/102400
+  -> send seq=89400/102399 [87%] (base=89196)
+
+[timeout] windowBase=89196 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=89500/102399 [87%] (base=89324)
+  -> send seq=89600/102399 [87%] (base=89452)
+  -> send seq=89700/102399 [87%] (base=89452)
+  <- ACK=89500: window 89499 -> 89500/102400
+
+[timeout] windowBase=89507 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=89800/102399 [87%] (base=89641)
+  -> send seq=89900/102399 [87%] (base=89763)
+  -> send seq=90000/102399 [87%] (base=89763)
+  <- ACK=89800: window 89799 -> 89800/102400
+
+[timeout] windowBase=89812 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=90100/102399 [87%] (base=90068)
+  -> send seq=90200/102399 [88%] (base=90068)
+  -> send seq=90300/102399 [88%] (base=90068)
+  <- ACK=90100: window 90099 -> 90100/102400
+  -> send seq=90400/102399 [88%] (base=90166)
+
+[timeout] windowBase=90166 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=90500/102399 [88%] (base=90303)
+  -> send seq=90600/102399 [88%] (base=90433)
+
+[timeout] windowBase=90433 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=90700/102399 [88%] (base=90629)
+  -> send seq=90800/102399 [88%] (base=90629)
+  -> send seq=90900/102399 [88%] (base=90693)
+
+[timeout] windowBase=90693 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=91000/102399 [88%] (base=90813)
+  -> send seq=91100/102399 [88%] (base=90949)
+  -> send seq=91200/102399 [89%] (base=90949)
+
+[timeout] windowBase=90991 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=91300/102399 [89%] (base=91090)
+  -> send seq=91400/102399 [89%] (base=91288)
+  -> send seq=91500/102399 [89%] (base=91288)
+
+[timeout] windowBase=91288 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=91600/102399 [89%] (base=91432)
+  -> send seq=91700/102399 [89%] (base=91539)
+  <- ACK=91600: window 91599 -> 91600/102400
+  -> send seq=91800/102399 [89%] (base=91626)
+
+[timeout] windowBase=91626 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=91900/102399 [89%] (base=91667)
+  -> send seq=92000/102399 [89%] (base=91788)
+  -> send seq=92100/102399 [89%] (base=91962)
+  -> send seq=92200/102399 [90%] (base=91962)
+  <- ACK=92000: window 91999 -> 92000/102400
+
+[timeout] windowBase=92000 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=92300/102399 [90%] (base=92212)
+  -> send seq=92400/102399 [90%] (base=92212)
+  <- ACK=92300: window 92299 -> 92300/102400
+  -> send seq=92500/102399 [90%] (base=92307)
+
+[timeout] windowBase=92307 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=92600/102399 [90%] (base=92425)
+  <- ACK=92600: window 92599 -> 92600/102400
+  -> send seq=92700/102399 [90%] (base=92601)
+  -> send seq=92800/102399 [90%] (base=92601)
+
+[timeout] windowBase=92621 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=92900/102399 [90%] (base=92721)
+  -> send seq=93000/102399 [90%] (base=92877)
+  -> send seq=93100/102399 [90%] (base=92877)
+  <- ACK=92900: window 92899 -> 92900/102400
+  -> send seq=93200/102399 [91%] (base=92949)
+
+[timeout] windowBase=92949 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  <- ACK=93200: window 93117 -> 93200/102400
+  -> send seq=93300/102399 [91%] (base=93236)
+  -> send seq=93400/102399 [91%] (base=93236)
+  <- ACK=93300: window 93299 -> 93300/102400
+  -> send seq=93500/102399 [91%] (base=93329)
+  -> send seq=93600/102399 [91%] (base=93346)
+
+[timeout] windowBase=93346 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=93700/102399 [91%] (base=93460)
+  -> send seq=93800/102399 [91%] (base=93627)
+
+[timeout] windowBase=93627 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=93900/102399 [91%] (base=93784)
+  -> send seq=94000/102399 [91%] (base=93784)
+  -> send seq=94100/102399 [91%] (base=93883)
+
+[timeout] windowBase=93885 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=94200/102399 [91%] (base=94075)
+  -> send seq=94300/102399 [92%] (base=94075)
+  -> send seq=94400/102399 [92%] (base=94147)
+
+[timeout] windowBase=94147 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=94500/102399 [92%] (base=94309)
+  -> send seq=94600/102399 [92%] (base=94420)
+
+[timeout] windowBase=94420 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=94700/102399 [92%] (base=94548)
+  -> send seq=94800/102399 [92%] (base=94548)
+  -> send seq=94900/102399 [92%] (base=94676)
+  <- ACK=94700: window 94699 -> 94700/102400
+  -> send seq=95000/102399 [92%] (base=94745)
+
+[timeout] windowBase=94745 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=95100/102399 [92%] (base=95001)
+  -> send seq=95200/102399 [92%] (base=95001)
+
+[timeout] windowBase=95042 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=95300/102399 [93%] (base=95144)
+  <- ACK=95300: window 95299 -> 95300/102400
+  -> send seq=95400/102399 [93%] (base=95301)
+  -> send seq=95500/102399 [93%] (base=95301)
+  -> send seq=95600/102399 [93%] (base=95356)
+
+[timeout] windowBase=95356 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=95700/102399 [93%] (base=95463)
+  -> send seq=95800/102399 [93%] (base=95612)
+  -> send seq=95900/102399 [93%] (base=95652)
+
+[timeout] windowBase=95652 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=96000/102399 [93%] (base=95786)
+  -> send seq=96100/102399 [93%] (base=95911)
+  -> send seq=96200/102399 [93%] (base=96037)
+  -> send seq=96300/102399 [94%] (base=96079)
+
+[timeout] windowBase=96079 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=96400/102399 [94%] (base=96219)
+  -> send seq=96500/102399 [94%] (base=96344)
+  -> send seq=96600/102399 [94%] (base=96350)
+
+[timeout] windowBase=96350 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=96700/102399 [94%] (base=96461)
+  -> send seq=96800/102399 [94%] (base=96624)
+
+[timeout] windowBase=96624 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=96900/102399 [94%] (base=96742)
+  -> send seq=97000/102399 [94%] (base=96880)
+  -> send seq=97100/102399 [94%] (base=96880)
+
+[timeout] windowBase=96887 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=97200/102399 [94%] (base=97043)
+  -> send seq=97300/102399 [95%] (base=97143)
+  -> send seq=97400/102399 [95%] (base=97151)
+
+[timeout] windowBase=97151 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=97500/102399 [95%] (base=97407)
+  -> send seq=97600/102399 [95%] (base=97407)
+  <- ACK=97500: window 97499 -> 97500/102400
+  -> send seq=97700/102399 [95%] (base=97504)
+
+[timeout] windowBase=97523 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=97800/102399 [95%] (base=97574)
+  -> send seq=97900/102399 [95%] (base=97833)
+  -> send seq=98000/102399 [95%] (base=97833)
+  <- ACK=97900: window 97899 -> 97900/102400
+  -> send seq=98100/102399 [95%] (base=97909)
+
+[timeout] windowBase=97909 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=98200/102399 [95%] (base=98041)
+  -> send seq=98300/102399 [95%] (base=98165)
+  -> send seq=98400/102399 [96%] (base=98165)
+  <- ACK=98200: window 98199 -> 98200/102400
+
+[timeout] windowBase=98231 stuck for 0.05s
+[timeout] retransmitting 256 packets
+
+[timeout] windowBase=98231 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=98500/102399 [96%] (base=98487)
+  -> send seq=98600/102399 [96%] (base=98487)
+  -> send seq=98700/102399 [96%] (base=98487)
+
+[timeout] windowBase=98496 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=98800/102399 [96%] (base=98591)
+  -> send seq=98900/102399 [96%] (base=98782)
+  -> send seq=99000/102399 [96%] (base=98782)
+
+[timeout] windowBase=98782 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=99100/102399 [96%] (base=99038)
+  -> send seq=99200/102399 [96%] (base=99038)
+  -> send seq=99300/102399 [96%] (base=99076)
+
+[timeout] windowBase=99076 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=99400/102399 [97%] (base=99235)
+  -> send seq=99500/102399 [97%] (base=99353)
+  -> send seq=99600/102399 [97%] (base=99353)
+
+[timeout] windowBase=99358 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=99700/102399 [97%] (base=99480)
+  -> send seq=99800/102399 [97%] (base=99634)
+  -> send seq=99900/102399 [97%] (base=99666)
+
+[timeout] windowBase=99666 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=100000/102399 [97%] (base=99785)
+  -> send seq=100100/102399 [97%] (base=99947)
+  -> send seq=100200/102399 [97%] (base=99947)
+
+[timeout] windowBase=99947 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=100300/102399 [97%] (base=100144)
+  -> send seq=100400/102399 [98%] (base=100232)
+
+[timeout] windowBase=100232 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=100500/102399 [98%] (base=100280)
+  -> send seq=100600/102399 [98%] (base=100436)
+  -> send seq=100700/102399 [98%] (base=100519)
+
+[timeout] windowBase=100519 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=100800/102399 [98%] (base=100684)
+  -> send seq=100900/102399 [98%] (base=100684)
+  -> send seq=101000/102399 [98%] (base=100777)
+
+[timeout] windowBase=100777 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=101100/102399 [98%] (base=100996)
+  -> send seq=101200/102399 [98%] (base=100996)
+
+[timeout] windowBase=101007 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=101300/102399 [98%] (base=101263)
+  -> send seq=101400/102399 [99%] (base=101263)
+  -> send seq=101500/102399 [99%] (base=101263)
+  <- ACK=101300: window 101299 -> 101300/102400
+  -> send seq=101600/102399 [99%] (base=101349)
+  <- ACK=101400: window 101399 -> 101400/102400
+
+[timeout] windowBase=101438 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=101700/102399 [99%] (base=101626)
+  -> send seq=101800/102399 [99%] (base=101626)
+  <- ACK=101700: window 101699 -> 101700/102400
+  -> send seq=101900/102399 [99%] (base=101723)
+
+[timeout] windowBase=101723 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=102000/102399 [99%] (base=101811)
+  -> send seq=102100/102399 [99%] (base=102021)
+  -> send seq=102200/102399 [99%] (base=102021)
+
+[timeout] windowBase=102021 stuck for 0.05s
+[timeout] retransmitting 256 packets
+  -> send seq=102300/102399 [99%] (base=102277)
+  -> send seq=102399/102399 [100%] (base=102277)
+  <- ACK=102300: window 102299 -> 102300/102400
+
+[timeout] windowBase=102346 stuck for 0.05s
+[timeout] retransmitting 54 packets
+  <- ACK=102400: window 102392 -> 102400/102400
+
+[done] all 102400 chunks acknowledged
+
+[fin] sending finish
+[fin] got FIN_ACK (verified), transfer complete!
+
+------------------------------------------------------------
+SERVER REPORT
+------------------------------------------------------------
+Test: Phase 1 Reliable Transfer (no security)
+Timestamp: 2026-04-17 21:55:30
+
+Name of the transferred file:            test_100mb_file
+Size of the transferred file:            104857600 bytes
+Number of packets sent from the server:  196666
+Number of retransmitted packets:         94262
+Number of packets received from client:  104769
+Time duration of the file transfer:      00:00:58
+Original file MD5:                       2f282b84e7e608d5852449ed940bfc51
+
+Phase 1 (security off)
+Security enabled (PSK + AEAD):                        No
+------------------------------------------------------------
+
+report save to Server_Report.txt
+
+server complete
+
+socket closed
+[ec2-user@ip-172-31-28-20 ~]$ md5sum server/test_100mb_file
+2f282b84e7e608d5852449ed940bfc51  server/test_100mb_file
+[ec2-user@ip-172-31-28-20 ~]$
