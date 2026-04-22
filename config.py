@@ -3,14 +3,19 @@
 # network address settings
 
 # server IP
-# local test : '127.0.0.1'
-# AWS: 'server EC2 private IP'
 serverIP = '172.31.22.141'
 
 # client IP
-# local test : '127.0.0.1'
-# AWS: client EC2 private IP
 clientIP = '172.31.24.196'
+
+# True = encrypted (Phase 2), False = plain (Phase 1)
+securityEnabled = False
+
+
+# Pre Shared Key (PSK)
+# 32 bytes
+# AES-256-GCM
+psk = b'cs5700-group2-srft-secret-key32!'
 
 # port numbers
 serverPort = 12000
@@ -136,18 +141,6 @@ showDebug = True
 # progress every N packets
 printEvery = 500
 
-
-# Phase 2: security settings
-# True = encrypted (Phase 2), False = plain (Phase 1)
-securityEnabled = False
-
-
-# Pre Shared Key (PSK)
-
-# 32 bytes for AES-256-GCM
-# both client and server must have the same PSK
-# for Test 2: change this on one side to test wrong PSK
-psk = b'cs5700-group2-srft-secret-key32!'
 
 # AEAD sizes for AES-256-GCM
 

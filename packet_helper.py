@@ -637,16 +637,13 @@ def verifyHmac(key, message, expectedTag):
 # HKDF mixes PSK + random nonces to get unique session key
 
 def deriveSessionKey(pskKey, clientNonce, serverNonce):
-    # salt = both random nonces combined
     salt = clientNonce + serverNonce
 
-    # info label for key purpose
     info = b'srft-session-encryption-key'
 
-    # HKDF extract-then-expand
+    # HKDF extract then expand
     hkdf = HKDF(
         algorithm=hashes.SHA256(),
-        # 32 bytes = 256 bits for AES-256
         length=32,
         salt=salt,
         info=info
@@ -665,7 +662,7 @@ def buildAad(sessionId, pktType, seqNum, ackNum):
     aad = sessionId + struct.pack('!BII', pktType, seqNum, ackNum)
     return aad
 
-# encrypt with AEAD (AES-256-GCM or ChaCha20-Poly1305 from handshake)
+# encrypt with AEAD
 # returns: nonce(12 bytes) + ciphertext + tag(16 bytes)
 def encryptData(sessionKey, plaintext, sessionId, pktType, seqNum, ackNum):
     mode = get_session_cipher()
