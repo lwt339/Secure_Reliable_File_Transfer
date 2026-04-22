@@ -530,7 +530,7 @@ If the sender tried to send and wait for ACK on one thread, sending would wait e
 - **Retransmit thread** checks lastWindowMoveTime and resends the unacked window on timeout.
 
 **Client side:**
-- **Main thread** receives packets, checks the checksum, parses, buffers writes the chunk, and updates expectedSeq.
+- **Main thread** receive packets, check the checksum, parses, buffers writes the chunk, and updates expectedSeq.
 - **ACK sender thread** sends cumulative ACKs every 3 received packets.
 
 All shared state (the window, the buffer, counters) is protected with threading.Lock(), and every lock is inside a try/finally so it always releases even if an exception is raised.

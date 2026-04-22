@@ -17,12 +17,8 @@ import packet_helper
 
 
 # receive
-
-# seq numbers received set
 receivedSet = set()
-# file handle disk
 outputFile = None
-# next seq (cumulative ACK)
 expectedSeq = 0
 
 # file info
@@ -40,21 +36,19 @@ ackCount = 0
 validCount = 0
 duplicateCount = 0
 outOfOrderCount = 0
-# count recvfrom
-# including dropped by checksum or AEAD
 totalRecvCount = 0
 
-# timing (client side, for the client report)
+# timing
 startTime = 0.0
 endTime = 0.0
 
 # security
 
-# AES 256 from HKDF
+# AES 256
 sessionKey = None
 # 8B from handshake
 sessionId = None
-# nonce use from handsahke
+# nonce
 clientNonce = None
 handshakeOk = False
 
@@ -69,13 +63,11 @@ replayDropCount = 0
 serverSHA256 = ''
 sha256Match = False
 
-# thread lock (multithreading safety)
-# prevent send from interleaving
+# thread lock
 clientLock = threading.Lock()
 
 
 # Send Filename Request to Server
-
 def requestFile(sock, filename):
     print('')
     print('[request] send file request: ' + filename)
@@ -86,7 +78,6 @@ def requestFile(sock, filename):
 
 
 # security handshake
-# establish secure session
 def doSecurityHandshake(sock):
     global sessionKey, sessionId, clientNonce, handshakeOk
 
@@ -94,14 +85,13 @@ def doSecurityHandshake(sock):
     print(' Phase 2: Security Handshake')
     print('')
 
-    # build ClientHello ( nonce + HMAC using PSK)
+    # ClientHello ( nonce + HMAC using PSK)
     print('[handshake] building ClientHello')
     helloData, clientNonce = buildClientHello(psk)
 
-    # send ClientHello to server
     print('[handshake] sending ClientHello to server')
     # send 3 copy
-    # reliability (UDP might drop one)
+    # UDP might drop one
     for i in range(3):
         sendPacket(sock, serverIP, serverPort, clientIP, clientPort,
                    typeClientHello, 0, 0, helloData)
@@ -117,19 +107,17 @@ def doSecurityHandshake(sock):
             print(' timeout waiting for ServerHello (' +
                   str(attempt + 1) + '/' + str(maxRetry) + ')')
             # resend ClientHello
-            # in case it was lost
             sendPacket(sock, serverIP, serverPort, clientIP, clientPort,
                        typeClientHello, 0, 0, helloData)
             continue
 
         if parsed['pktType'] == typeServerHello:
             print('[handshake] receive ServerHello')
-            # verify server HMAC (proves server same PSK)
+            # verify server HMAC (proves same PSK)
             serverNonce, sessionId = parseServerHello(
                 psk, parsed['data'], clientNonce)
 
             if serverNonce is None:
-                # HMAC fail server has different PSK
                 print('[handshake] Failed b/c server PSK mismatch')
                 handshakeOk = False
                 return False
@@ -142,7 +130,6 @@ def doSecurityHandshake(sock):
         handshakeOk = False
         return False
 
-    # derive session key (HKDF-SHA256)
     sessionKey = deriveSessionKey(psk, clientNonce, serverNonce)
     print('[handshake] session key derived (HKDF-SHA256)')
     print(' session ID: ' + sessionId.hex())
@@ -175,7 +162,6 @@ def waitForFileInfo(sock, filename):
 
         if parsed['pktType'] == typeFileInfo:
             infoStr = parsed['data'].decode('utf-8')
-            # check for error response
             if infoStr.startswith('ERROR:'):
                 print('[error] server says: ' + infoStr)
                 return False
@@ -189,7 +175,6 @@ def waitForFileInfo(sock, filename):
                     print('[error] server sent invalid filename')
                     return False
                 fileName = receivedName
-                # safely parse numbers
                 # error handling
                 try:
                     fileSize = int(parts[1])
@@ -228,7 +213,6 @@ def waitForFileInfo(sock, filename):
 
 # Output File on Disk
 # pre allocate so we can write chunks at any offset (out of order)
-
 def prepareOutputFile():
     global outputFile
     if not os.path.exists(clientDir):
@@ -270,10 +254,8 @@ def prepareOutputFile():
 
 # write chunk to correct position
 # offset = seqNum x chunkSize, handles out of order
-
 def writeChunkToDisk(seqNum, data):
     # returns True if write succeess, False if  failed
-    # caller only add to receivedSet if True
     global outputFile
     offset = seqNum * chunkSize
     try:
@@ -294,10 +276,9 @@ def writeChunkToDisk(seqNum, data):
 def sendCumulativeAck(sock):
     global ackCount
 
-    # snapshot once
     currentAck = expectedSeq
     if securityEnabled and sessionKey is not None:
-        # encrypt the ack number
+        # encrypt ack number
         ackData = struct.pack('!I', currentAck)
         encAck = encryptData(sessionKey, ackData,
                              sessionId, typeAck, 0, currentAck)
@@ -305,7 +286,7 @@ def sendCumulativeAck(sock):
                    typeAck, 0, currentAck, encAck)
     else:
         # Phase 1
-        # plain ACK (just seq and ack)
+        # plain ACK
         sendPacket(sock, serverIP, serverPort, clientIP, clientPort,
                    typeAck, 0, currentAck)
 
@@ -313,8 +294,7 @@ def sendCumulativeAck(sock):
 
 
 # send FIN_ACK with security counters + SHA-256 result
-# so server report shows accurate numbers#
-# payload: chunks(4) + aeadFail(4) + replayDrop(4) + sha256Flag(1) (1=match, 0=no match)
+# chunks(4) + aeadFail(4) + replayDrop(4) + sha256Flag(1) (1=match, 0=no match)
 def sendFinAck(sock):
     if securityEnabled and sessionKey is not None:
         sha256Flag = 1 if sha256Match else 0
@@ -329,13 +309,12 @@ def sendFinAck(sock):
         sendPacket(sock, serverIP, serverPort, clientIP, clientPort,
                    typeFinAck, 0, numChunks, encConfirm)
     else:
-        # Phase 1: plain FIN_ACK
+        # Phase 1 plain FIN_ACK
         sendPacket(sock, serverIP, serverPort, clientIP, clientPort,
                    typeFinAck, 0, numChunks)
 
 
 # Send Encrypted SHA Confirm
-# tell server we got SHA-256 hash
 def sendShaConfirm(sock):
     if securityEnabled and sessionKey is not None:
         confirmData = b'SHA256-OK'
@@ -348,14 +327,14 @@ def sendShaConfirm(sock):
                    typeShaConfirm, 0, 0)
 
 
-# decrypt received data packet
+
 # returns plaintext if AEAD ok
 # None if tampered/forged
 def decryptReceivedData(parsed):
     global aeadFailCount
 
     if not securityEnabled or sessionKey is None:
-        # Phase 1no encryption, data is plaintext
+        # Phase 1 no encryption, data is plaintext
         return parsed['data']
 
     encData = parsed['data']
@@ -388,8 +367,7 @@ def ackSenderThread(sock):
 
 
 # Receive Data Packets from Server
-# main receive loop
-# with all validation checks
+# main receive loop with all validation checks
 def receiveData(sock):
     global expectedSeq, isDone
     global validCount, duplicateCount, outOfOrderCount, totalRecvCount
@@ -404,16 +382,15 @@ def receiveData(sock):
         print(' decryption: ' + get_session_cipher() + ' (AEAD)')
         print(' replay protection: receivedSet + window limit (' + str(recvWindowLimit) + ')')
 
-    # start client timer (for client report duration)
+    # start client timer
     startTime = time.time()
 
-    # handle empty
     if numChunks == 0:
         endTime = time.time()
         print('[done] empty file, no chunks to receive')
         return
 
-    # periodic ACK sender thread (multithreading)
+    # periodic ACK sender thread
     ackThread = threading.Thread(target=ackSenderThread, args=(sock,))
     ackThread.daemon = True
     ackThread.start()
@@ -442,11 +419,11 @@ def receiveData(sock):
                 lastAckTime = time.time()
                 continue
 
-            timeoutCount = 0  # reset timeout counter (receive packet)
-            # count every packet we accepted past checksum
+            timeoutCount = 0
+
             totalRecvCount = totalRecvCount + 1
 
-            # SHA 256 verification
+            # SHA 256
             if parsed['pktType'] == typeShaVerify:
                 print('')
                 print('[sha-256] received SHA-256 hash from server')
@@ -472,7 +449,7 @@ def receiveData(sock):
                 # only accept FIN if got all chunks
                 if expectedSeq < numChunks:
                     # not ready
-                    # send ACK so server know progress
+
                     clientLock.acquire()
                     try:
                         sendCumulativeAck(sock)
@@ -485,7 +462,7 @@ def receiveData(sock):
                 print('')
                 print('[fin] received finish signal from server')
 
-                # verify FIN with AEAD before accept
+                # verify FIN with AEAD
                 if securityEnabled and sessionKey is not None:
                     finPlain = decryptData(sessionKey, parsed['data'],
                                            sessionId, typeFin,
@@ -498,12 +475,10 @@ def receiveData(sock):
                             print('  [security] FIN packet AEAD failed, ignore')
                         continue
 
-                # calc SHA-256 on receive file before FIN_ACK
-                # so sha256Match in FIN_ACK is real result
+                # calc SHA-256 receive file before FIN_ACK
                 if outputFile is not None:
                     outputFile.flush()
-                    os.fsync(outputFile.fileno())  # force data to disk
-                    # exact file size
+                    os.fsync(outputFile.fileno())
                     outputFile.truncate(fileSize)
                     outputFile.flush()
                     os.fsync(outputFile.fileno())
@@ -526,12 +501,11 @@ def receiveData(sock):
                 finally:
                     clientLock.release()
                 print('[fin] FIN_ACK sent (with security counters)')
-                # end timer right after FIN_ACK sent
                 endTime = time.time()
                 isDone = True
                 break
 
-            # only process data packet from here
+            # process data packet
             if parsed['pktType'] != typeData:
                 continue
 
@@ -549,18 +523,15 @@ def receiveData(sock):
                         print('  invalid seq=' + str(seqNum) +
                               ' >= numChunks=' + str(numChunks) + ', dropped')
                     continue
-                # Phase 2 fall through to AEAD below
 
             # check receiver window
-            # Phase 1: block immediately
-            # Phase 2: through to AEAD so forged packets increment aeadFailCount
+            # Phase 1 block immediately
+            # Phase 2 through to AEAD forged packets increment aeadFailCount
             if seqNum > expectedSeq + recvWindowLimit:
                 if not securityEnabled:
                     if showDebug:
                         print('  out-of-window: seq=' + str(seqNum) + ', dropped')
                     continue
-                # Phase 2: fall through to AEAD
-
             # check replay protection
             # reject already received seq numbers
             if seqNum in receivedSet:
@@ -582,7 +553,6 @@ def receiveData(sock):
             # check decrypt data with AEAD
             data = decryptReceivedData(parsed)
             if data is None:
-                # dont write bad data to file
                 continue
 
             # extra safety
@@ -601,7 +571,6 @@ def receiveData(sock):
                     receivedSet.add(seqNum)
                     validCount = validCount + 1
                     sinceLastAck = sinceLastAck + 1
-                    # advance past any buffered out of order
                     while expectedSeq in receivedSet:
                         expectedSeq = expectedSeq + 1
 
@@ -616,7 +585,7 @@ def receiveData(sock):
 
             else:
                 # seqNum < expectedSeq and not in receivedSet
-                # very late retransmission, treat as duplicate
+                # duplicate
                 duplicateCount = duplicateCount + 1
                 if securityEnabled:
                     replayDropCount = replayDropCount + 1
@@ -624,13 +593,10 @@ def receiveData(sock):
             # send cumulative ACK periodically
             shouldAck = False
             if seqNum < expectedSeq:
-                # just completed in order batch
                 shouldAck = True
             if sinceLastAck >= ackEvery:
-                # every N packets
                 shouldAck = True
             if time.time() - lastAckTime > 0.5:
-                # timer based
                 shouldAck = True
 
             if shouldAck:
@@ -655,7 +621,7 @@ def receiveData(sock):
             if expectedSeq >= numChunks:
                 print('')
                 print('[done] all ' + str(numChunks) + ' chunks received!')
-                # send multiple ACK make sure server get at least one
+                # send multiple ACK
                 clientLock.acquire()
                 try:
                     for i in range(5):
@@ -668,7 +634,7 @@ def receiveData(sock):
             timeoutCount = timeoutCount + 1
             if timeoutCount > maxTimeouts:
                 break
-            # send ACK on timeout so server know progress
+            # send ACK on timeout
             clientLock.acquire()
             try:
                 sendCumulativeAck(sock)
@@ -676,7 +642,7 @@ def receiveData(sock):
                 clientLock.release()
             lastAckTime = time.time()
 
-    # if exited without setting endTime
+    # if exit
     if endTime <= 0:
         endTime = time.time()
 
@@ -691,20 +657,18 @@ def receiveData(sock):
               ', replay drops=' + str(replayDropCount))
 
 
-# verify receive file with MD5 + SHA-256
+# verify MD5 + SHA-256
 def verifyFile():
     global outputFile, sha256Match, receivedMD5
 
     print('')
     print('[verify] checking received file')
 
-    # close file handle
     # flush all data to disk
     if outputFile is not None:
         outputFile.flush()
-        os.fsync(outputFile.fileno())  # all data to disk
+        os.fsync(outputFile.fileno())
         # remove any stale pre allocation zero
-        # last chunk may smaller than chunkSize
         outputFile.truncate(fileSize)
         outputFile.close()
         outputFile = None
@@ -724,7 +688,7 @@ def verifyFile():
     else:
         print('[verify] Warning: ' + str(missing) + ' chunks missing')
 
-    # MD5 verification
+    # MD5
     receivedMD5 = calculateMD5(outputPath)
     print('')
     print('[MD5 verify]')
@@ -736,7 +700,7 @@ def verifyFile():
     else:
         print(' result: MD5 MISMATCH')
 
-    # SHA-256 verification
+    # SHA-256
     if securityEnabled and serverSHA256 != '':
         receivedSHA256 = calculateSHA256(outputPath)
         print('')
@@ -749,15 +713,13 @@ def verifyFile():
         else:
             print(' result: SHA-256 Mismatch')
     elif securityEnabled:
-        # server SHA 256 not receive
-        # cannot verify
+        # SHA 256 not receive
         print('[sha-256] server hash not received, SHA-256 not verified')
         sha256Match = False
 
     return md5Ok
 
 
-#  Print client security summary
 
 def printSecurityReport():
     print('')
@@ -775,24 +737,20 @@ def printSecurityReport():
 
 # client side report
 def writeClientReport():
-    # safe duration
     if endTime > 0 and startTime > 0 and endTime >= startTime:
         duration = endTime - startTime
     else:
         duration = 0.0
 
-    # read checksum error counter from packet_helper
-    # whenever verifyChecksum returns False
+    # rchecksum error
     checksumErrors = packet_helper.checksumErrorCount
 
-    # test label (helpful when appending many test runs)
-    # same mapping as server so both reports agree
+    # test label
     if config.attackMode == 'wrongpsk':
         testLabel = 'Test 2 Wrong PSK (Authentication Failure)'
     elif not securityEnabled:
         testLabel = 'Phase 1 Reliable Transfer (no security)'
     elif not handshakeOk:
-        # handshake died = almost always wrong PSK
         testLabel = 'Test 2 Wrong PSK (Authentication Failure)'
     elif config.attackMode == 'tamper':
         testLabel = 'Test 3 Tamper Detection (Integrity)'
@@ -810,7 +768,6 @@ def writeClientReport():
     lines.append('CLIENT REPORT')
     lines.append(barLine)
     lines.append('Test: ' + testLabel)
-    # EDT = UTC-4, quick hack avoid pytz
     lines.append('Timestamp: ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 14400)))
     lines.append('')
 
@@ -832,8 +789,8 @@ def writeClientReport():
     lines.append('Received file MD5:                       ' +
                  (receivedMD5 if receivedMD5 != '' else 'N/A'))
 
-    # phase 1 vs phase 2 security block
-    # phase 1 = no security = skip AEAD/SHA-256 lines, just like server
+
+    # phase 1 = no security = skip AEAD/SHA-256 lines
     if securityEnabled:
         lines.append('')
         lines.append('Phase 2 security fields')
@@ -846,12 +803,11 @@ def writeClientReport():
                      str(replayDropCount))
         lines.append('SHA-256 match:                                        ' +
                      ('Yes' if sha256Match else 'No'))
-        # only print if an attack flag was set (Test 3/4/5)
         if config.attackMode != 'none':
             lines.append('Attack test mode:                                     ' +
                          config.attackMode)
     else:
-        # phase 1 only: one line, no AEAD / no SHA-256
+        # phase 1
         lines.append('')
         lines.append('Phase 1 (security off)')
         lines.append('Security enabled (PSK + AEAD):                        No')
@@ -862,7 +818,6 @@ def writeClientReport():
     report = '\n'.join(lines)
     print(report)
 
-    # append so each test adds a new block
     try:
         with open(clientReportPath, 'a') as f:
             f.write(report + '\n')
@@ -881,11 +836,7 @@ def writeClientReport():
         print('warning: could not save client report: ' + str(e))
 
 
-# tiny helper: parse --cipher flag from command line
 def parse_client_argv(argv):
-    # argv = sys.argv[1:]
-    # sets config.cipherInfo when --cipher is used
-    # returns filename or None
     args = list(argv)
     if len(args) < 1:
         return None
@@ -924,10 +875,9 @@ if __name__ == '__main__':
     print('')
     print('')
 
-    # reset checksum error counter so each run starts clean
+    # reset checksum error counter
     packet_helper.resetChecksumErrorCount()
 
-    # check command line args
     if len(sys.argv) < 2:
         print('usage: python3 SRFT_UDPClient.py [--cipher aes-gcm|chacha] <filename>')
         print(' example: python3 SRFT_UDPClient.py test_10mb_file')
@@ -941,12 +891,12 @@ if __name__ == '__main__':
         print(' example: python3 SRFT_UDPClient.py --cipher chacha test_10mb_file')
         sys.exit(1)
 
-    # validate filename before send
+    # filename before send
     if not validateFilename(fileName):
         print('[error] invalid filename. exiting.')
         sys.exit(1)
 
-    # validate PSK length (warn only)
+    # PSK length
     if securityEnabled:
         if not validatePsk(psk):
             print('[warning] PSK may cause handshake failure (see above)')
@@ -956,14 +906,14 @@ if __name__ == '__main__':
     if securityEnabled:
         print(' AEAD cipher: ' + config.cipherInfo)
 
-    # create client socket
+    # client socket
     print('')
     print('[socket] creating client socket')
     mySocket = createClientSocket()
     print('  client socket created')
 
     try:
-        # send file request to server
+        # file request to server
         requestFile(mySocket, fileName)
 
         # Phase 2 security handshake
@@ -973,27 +923,25 @@ if __name__ == '__main__':
                 print('')
                 print('[error] handshake failed and connection rejected.')
                 printSecurityReport()
-                # still write client report so Test 2 has a record
-                # even though file never transferred
                 startTime = time.time()
                 endTime = startTime
                 writeClientReport()
                 mySocket.close()
                 sys.exit(1)
 
-        # wait for file info
+        # wait file info
         if not waitForFileInfo(mySocket, fileName):
             print('[exit] could not get file info from server')
             mySocket.close()
             sys.exit(1)
 
-        # prepare output file on disk
+        # output file on disk
         prepareOutputFile()
 
-        # receive all data packet
+        # receive
         receiveData(mySocket)
 
-        # verify received file (MD5 + SHA-256)
+        # verify
         success = verifyFile()
 
         print('')
@@ -1004,11 +952,10 @@ if __name__ == '__main__':
             print(' Warnning: file transfer may be incomplete')
         print('')
 
-        # print security summary on screen
+        # print security summary
         if securityEnabled:
             printSecurityReport()
 
-        # write the full client report to disk (appends each run)
         writeClientReport()
 
     except KeyboardInterrupt:
