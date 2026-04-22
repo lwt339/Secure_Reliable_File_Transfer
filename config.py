@@ -1,13 +1,13 @@
 # all settings
 
 # server IP
-serverIP = '172.31.22.141'
+serverIP = 'server EC2 private IP'
 
 # client IP
-clientIP = '172.31.24.196'
+clientIP = 'client EC2 private IP'
 
 # True = encrypted (Phase 2), False = plain (Phase 1)
-securityEnabled = False
+securityEnabled = True
 
 
 # Pre Shared Key (PSK)
