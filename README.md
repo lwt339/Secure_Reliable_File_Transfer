@@ -14,7 +14,7 @@ The client asks the server for a file by name. The server reads the file from di
 - `packet_helper.py` all helper functions
 - `SRFT_UDPServer.py` server 
 - `SRFT_UDPClient.py` client
-- `server/` test files on the server side (`test_10mb_file`, `test_100mb_file`, `test_500mb_file`, `test_800mb_file`, `test_1gb_file`)
+- `server/` test files on the server side (test_10mb_file, test_100mb_file, test_500mb_file, test_800mb_file, test_1gb_file)<img alt="Server_folder.png" src="Screenshots/README/Server_folder.png" width="50%"/>
 - `client/` folder where the client writes the received file
 - `Server_Report.txt` Server report
 - `Client_Report.txt` Client report
@@ -29,8 +29,8 @@ The client asks the server for a file by name. The server reads the file from di
 1. Client sends the filename to the server. 
 2. Phase 2 only: Client and server do a PSK handshake and derive session keys with HKDF-SHA256.
 3. Server read the file, splits it into 1024 byte chunks, and sends them.
-4. Each packet has a sequence number, a checksum, and AES-256-GCM encryption with AAD (Phase 2).
-5. client send cumulative ACK every 3 packets
+4. Each packet has a sequence number, checksum, and AES-256-GCM encryption with AAD (Phase 2).
+5. client send cumulative ACK every 3 packets or every 500 ms
 6. If the server doesn't get an ACK in 0.1 seconds, it retransmits unacked packets.
 7. When everything is done, server sends SHA256 of the original, client compares. If equal it success.
 
@@ -123,7 +123,7 @@ securityEnabled = False
 
 **Upload the code and test files**
 
-Open third terminal on the laptop, inside the project folder:
+Open third terminal inside the project folder:
 
 ```bash
 # Terminal 3 copy code files to both EC2
@@ -141,10 +141,10 @@ scp -i ~/Desktop/srft-key.pem -r server ec2-user@SERVER_PUBLIC_IP:~/
 From server ping client private IP and from client ping server: 
 
 ```bash
-# server EC2
+# server
 ping CLIENT_PRIVATE_IP -c 5
 
-# client EC2
+# client
 ping SERVER_PRIVATE_IP -c 5
 ```
 Both should reply with 0% packet loss.  If ping fails, the security group is wrong.
@@ -170,14 +170,14 @@ The server listens, the client sends the filename in a FILENAME packet, the serv
 **Verify file with md5sum**
 
 ```bash
-# server EC2
+# server
 md5sum server/test_10mb_file
 
-# client EC2
+# client
 md5sum client/test_10mb_file
 ```
 ![md5sum.png](Screenshots/README/md5sum.png)
-The two hashes should be exactly the same
+should be the same
 
 ### Simulate Packet Loss with tc netem
 
@@ -185,7 +185,7 @@ test with 2% to 4% packet loss. We use the Linux `tc` (traffic control) tool wit
 
 **Install tc on the server**
 ```bash
-# Server EC2
+# Server
 sudo yum install iproute-tc -y
 # find the interface name (Amazon Linux 2023 uses ens5)
 ip link show        
@@ -196,12 +196,14 @@ ip link show
 
 **Turn on 3% packet loss on server outbound**
 ```bash
+# Server
 sudo tc qdisc add dev ens5 root netem loss 3%
 ```
 
 **Verify packet loss**
 From the client, ping the server 20 times and should see a few percent lost:
 ```bash
+# Client
 ping SERVER_PRIVATE_IP -c 20
 ```
 <img alt="packetLoss_ping.png" src="Screenshots/README/packetLoss_ping.png" width="80%"/>
@@ -217,7 +219,7 @@ sudo python3 SRFT_UDPClient.py test_10mb_file
 ```
 ![3PacketLoss.png](Screenshots/README/3PacketLoss.png)
 
-The server will show [timeout] retransmitting 64 packets messages, which is our timeout thread resending the whole window b/c ACK does not arrive. The transfer still completes and the MD5 still matches at the end.
+[timeout] retransmitting 64 packets messages is our timeout thread resending the whole window b/c ACK does not arrive.  transfer still completes and the MD5 matches.
 
 **Switch between loss levels**
 ```bash
@@ -325,7 +327,7 @@ sudo python3 SRFT_UDPServer.py --attack tamper
 sudo python3 SRFT_UDPClient.py test_10mb_file
 ```
 ![Phase2_Test3.png](Screenshots/README/Phase2_Test3.png)
-The server flips two bits inside the encrypted payload of one DATA packet before sending. Client AES-GCM tag check fails, the packet is dropped, AEAD authentication failures = 1. Then the retransmit thread sends a clean copy, the file completes, and SHA-256 match = Yes.
+The server flips two bits inside the encrypted payload of one DATA packet before sending. Client AES-GCM tag check fails, the packet is dropped, AEAD authentication failures = 1. retransmit thread sends a clean copy, the file completes, and SHA-256 match = Yes.
 
 ### Test 4 Replay Protection
 
@@ -337,7 +339,7 @@ sudo python3 SRFT_UDPServer.py --attack replay
 sudo python3 SRFT_UDPClient.py test_10mb_file
 ```
 ![Phase2_Test4.png](Screenshots/README/Phase2_Test4.png)
-The server saves one valid DATA packet and re sends it later. Client has already written that sequence number, sees it in its receivedSet, and drops it as a duplicate. Replay drops = 1, SHA-256 match = Yes.
+server saves one valid DATA packet and resends it later. Client has already written that sequence number, sees it in its receivedSet, and drops it as a duplicate. Replay drops = 1, SHA-256 match = Yes.
 
 ### Test 5 Forged Injection
 
@@ -349,7 +351,7 @@ sudo python3 SRFT_UDPClient.py test_10mb_file
 ```
 ![Phase2_Test5.png](Screenshots/README/Phase2_Test5.png)
 
-The server inserts one extra packet full of random bytes with a bogus sequence number. Client AES-GCM auth tag check fails because the random bytes are not real ciphertext under our session key. AEAD authentication failures = 1, SHA-256 match = Yes.
+server inserts one extra packet full of random bytes. Client AES-GCM auth tag check fails because the random bytes are not real ciphertext under our session key. AEAD authentication failures = 1, SHA-256 match = Yes.
 
 **Pull reports back to local**
 
@@ -477,24 +479,24 @@ Phase 2 payload is AES GCM encrypted bytes with nonce (12B) + ciphertext + auth_
 2. **Server → Client:** FILE_INFO packet with file size and total packet count.
 3. **Server → Client:** DATA packets, 1024 bytes each, placed into a sliding window of 64 in flight packets.
 4. **Client → Server:** cumulative ACK every 3 rev DATA packet. ACK number = next expected sequence.
-5. **Server:** if any packet in the window is not ACKed within timeoutValue = 0.1s, it retransmits the whole unacked window (Go-Back-N).
-6. **Server → Client:** `FIN` when the last byte has been ACKed.
-7. **Client → Server:** `FIN_ACK` . Both sides compute `md5sum` and compare.
+5. **Server:** if any packet in the window is not ACKed within timeoutValue = 0.1s, retransmits the whole unacked window (Go-Back-N).
+6. **Server → Client:** FIN when the last byte has been ACKed.
+7. **Client → Server:** FIN_ACK . Both sides md5sum and compare.
 
 ### Phase 2 Work Flow
 
-1. **Client → Server:** CLIENT_HELLO with client_nonce (16 B) + protocol version + cipher name + HMAC-SHA256(PSK, fields)
+1. **Client → Server:** CLIENT_HELLO with client_nonce (16B) + protocol version + cipher name + HMAC-SHA256(PSK, fields)
 2. **Server:** verify HMAC generates server_nonce (16B) and session_id (8B). If it fails, the connection is rejected.
-3. **Server → Client:** SERVER_HELLO with server_nonce (16 B) + session_id (8 B) + HMAC.
-4. **Both sides:** derive enc_key and ack_key with HKDF-SHA256 using PSK and both nonces.
-5. **Same flow as Phase 1**, but every DATA and ACK is AES-256-GCM encrypted. The AAD includes `session_id`, `seq`, `ack`, and `type`.
-6. **After FIN**, server sends SHA_VERIFY with SHA-256(file_bytes). Client compares with the SHA-256 of the reassembled file and replies with SHA_CONFIRM
+3. **Server → Client:** SERVER_HELLO with server_nonce (16B) + session_id (8 B) + HMAC.
+4. **Both sides:** derive enc key and ack key with HKDF-SHA256 using PSK and both nonces.
+5. **Same flow as Phase 1**, but every DATA and ACK is AES-256-GCM encrypted. The AAD includes session_id, seq, ack, and type.
+6. **After FIN**, server sends SHA_VERIFY with SHA-256(file_bytes). Client compares with the SHA256 of the reassembled file and replies with SHA_CONFIRM
 
 ### SRFT Header
 
 header format string in config.py is !BIxIHH, 14 bytes, network byte order.
 
-| Offset | Size | Field | What it is                                                  |
+| Offset | Size | Field | MEaning                                                     |
 | --- | --- | --- |-------------------------------------------------------------|
 | 0 | 1 B | `type` | packet type code                                            |
 | 1 | 4 B | `seqNum` | sequence number of this chunk                               |
@@ -507,17 +509,16 @@ header format string in config.py is !BIxIHH, 14 bytes, network byte order.
 
 Four error control: 
 1. **Checksum** One complement sum over the SRFT header + payload, No pseudo-header. Wrong checksum will drop the packet, and wait for retransmission.
-2. **Sequence Numbers** Every DATA packet gets a seq number. Duplicates are detected. Out of order packets go into a buffer and get in order later.
-3. **Cumulative ACK** We send one ACK every 3 received DATA packets.
+2. **Sequence Numbers** Every DATA packet get seq number. Duplicates are detected. Out of order packets go into a buffer and get in order later.
+3. **Cumulative ACK** We send one ACK every 3 received DATA packets or every 500 ms.
 4. **Retransmission by Timeout** sender thread watch the unacked window. If 0.1s passes without an ACK covering seq N, resend seq N.
 
 ### Sliding Window and Flow Control
-The server keeps up to windowSize = 64 unacked packets in flight at once.
-
-- windowBase = lowest unACKed sequence number
-- nextToSend = the next sequence number to hand to the socket. 
+The server keep up to windowSize = 64 unacked packets in flight.
+- windowBase = lowest unACK sequence number
+- nextToSend = the next sequence number to the socket. 
 - packet with seq N may be sent only if N < windowBase + windowSize. 
-- When ACK arrive with ackNum = N, windowBase jumps forward to N, which opens up new room in the window.
+- When ACK arrive with ackNum = N, windowBase jumps to N, which opens up new room in the window.
 
 We picked 64 because 16 and 32 were too small (kept draining under loss) and 256 / 512 used more memory without going any faster on EC2.
 
@@ -526,70 +527,69 @@ We picked 64 because 16 and 32 were too small (kept draining under loss) and 256
 If the sender tried to send and wait for ACK on one thread, sending would wait every time if ACK was late. So we split the work.
 **Server side:**
 - **Main thread** reads chunks, builds packets, and sends DATA as long as nextToSend - windowBase < windowSize.
-- **ACK thread** receives ACK packets, parses them, and advances windowBase.
+- **ACK thread** receive ACK packet, parses them, and advances windowBase.
 - **Retransmit thread** checks lastWindowMoveTime and resends the unacked window on timeout.
 
 **Client side:**
 - **Main thread** receive packets, check the checksum, parses, buffers writes the chunk, and updates expectedSeq.
-- **ACK sender thread** sends cumulative ACKs every 3 received packets.
+- **ACK sender thread** sends cumulative ACKs every 3 rev packets.
 
 All shared state (the window, the buffer, counters) is protected with threading.Lock(), and every lock is inside a try/finally so it always releases even if an exception is raised.
 
 ## Phase 2 Security Design
 
-| Requirement | How it work                                                                                                                   |
-| --- |-------------------------------------------------------------------------------------------------------------------------------|
-| **Confidentiality** | AES 256 GCM encrypts every DATA and ACK payload.                                                                              |
-| **Integrity** | AES GCM authentication tag (16B). Any flipped bit - tag fails - packet dropped.                                               |
-| **Authentication** | PSK handshake. Both sides prove they know the PSK via HMAC SHA256 before keys are derived.                                    |
-| **Replay Protection** | Receiver tracks accepted sequence numbers. Anything already accepted, or more than 5000 ahead of the expected seq is dropped. |
-| **End-to-end check** | Server sends SHA 256(file) in a final AEAD protected control packet. Client recomputes and compares.                          |
-
+| Requirement | How it work                                                                                                               |
+| --- |---------------------------------------------------------------------------------------------------------------------------|
+| **Confidentiality** | AES 256 GCM encrypts every DATA and ACK payload.                                                                          |
+| **Integrity** | AES GCM authentication tag (16B). Any flipped bit - tag fails - packet dropped.                                           |
+| **Authentication** | PSK handshake. Both sides prove they know the PSK from HMAC SHA256 before keys are derived.                               |
+| **Replay Protection** | Client tracks accepted sequence numbers. Anything already accept, or more than 5000 ahead of the expected seq is dropped. |
+| **End-to-end check** | Server sends SHA 256(file) in a final AEAD protected control packet. Client recomputes and compares.                      |
 
 **Pre-Shared Key (PSK)** in config.py. Both sides must have the same PSK or the handshake HMAC check will fail.
 
-**Handshake (ClientHello - ServerHello)** Client sends CLIENT_HELLO with a random 16 byte client_nonce, protocol version, cipher name, and an HMAC-SHA256 over those fields using the PSK. Server checks the HMAC. If OK, server picks its own 16 byte server_nonce and 8 byte session_id, and replies with SERVER_HELLO + its HMAC. Client verifies.
+**Handshake (ClientHello - ServerHello)** Client sends CLIENT_HELLO with a random 16B client_nonce, protocol version, cipher name, and an HMAC-SHA256 over those fields using the PSK. Server checks the HMAC. If OK, server picks own 16B server_nonce and 8B session_id, and reply with SERVER_HELLO + its HMAC. Client verifies.
 
-**Key Derivation (HKDF-SHA256)** from HKDF(PSK, salt = client_nonce || server_nonce, info = "srft-enc"). Used for AES-256-GCM on DATA.
+**Key Derivation (HKDF-SHA256)** from HKDF(PSK, salt = client_nonce || server_nonce, info). Use for AES-256-GCM on DATA.
 
-**AEAD (AES-256-GCM) Encryption** 12 byte nonce is session_id (8 B) || seq_num (4 B) which is unique per (session, seq). AAD covers session_id, seq, ack, and type so an attacker cannot swap those fields without breaking the tag. If decryption fails, the packet is dropped and aeadFailCount increases by one.
+**AEAD (AES-256-GCM) Encryption** 12B nonce is session_id (8B) || seq_num (4B) which is unique per (session, seq). AAD covers session_id, seq, ack, and type so attacker cannot swap those fields without breaking the tag. If decryption fails, the packet is dropped and aeadFailCount increases by one.
 
-**Replay Protection** client keeps a set of every seq it has already written. If the same seq shows up again (replay), it is dropped and replayDropCount increases. If a packet arrives with a seq more than 5000 ahead of what we expect, it is dropped as out of window.
+**Replay Protection** client keep set of every seq it has already written. If the same seq shows up again (replay), it is dropped and replayDropCount increases. If packet arrives with a seq more than 5000 ahead of what we expect, it is dropped as out of window.
 
-**End to End SHA 256 File Verification** After the last chunk is ACKed, the server hashes original file with SHA-256 and sends it in a SHA_VERIFY packet (AEAD-protected). The client hashes its reassembled file and compares. 
+**End to End SHA 256 File Verification** After the last chunk is ACK, server hashes original file with SHA256 and sends it in SHA_VERIFY packet (AEAD protected). The client hashes its reassembled file and compares. 
 
 
 ### Design Decisions 
 
-**Chunk size 1024 B.** Small enough to fit well under the Ethernet MTU (1500 B) even after adding 20 B IP + 8 B UDP + 14 B SRFT + 28 B AEAD overhead = 1094 B total. Big enough to keep throughput reasonable.
+**Chunk size 1024 B.** Small enough to fit well under the Ethernet MTU (1500B) even after adding 20B IP + 8B UDP + 14B SRFT + 28B AEAD overhead = 1094 B total. Big enough to keep throughput reasonable.
 
 **Window size 64.** We test 16 and 32 first too small, the pipe drained under loss. 256 and 512 used more memory without going any faster on EC2. 64 is good
 
-**ACK every 3 packets.** Avoids one ACK per packet flood. Low enough to save bandwidth, fast enough that the window keeps moving
+**ACK every 3 packets or 500ms.** Avoids one ACK per packet flood. Low enough to save bandwidth, fast enough that the window keeps moving
 
-**Fixed timeout 0.1 s.** we test few timeout from 0.05s to 2.0s. We picked 0.1 second. it is works well on AWS where RTT is around 1–2 ms and short enough that we do not waste time waiting.
+**Fixed timeout 0.1 s.** we test few timeout from 0.05s to 2.0s. We pick 0.1s. it is works well on AWS where RTT is around 1–2 ms and short enough that we do not waste time waiting.
 
-**Nonce = session_id || seq.** AES-GCM needs 12byte nonce that is unique per key. We put 8B session_id with the 4B seq to get exactly 12 bytes, make sure it is unique
+**Nonce = session_id || seq.** AES GCM needs 12B nonce that is unique per key. We put 8B session_id with the 4B seq to get exactly 12 B, make sure it is unique
 
 **flushSocket() before each transfer.** Drains leftover packets from a previous run so old data does not confuse a new transfer.
 
 ### Known Limitations
 
-1. **Fixed chunk size (1024 B).** 
-2. **Fixed timeout.** We use a fixed timeout not a weighted average RTT estimator like real TCP. On very high latency networks this would be too short and cause extra retransmits.
+1. **Fixed chunk size (1024 B)** 
+2. **Fixed timeout** not a weighted average RTT estimator like real TCP. On very high latency networks this would be too short and cause extra retransmits.
 3. Our sliding window is **fixed at 64**, it does not shrink on loss or grow on success.
 4. **Go-Back-N** On timeout we resend the whole window, not just the one lost packet. 
-5. **One client at a time.** The server only serves one transfer at a time. 
-6. **PSK is plaintext in config.py.** real system would read it from a protected file or a secret manager.
-7. **Filename goes out in plaintext** (before the handshake). nicer if the handshake first and ask for the filename inside the encrypted channel.
+5. **One client at a time** The server only serves one transfer at a time. 
+6. **PSK is plaintext in config.py** real system would read it from a protected file or a secret manager.
+7. **Filename goes out in plaintext** (before the handshake). nicer if the handshake first and ask for the filename inside the encrypted.
 
 ### Lessons Learned
 
-- After implementing cumulative ACK, the sliding window, and the timeout retransmitter by hand, every slide from the TCP Error Control and Pipelining lectures made a lot more sense and we actually understood that algorithm.
+- After creating cumulative ACK, the sliding window, and the timeout retransmitter, the TCP Error Control and Pipelining lectures made a lot more sense and we actually understood that algorithm.
 - by building the IP and UDP headers we learned how encapsulation works at the byte level. 
 - AES-GCM is auth tag that catches tampered or forged packets.
-- The checksum only catches random bit flips; AEAD catches attackers.
-- getting the AES-GCM requires that no (key, nonce) pair is ever reused, use session_id || seq as the nonce guarantees uniqueness b/c seq never repeats.
+- checksum only catches random bit flips; AEAD catches attackers.
+- getting the AES-GCM requires that no (key, nonce) pair is ever reused, use session_id || seq as the nonce make unique b/c seq never repeats.
 - Binding session_id, seq, ack, and type into the AEAD as AAD to authenticates the metadata. If we only encrypted the payload, attacker could still swap seq numbers and mess up the order
 - Threading locks matter. The first time we forgot try/finally, the program froze when an exception hit inside the lock.
 
@@ -597,9 +597,9 @@ All shared state (the window, the buffer, counters) is protected with threading.
 
 - only retransmit the lost packets, not the whole window.
 - using Jacobson or TCP style RTT estimator prevent over retransmit on a fast link or under retransmit.
-- **SACK style ACKs** so the client can tell the server exactly which seq numbers are missing.
-- **Congestion control** (AIMD) so the window shrinks on loss and grows on success.
-- **Multi client support** on the server side.
+- **SACK style ACKs** so client can tell the server exactly which seq numbers are missing.
+- **Congestion control** (AIMD) so window shrinks on loss and grows on success.
+- **Multi client support** on server side.
 - Use a real key exchange so we don’t need a pre-shared key.
 
 

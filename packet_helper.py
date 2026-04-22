@@ -1,7 +1,5 @@
 # helper functions for packets, checksum, sockets, hashing, and security
 
-
-
 import struct
 import hashlib
 import hmac as hmacLib
@@ -17,7 +15,6 @@ from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives import hashes
 
 
-# macOS ,Linux detection
 isMac = (sys.platform == 'darwin')
 
 # AEAD
@@ -25,7 +22,7 @@ _session_aead_cipher = None
 
 
 def set_session_cipher(name):
-    # called after handshake on client and server
+    # after handshake
     global _session_aead_cipher
     if name not in ALLOWED_CIPHERS:
         raise ValueError('unsupported session cipher: ' + repr(name))
@@ -64,7 +61,6 @@ def calcChecksum(data):
         remainder = checksum & 0xFFFF
         checksum = carry + remainder
 
-    # one's complement
     result = ~checksum & 0xFFFF
     return result
 
@@ -129,7 +125,7 @@ def buildIpHeader(srcIP, dstIP, totalLen):
             ipDontFragment,
             ipTTL,
             ipProtocolUDP,
-            # checksum = 0, kernel fills it on Linux
+            # checksum = 0, kernel fill
             0,
             src_bin,
             dst_bin
@@ -139,7 +135,6 @@ def buildIpHeader(srcIP, dstIP, totalLen):
 
 # UDP header
 # 8 bytes: src port, dst port, length, checksum
-# set checksum to 0 option for UDP
 def buildUdpHeader(srcPort, dstPort, udpLen):
     udpCheck = 0
     header = struct.pack('!HHHH',
@@ -152,7 +147,6 @@ def buildUdpHeader(srcPort, dstPort, udpLen):
 
 
 # build our SRFT header + data
-# custom protocol header
 # 14 bytes: type(1) + seq(4) + pad(1) + ack(4) + checksum(2) + len(2)
 def buildSrftPayload(pktType, seqNum, ackNum, data=b''):
     dataLen = len(data)
@@ -180,7 +174,6 @@ def buildSrftPayload(pktType, seqNum, ackNum, data=b''):
 
 # full packet = encapsulation
 # IP (20B),  UDP (8B),  SRFT (14B), data
-# inside out: application - transport - network layer
 def buildFullPacket(srcIP, dstIP, srcPort, dstPort,
                     pktType, seqNum, ackNum, data=b''):
 
@@ -203,7 +196,6 @@ def buildFullPacket(srcIP, dstIP, srcPort, dstPort,
 # de-encapsulation
 # receiver strips headers layer by layer
 # IP - UDP - SRFT - data
-
 def parseFullPacket(rawData, myPort=None):
     global checksumErrorCount
     try:
@@ -279,14 +271,14 @@ def parseFullPacket(rawData, myPort=None):
 def createServerSocket():
     try:
         if isMac:
-            # macOS: normal UDP socket for local testing
+            # macOS: UDP
             sock = socket(AF_INET, SOCK_DGRAM)
             sock.bind(('', serverPort))
             print('    (macOS) SOCK_DGRAM for local testing')
             print('    bound to port ' + str(serverPort))
             return sock
         else:
-            # Linux/AWS: raw socket, build IP+UDP headers
+            # Linux/AWS: raw socket, build IP+UDP header
             sock = socket(AF_INET, SOCK_RAW, IPPROTO_UDP)
             sock.setsockopt(IPPROTO_IP, IP_HDRINCL, 1)
             print('    (Linux) SOCK_RAW + IP_HDRINCL')
@@ -407,7 +399,7 @@ def recvPacket(sock, myPort, timeout=None):
 
 # clear out old packets stuck in socket buffer
 def flushSocket(sock):
-    # clean leftover packets
+    # clean
     oldTimeout = sock.gettimeout()
     sock.settimeout(0.01)
     flushed = 0
@@ -425,7 +417,7 @@ def flushSocket(sock):
 
 # file hashing
 # MD5 for Phase 1
-# SHA-256 for Phase 2 end to end verification
+# SHA-256  Phase 2
 def calculateMD5(filepath):
     # MD5 hash
     md5 = hashlib.md5()
@@ -460,9 +452,9 @@ def calculateSHA256(filepath):
 
 
 
-#  break file into chunks for sliding window sender
+#  break file into chunks
 def countChunks(filepath):
-    # cchunks that file needs
+    # cchunks that file
     try:
         fileSize = os.path.getsize(filepath)
     except OSError as e:
@@ -485,7 +477,7 @@ def readChunk(filepath, seqNum):
         data = f.read(chunkSize)
     return data
 
-# read one chunk using an already open file handle
+# already open file handle
 # no open/close each time
 def readChunkFromHandle(fileHandle, seqNum):
     if seqNum < 0:
@@ -516,7 +508,7 @@ def validateFilename(filename):
     return True
 
 
-# PSK validation,
+# PSK
 def validatePsk(pskKey):
     if not isinstance(pskKey, bytes):
         print('[warning] PSK must be bytes, got ' + str(type(pskKey)))
@@ -545,7 +537,6 @@ def getTypeName(pktType):
 
 
 # Phase 2 security functions
-
 # HMAC
 def computeHmac(key, message):
     # HMAC-SHA256, returns 32
@@ -580,7 +571,7 @@ def deriveSessionKey(pskKey, clientNonce, serverNonce):
 # AAD (Additional Authenticated Data) for AEAD
 # session_id, seq, ack, type
 def buildAad(sessionId, pktType, seqNum, ackNum):
-    # if an attacker changes any of these, decryption fails
+    # if attacker changes any of these, decryption fails
     aad = sessionId + struct.pack('!BII', pktType, seqNum, ackNum)
     return aad
 
@@ -642,8 +633,7 @@ def decryptData(sessionKey, encryptedData, sessionId, pktType, seqNum, ackNum):
 
 
 
-# handshake message builders
-
+# handshake
 def buildClientHello(pskKey):
 
     clientNonce = os.urandom(handshakeNonceSize)
@@ -719,7 +709,7 @@ def parseClientHello(pskKey, data):
         print('  [security] error parsing ClientHello: ' + str(e))
         return None
 
-# build ServerHello response
+# build ServerHello
 def buildServerHello(pskKey, clientNonce):
 
     serverNonce = os.urandom(handshakeNonceSize)

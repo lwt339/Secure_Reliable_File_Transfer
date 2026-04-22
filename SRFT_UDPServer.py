@@ -11,16 +11,15 @@ from config import *
 from packet_helper import *
 
 
-# packet counters
 totalSent = 0
 totalRetransmit = 0
 totalReceived = 0
 
-# security counter
+# security
 aeadFailCount = 0
 replayDropCount = 0
 
-# client security counter
+# client
 clientAeadFailCount = 0
 clientReplayDropCount = 0
 clientSha256Match = False
@@ -41,7 +40,6 @@ isDone = False
 lastWindowMoveTime = 0.0
 windowLock = threading.Lock()
 
-# file info
 filePath = ''
 numChunks = 0
 
@@ -52,20 +50,16 @@ serverFileHandle = None
 # server socket ref
 serverSocket = None
 
-# client address
-# saved on first request
 savedClientIP = ''
 savedClientPort = 0
 
 # Phase 2 security
-
 # HKDF
 sessionKey = None
 sessionId = None
 handshakeOk = False
 
 # attack test mode
-
 # replay
 attackPacketSaved = None
 attackDone = False
@@ -73,7 +67,7 @@ attackDone = False
 # attack mode
 currentAttackMode = attackMode
 
-# lock counter increments
+# lock
 counterLock = threading.Lock()
 
 def addSent(count=1):
@@ -123,7 +117,7 @@ def waitForRequest(sock):
         parsed = recvPacket(sock, serverPort, timeout=None)
         if parsed is None:
             continue
-        # check if is a file request
+        # check
         if parsed['pktType'] == typeFilename:
             filename = parsed['data'].decode('utf-8')
             savedClientIP = parsed['srcIP']
@@ -136,7 +130,7 @@ def waitForRequest(sock):
             return filename
 
 
-# security handshake (server side)
+# handshake
 def doSecurityHandshake(sock):
     global sessionKey, sessionId, handshakeOk
 
@@ -280,7 +274,6 @@ def verifyControlPacket(parsed):
 
 
 # attack test functions
-
 # tamper flip 2 bits in encrypted payload
 def doTamperAttack(sock, chunkData, seqNum):
 
@@ -295,7 +288,7 @@ def doTamperAttack(sock, chunkData, seqNum):
     else:
         payload = chunkData
 
-    # flip 2 bits (0 to 1, 1 to 0)
+    # flip 2 bit
     if len(payload) > 2:
         tampered = bytearray(payload)
         pos1 = min(15, len(tampered) - 1)
@@ -623,9 +616,7 @@ def sendFinish(sock, md5Hash, sha256Hash):
     return False
 
 
-# server report
 def writeReport(filename, fSize, md5Hash, sha256Hash, sha256Match):
-    # handle edge cases
     if endTime > 0 and startTime > 0 and endTime >= startTime:
         duration = endTime - startTime
     else:
@@ -770,13 +761,11 @@ if __name__ == '__main__':
     serverSocket = createServerSocket()
     print('  server socket created')
 
-    # server directory exists
     if not os.path.exists(serverDir):
         os.makedirs(serverDir)
         print('  create ' + serverDir + ' test files here')
 
     try:
-        # client send filename
         filename = waitForRequest(serverSocket)
 
         # validate filename
@@ -788,7 +777,7 @@ if __name__ == '__main__':
             serverSocket.close()
             sys.exit(1)
 
-        # file exists on server
+        # file exist
         filepath = os.path.join(serverDir, filename)
         if not os.path.exists(filepath):
             print('')
@@ -829,17 +818,17 @@ if __name__ == '__main__':
                 serverSocket.close()
                 sys.exit(1)
 
-        # file info to client
+        # file info
         sendFileInfo(serverSocket, filename, fSize, numChunks, md5Hash)
         time.sleep(0.5)
 
-        # file transfer sliding window
+        # transfer sliding window
         startTime = time.time()
 
-        # keeps file open throughout transfer instead of open/close per chunk
+        # open throughout transfer instead of open/close per chunk
         serverFileHandle = open(filepath, 'rb')
 
-        # flush from previous test
+        # flush
         flushSocket(serverSocket)
 
         print('')

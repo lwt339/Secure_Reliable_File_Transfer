@@ -1,7 +1,5 @@
 # all settings
 
-# network address settings
-
 # server IP
 serverIP = '172.31.22.141'
 
@@ -16,14 +14,13 @@ securityEnabled = False
 # AES-256-GCM
 psk = b'cs5700-group2-srft-secret-key32!'
 
-# port numbers
+# port
 serverPort = 12000
 clientPort = 12001
 
 
 # IPv4 header settings
 # version, IHL, TOS, total length, ID, flags, TTL, protocol, checksum, source IP, destination IP
-
 ipVersion = 4
 # 5 x 4 = 20B
 ipIHL = 5
@@ -50,14 +47,13 @@ udpHeaderLen = 8
 # I = ack number (4)
 # H = checksum (2)
 # H = data length (2)
-
 srftFormat = '!BIxIHH'
 # 14 total
 srftHeaderLen = 14
 
 
 # packet type codes
-# Phase 1 types (reliable transfer)
+# Phase 1
 # client send filename to request
 typeFilename    = 0x01
 # server file metadata back
@@ -71,7 +67,7 @@ typeFin         = 0x05
 # client confirms finish
 typeFinAck      = 0x06
 
-# Phase 2 types (security handshake + verification)
+# Phase 2 types
 # client starts security handshake
 typeClientHello = 0x10
 # server respond
@@ -92,10 +88,9 @@ typeNames = {
 
 
 # reliable transfer settings
-
-# max data bytes per packet, TCP MSS
+# max data bytes
 chunkSize = 1024
-# socket receive buffer size
+# socket receive buffer
 recvBufferSize = 65535
 # retransmission timeout
 timeoutValue = 0.1
@@ -105,12 +100,11 @@ windowSize = 64
 ackEvery = 3
 # handshake or FIN
 maxRetry = 15
-# recv timeouts
+# recv timeout
 maxTimeouts = 30
 
-# receiver window limit for replay protection
+# receiver window limit
 # seqNum > expectedSeq + 5000
-# get dropped
 recvWindowLimit = 5000
 
 
@@ -120,37 +114,36 @@ recvWindowLimit = 5000
 serverDir = './server/'
 # received file
 clientDir = './client/'
-# server side report (run on server EC2)
+
 reportPath = 'Server_Report.txt'
-# client side report (run on client EC2)
 clientReportPath = 'Client_Report.txt'
 
 
 
-# debug settings
+# debug
 showDebug = True
 printEvery = 500
 
 
-# AEAD sizes for AES-256-GCM
+# AEAD
 nonceSize = 12
 # 16B auth tag
 tagSize = 16
 
 # handshake sizes
 
-# client/server nonce
+# nonce
 handshakeNonceSize = 16
 # random session ID
 sessionIdSize = 8
 protocolVersion = 1
 
-# AEAD names
+# AEAD
 CIPHER_AES_GCM = 'AES-256-GCM'
 CIPHER_CHACHA = 'ChaCha20-Poly1305'
 ALLOWED_CIPHERS = (CIPHER_AES_GCM, CIPHER_CHACHA)
 
-# default: AES-256-GCM
+# default AES-256-GCM
 cipherInfo = CIPHER_AES_GCM
 
 
