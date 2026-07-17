@@ -856,8 +856,8 @@ if __name__ == '__main__':
 
     print('')
     print('')
-    print(' Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu ')
-    print(' CS5700 SRFT Client ')
+    print(' Weiting Liu ')
+    print(' SRFT Client ')
     if securityEnabled:
         print(' Phase 2: Secure Reliable File Transfer')
     else:

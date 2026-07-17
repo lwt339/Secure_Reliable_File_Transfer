@@ -1,8 +1,7 @@
 # Secure Reliable File Transfer (SRFT)
 
-**CS 5700 Fundamentals of Computer Networking** 
 
-**Team:** Weiting Liu, Youran Ye, Jingkai Liu, Yinfei Lu
+Weiting Liu
 
 This is our group project. We built a file transfer program on top of UDP using raw sockets. We wrote the IP header and the UDP header ourselves, and wrap our SRFT header inside the UDP payload. On top of that we add two layers: a reliability layer (Phase 1) and a security layer (Phase 2).
 

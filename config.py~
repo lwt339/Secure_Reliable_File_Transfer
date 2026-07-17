@@ -7,7 +7,7 @@ serverIP = '172.31.22.141'
 clientIP = '172.31.24.196'
 
 # True = encrypted (Phase 2), False = plain (Phase 1)
-securityEnabled = False
+securityEnabled = True
 
 
 # Pre Shared Key (PSK)

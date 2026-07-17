@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a93b0aac-d7a5-47bb-b0ef-67fc1da037c7" name="Changes" comment="updates config">
+      <change beforePath="$PROJECT_DIR$/.idea/SRFT.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Phase2" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;lwt339&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/youranye/SRFT.git&quot;,
+    &quot;accountId&quot;: &quot;b7b7873f-225b-4ee0-8570-638d718bb4ef&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3BYKDsLjcHcHbiC4q2Dvi4BI5Qx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vicky/Desktop/CS 5700/SRFT/server&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT\server" />
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT\Screenshots\README" />
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT\Screenshots" />
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT\Screenshots\Test_Output_Screenshots\Phase2" />
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT\Screenshots\Test_Output_Screenshots\Phase1" />
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT" />
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT\Phase 2 Test\Test_800mb" />
+      <recent name="C:\Users\vicky\Desktop\CS 5700\SRFT\Phase 2 Test" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-ca5e2b39c7df-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.308" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a93b0aac-d7a5-47bb-b0ef-67fc1da037c7" name="Changes" comment="" />
+      <created>1774660446630</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774660446630</updated>
+    </task>
+    <task id="LOCAL-00001" summary="phase 2">
+      <option name="closed" value="true" />
+      <created>1775087985791</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1775087985791</updated>
+    </task>
+    <task id="LOCAL-00002" summary="phase 2 test">
+      <option name="closed" value="true" />
+      <created>1775275683421</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775275683421</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update">
+      <option name="closed" value="true" />
+      <created>1776402339290</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776402339290</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update">
+      <option name="closed" value="true" />
+      <created>1776487871481</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776487871481</updated>
+    </task>
+    <task id="LOCAL-00005" summary="client report">
+      <option name="closed" value="true" />
+      <created>1776572843457</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1776572843457</updated>
+    </task>
+    <task id="LOCAL-00006" summary="more testing">
+      <option name="closed" value="true" />
+      <created>1776572869611</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1776572869611</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Report">
+      <option name="closed" value="true" />
+      <created>1776573085562</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1776573085562</updated>
+    </task>
+    <task id="LOCAL-00008" summary="More testing">
+      <option name="closed" value="true" />
+      <created>1776811642726</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1776811642726</updated>
+    </task>
+    <task id="LOCAL-00009" summary="client report">
+      <option name="closed" value="true" />
+      <created>1776811960721</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776811960721</updated>
+    </task>
+    <task id="LOCAL-00010" summary="client report">
+      <option name="closed" value="true" />
+      <created>1776812943163</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776812943163</updated>
+    </task>
+    <task id="LOCAL-00011" summary="README and screenshots">
+      <option name="closed" value="true" />
+      <created>1776828712454</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1776828712454</updated>
+    </task>
+    <task id="LOCAL-00012" summary="More updates">
+      <option name="closed" value="true" />
+      <created>1776831085347</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1776831085347</updated>
+    </task>
+    <task id="LOCAL-00013" summary="More updates">
+      <option name="closed" value="true" />
+      <created>1776884562840</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1776884562840</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updates config">
+      <option name="closed" value="true" />
+      <created>1776885192821</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1776885192821</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Phase1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="phase 2" />
+    <MESSAGE value="phase 2 test" />
+    <MESSAGE value="update" />
+    <MESSAGE value="more testing" />
+    <MESSAGE value="Report" />
+    <MESSAGE value="More testing" />
+    <MESSAGE value="client report" />
+    <MESSAGE value="README and screenshots" />
+    <MESSAGE value="More updates" />
+    <MESSAGE value="updates config" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates config" />
+  </component>
+</project>
