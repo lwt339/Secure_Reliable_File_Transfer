@@ -1,10 +1,10 @@
 # all settings
 
 # server IP
-serverIP = '172.31.22.141'
+serverIP = '127.0.0.1'
 
 # client IP
-clientIP = '172.31.24.196'
+clientIP = '127.0.0.1'
 
 # True = encrypted (Phase 2), False = plain (Phase 1)
 securityEnabled = False
